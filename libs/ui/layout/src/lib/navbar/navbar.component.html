@@ -1,16 +1,15 @@
 <div class="navbar bg-white md:flex hidden">
   <div class="navbar-start">
-    <a class="btn btn-ghost text-xl">daisyUI</a>
+    <a routerLink="/" class="btn btn-ghost text-xl">Smart Energy</a>
   </div>
   <div class="navbar-center hidden md:flex">
     <ul class="menu menu-horizontal px-1">
       <li><a>Item 1</a></li>
       <li>
         <details>
-          <summary>Parent</summary>
+          <summary>Calculators</summary>
           <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
+            <li><a routerLink="/calculator/boiler">Boiler</a></li>
           </ul>
         </details>
       </li>
