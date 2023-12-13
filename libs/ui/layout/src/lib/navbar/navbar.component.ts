@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lectoraat-smart-energy-navbar',
@@ -6,9 +6,9 @@ import {Component} from '@angular/core';
   styles: [],
 })
 export class NavbarComponent {
-  constructor() { }
+  constructor() {}
 
   logout() {
-    console.log('logout')
+    console.log('logout');
   }
 }
