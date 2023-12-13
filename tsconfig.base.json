@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@lectoraat-smart-energy/ui/layout": ["libs/ui/layout/src/index.ts"]
+      "@lectoraat-smart-energy/ui/layout": ["libs/ui/layout/src/index.ts"],
+      "@lectoraat-smart-energy/ui/pages": ["libs/ui/pages/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
