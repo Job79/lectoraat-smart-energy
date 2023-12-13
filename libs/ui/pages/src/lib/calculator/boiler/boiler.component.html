@@ -1,6 +1,6 @@
 <p>boiler works!</p>
 
-<form #boilerForm="ngForm" (ngSubmit)="onSubmit()">
+<form #boilerForm="ngForm" (ngSubmit)="storeCalculation()">
   <div>
     <label for="liter">Liter:</label>
     <input
@@ -62,4 +62,6 @@
   <button type="submit" [disabled]="boilerForm.invalid">Submit</button>
 </form>
 
-<button class="btn btn-primary" (click)="getBoilers()">Get</button>
+<lectoraat-smart-energy-boiler-result
+  [boiler]="boiler"
+></lectoraat-smart-energy-boiler-result>

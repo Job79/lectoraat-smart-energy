@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@lectoraat-smart-energy/shared": ["libs/shared/src/index.ts"],
+      "@lectoraat-smart-energy/ui/components": [
+        "libs/ui/components/src/index.ts"
+      ],
       "@lectoraat-smart-energy/ui/layout": ["libs/ui/layout/src/index.ts"],
       "@lectoraat-smart-energy/ui/pages": ["libs/ui/pages/src/index.ts"]
     }
