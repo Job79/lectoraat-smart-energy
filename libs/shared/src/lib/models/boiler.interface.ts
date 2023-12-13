@@ -1,7 +1,7 @@
 import { EnergyLabel } from './energyLabel.enum';
 
 export interface Boiler {
-  id: string;
+  id?: string;
   liter: number;
   price: number;
   power: number;
