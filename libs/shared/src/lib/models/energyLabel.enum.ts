@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-duplicate-enum-values */
+
 export enum EnergyLabel {
   'A+' = 22.79,
   'A' = 31.75,
@@ -9,3 +10,7 @@ export enum EnergyLabel {
   'F' = 122.14,
   'G' = 122.14,
 }
+
+export const EnergyLabelKeys = Object.values(EnergyLabel).filter(
+  (value) => typeof value === 'string'
+) as string[];
