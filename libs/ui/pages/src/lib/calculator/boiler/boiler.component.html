@@ -1,1 +1,65 @@
 <p>boiler works!</p>
+
+<form #boilerForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="liter">Liter:</label>
+    <input
+      type="number"
+      id="liter"
+      name="liter"
+      [(ngModel)]="boiler.liter"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="price">Price:</label>
+    <input
+      type="number"
+      id="price"
+      name="price"
+      [(ngModel)]="boiler.price"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="power">Power:</label>
+    <input
+      type="number"
+      id="power"
+      name="power"
+      [(ngModel)]="boiler.power"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="energyLabel">Energy Label:</label>
+    <select
+      id="energyLabel"
+      name="energyLabel"
+      [(ngModel)]="boiler.energyLabel"
+      required
+    >
+      <option *ngFor="let label of energyLabels">
+        {{ label }}
+      </option>
+    </select>
+  </div>
+
+  <div>
+    <label for="version">Version:</label>
+    <input
+      type="number"
+      id="version"
+      name="version"
+      [(ngModel)]="boiler.version"
+      required
+    />
+  </div>
+
+  <button type="submit" [disabled]="boilerForm.invalid">Submit</button>
+</form>
+
+<button class="btn btn-primary" (click)="getBoilers()">Get</button>
