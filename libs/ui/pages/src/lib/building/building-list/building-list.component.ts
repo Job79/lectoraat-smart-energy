@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { BuildingService } from '../building.service';
 import { Building } from '@lectoraat-smart-energy/shared';
 import { Observable } from 'rxjs';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'lectoraat-smart-energy-building-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   providers: [BuildingService],
   templateUrl: './building-list.component.html',
   styleUrl: './building-list.component.css',

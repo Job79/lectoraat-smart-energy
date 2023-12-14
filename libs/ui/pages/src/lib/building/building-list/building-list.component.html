@@ -1,7 +1,5 @@
-@for (building of buildings$ | async; track $index) {
-<p>{{ building.name }}</p>
-} @empty {
-<p>No buildings found</p>
-<p>No buildings found</p>
-
-}
+<div *ngFor="let building of buildings$ | async">
+  <a [routerLink]="['/building', building.id]">
+    {{ building.name }}
+  </a>
+</div>
