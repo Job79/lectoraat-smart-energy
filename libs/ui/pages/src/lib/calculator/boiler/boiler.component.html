@@ -1,67 +1,93 @@
-<p>boiler works!</p>
-
-<form #boilerForm="ngForm" (ngSubmit)="storeCalculation()">
+<div class="flex flex-col w-full md:flex-row">
   <div>
-    <label for="liter">Liter:</label>
-    <input
-      type="number"
-      id="liter"
-      name="liter"
-      [(ngModel)]="boiler.liter"
-      required
-    />
-  </div>
-
-  <div>
-    <label for="price">Price:</label>
-    <input
-      type="number"
-      id="price"
-      name="price"
-      [(ngModel)]="boiler.price"
-      required
-    />
-  </div>
-
-  <div>
-    <label for="power">Power:</label>
-    <input
-      type="number"
-      id="power"
-      name="power"
-      [(ngModel)]="boiler.power"
-      required
-    />
-  </div>
-
-  <div>
-    <label for="energyLabel">Energy Label:</label>
-    <select
-      id="energyLabel"
-      name="energyLabel"
-      [(ngModel)]="boiler.energyLabel"
-      required
+    <form
+      #boilerForm="ngForm"
+      (ngSubmit)="storeCalculation()"
+      class="space-y-6"
     >
-      <option *ngFor="let label of energyLabels">
-        {{ label }}
-      </option>
-    </select>
-  </div>
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Liter</span>
+          </div>
+          <input
+            type="number"
+            id="power"
+            name="power"
+            [(ngModel)]="boiler.liter"
+            required
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
 
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Price</span>
+          </div>
+          <input
+            type="number"
+            id="power"
+            name="power"
+            [(ngModel)]="boiler.price"
+            required
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
+
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Power</span>
+          </div>
+          <input
+            type="number"
+            id="power"
+            name="power"
+            [(ngModel)]="boiler.power"
+            required
+            placeholder="Type here"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
+
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Energy label</span>
+          </div>
+          <select
+            id="energyLabel"
+            name="energyLabel"
+            [(ngModel)]="boiler.energyLabel"
+            required
+            class="select select-bordered"
+          >
+            <option *ngFor="let label of energyLabels">
+              {{ label }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="boilerForm.invalid"
+        class="btn btn-neutral"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+  <div class="divider divider-vertical md:divider-horizontal"></div>
   <div>
-    <label for="version">Version:</label>
-    <input
-      type="number"
-      id="version"
-      name="version"
-      [(ngModel)]="boiler.version"
-      required
-    />
+    <lectoraat-smart-energy-boiler-result
+      [boiler]="boiler"
+    ></lectoraat-smart-energy-boiler-result>
   </div>
-
-  <button type="submit" [disabled]="boilerForm.invalid">Submit</button>
-</form>
-
-<lectoraat-smart-energy-boiler-result
-  [boiler]="boiler"
-></lectoraat-smart-energy-boiler-result>
+</div>

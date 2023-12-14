@@ -1,5 +1,26 @@
-<p>costHeatingOnce: {{ costHeatingOnce }}</p>
-<p>timeRequiredForHeating: {{ timeRequiredForHeating }}</p>
-<p>energyRequiredForHeating: {{ energyRequiredForHeating }}</p>
-<p>costStandby: {{ costStandby }}</p>
-<p>constStandbyAnnual: {{ constStandbyAnnual }}</p>
+<div class="stats stats-vertical shadow">
+  <div class="stat">
+    <div class="stat-title">costHeatingOnce</div>
+    <div class="stat-value">€ {{ costHeatingOnce }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">timeRequiredForHeating</div>
+    <div class="stat-value">{{ timeRequiredForHeating }} Uur</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">energyRequiredForHeating</div>
+    <div class="stat-value">{{ energyRequiredForHeating }} kWh</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">costStandby</div>
+    <div class="stat-value">€ {{ costStandby }}</div>
+  </div>
+
+  <div class="stat">
+    <div class="stat-title">energyStandbyAnnual</div>
+    <div class="stat-value">{{ energyStandbyAnnual }} kWh</div>
+  </div>
+</div>

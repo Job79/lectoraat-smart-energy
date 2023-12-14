@@ -45,7 +45,7 @@ export class BoilerResultComponent {
     return this.roundToDecimals(result);
   }
 
-  get constStandbyAnnual(): number {
+  get energyStandbyAnnual(): number {
     const standbyCost = this.costStandby;
 
     const result = standbyCost !== undefined ? standbyCost * 365 : 0;
