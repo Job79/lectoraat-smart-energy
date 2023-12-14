@@ -3,7 +3,7 @@
     <form
       #boilerForm="ngForm"
       (ngSubmit)="storeCalculation()"
-      class="space-y-6"
+      class="space-y-2"
     >
       <div>
         <label class="form-control w-full max-w-xs">
@@ -70,6 +70,27 @@
           >
             <option *ngFor="let label of energyLabels">
               {{ label }}
+            </option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Building</span>
+          </div>
+          <select
+            id="building"
+            name="building"
+            [(ngModel)]="boiler.building"
+            required
+            class="select select-bordered"
+          >
+            <option
+              *ngFor="let building of buildings$ | async"
+              [value]="building.id"
+            >
+              {{ building.name }}
             </option>
           </select>
         </label>

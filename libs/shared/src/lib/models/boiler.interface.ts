@@ -1,3 +1,4 @@
+import { Building } from './building.interface';
 import { EnergyLabel } from './energyLabel.enum';
 
 export interface Boiler {
@@ -6,5 +7,6 @@ export interface Boiler {
   price: number;
   power: number;
   energyLabel: EnergyLabel;
+  building: string;
   version: number;
 }
