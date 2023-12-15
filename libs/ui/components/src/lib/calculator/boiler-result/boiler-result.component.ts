@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Boiler, EnergyLabel } from '@lectoraat-smart-energy/shared';
+import { Boiler, EnergyLabel, EnergyLabels } from '@lectoraat-smart-energy/shared';
 
 @Component({
   selector: 'lectoraat-smart-energy-boiler-result',
@@ -37,11 +37,14 @@ export class BoilerResultComponent {
   }
 
   get costStandby(): number {
-    const boilerEnergyLabelValue = Number(EnergyLabel[this.boiler.energyLabel]);
+    if (!this.boiler.energyLabel) {
+      return 0;
+    }
 
-    const result = boilerEnergyLabelValue
-      ? (boilerEnergyLabelValue * 24) / 1000
-      : 0;
+    const boilerEnergyLabelValue = EnergyLabels[this.boiler.energyLabel](this.boiler.liter)
+    console.log(boilerEnergyLabelValue)
+
+    const result = (boilerEnergyLabelValue * 24) / 1000;
     return this.roundToDecimals(result);
   }
 
