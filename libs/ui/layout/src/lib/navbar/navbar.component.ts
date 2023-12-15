@@ -11,4 +11,8 @@ export class NavbarComponent {
   logout() {
     console.log('logout');
   }
+  imagePath?: string;
+  ngOnInit(): void {
+    this.imagePath = 'assets/logo-home.svg';
+  }
 }
