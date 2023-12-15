@@ -1,0 +1,52 @@
+.menu a {
+  font-size: 1.5em; /* adjust as needed */
+}
+/* Add this to your existing styles or in a separate CSS file */
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Adjust the spacing between icon and text */
+  padding: 8px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown summary {
+  cursor: pointer;
+}
+
+.dropdown ul {
+  position: absolute;
+  bottom: 100%; /* Change top to bottom */
+  left: 0;
+  z-index: 10;
+  display: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover ul {
+  display: block;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav-button {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .dropdown ul {
+    width: 100%;
+  }
+}
