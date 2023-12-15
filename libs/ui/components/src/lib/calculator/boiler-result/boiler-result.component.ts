@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Boiler, EnergyLabel, EnergyLabels } from '@lectoraat-smart-energy/shared';
+import { Boiler, EnergyLabels } from '@lectoraat-smart-energy/shared';
 
 @Component({
   selector: 'lectoraat-smart-energy-boiler-result',
