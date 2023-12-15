@@ -12,7 +12,6 @@
           </div>
           <input
             type="number"
-            id="power"
             name="power"
             [(ngModel)]="boiler.liter"
             required
@@ -29,7 +28,6 @@
           </div>
           <input
             type="number"
-            id="power"
             name="power"
             [(ngModel)]="boiler.price"
             required
@@ -46,7 +44,6 @@
           </div>
           <input
             type="number"
-            id="power"
             name="power"
             [(ngModel)]="boiler.power"
             required
@@ -62,7 +59,6 @@
             <span class="label-text">Energy label</span>
           </div>
           <select
-            id="energyLabel"
             name="energyLabel"
             [(ngModel)]="boiler.energyLabel"
             required
@@ -86,8 +82,6 @@
   </div>
   <div class="divider divider-vertical md:divider-horizontal"></div>
   <div>
-    <lectoraat-smart-energy-boiler-result
-      [boiler]="boiler"
-    ></lectoraat-smart-energy-boiler-result>
+    <lectoraat-smart-energy-boiler-result [boiler]="boiler"></lectoraat-smart-energy-boiler-result>
   </div>
 </div>
