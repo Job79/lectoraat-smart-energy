@@ -3,6 +3,11 @@ import { BoilerComponent } from '@lectoraat-smart-energy/ui/pages';
 
 export const appRoutes: Route[] = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'calculator/boiler',
+  },
+  {
     path: 'calculator',
     children: [
       {
