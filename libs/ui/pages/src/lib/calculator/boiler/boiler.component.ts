@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BoilerService } from '../boiler.servise';
 import { FormsModule } from '@angular/forms';
-import { Boiler, EnergyLabelKeys } from '@lectoraat-smart-energy/shared';
+import { Boiler, EnergyLabels } from '@lectoraat-smart-energy/shared';
 import { BoilerResultComponent } from '@lectoraat-smart-energy/ui/components';
 
 @Component({
@@ -15,7 +15,7 @@ import { BoilerResultComponent } from '@lectoraat-smart-energy/ui/components';
 })
 export class BoilerComponent {
   boiler: Boiler = {} as Boiler;
-  energyLabels = EnergyLabelKeys;
+  energyLabels = Object.keys(EnergyLabels);
 
   constructor(private boilerService: BoilerService) {}
 

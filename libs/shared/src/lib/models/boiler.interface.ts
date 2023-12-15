@@ -1,4 +1,4 @@
-import { EnergyLabel } from './energyLabel.enum';
+import { EnergyLabel } from './energyLabels';
 
 export interface Boiler {
   id?: string;
