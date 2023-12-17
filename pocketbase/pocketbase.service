@@ -1,0 +1,21 @@
+# service file, runs pocketbase as a systemd service
+# should be placed in ~/.config/systemd/user/pocketbase.service
+
+[Unit]
+Description = pocketbase
+
+[Service]
+Type           = simple
+Restart        = always
+RestartSec     = 5s
+ExecStart      = %h/energiecoach1/pocketbase serve --http 0.0.0.0:8080
+
+NoNewPrivileges        = yes
+PrivateTmp             = yes
+ProtectSystem          = strict
+ProtectHome            = yes
+ReadWritePaths         = %h/energiecoach1
+MemoryDenyWriteExecute = yes
+
+[Install]
+WantedBy = multi-user.target
