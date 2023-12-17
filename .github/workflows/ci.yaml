@@ -12,27 +12,56 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 21
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
-      - uses: nrwl/nx-set-shas@v3
       - name: lint, test and build
         working-directory: ./frontend
         run: |
-          npm install
-          git branch --track main origin/main
+          npm ci
           npm run ci
 
-      - name: compress build artifact for deployment
-        working-directory: ./frontend/dist/apps/lectoraat-smart-energy-web/browser
-        run: |
-          tar caf "${GITHUB_WORKSPACE}/frontend-artifact.tar.zst" .
+      - name: build artifact
+        run: mv frontend/dist/apps/lectoraat-smart-energy-web/browser pocketbase/pb_public
 
       - name: upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: frontend-artifact
-          path: frontend-artifact.tar.zst
+          name: build-artifact
+          path: pocketbase
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-frontend
+    if: github.ref == 'refs/heads/main'
+    steps:
+        - uses: actions/download-artifact@v4
+          with:
+              name: build-artifact
+              path: artifact
+
+        - name: copy artifact to server
+          uses: appleboy/scp-action@v0.1.4
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USER }}
+            key: ${{ secrets.SSH_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            source: "artifact"
+            target: "energiecoach1/releases/${{ github.sha }}"
+            strip_components: 1
+            rm: true
+
+        - name: deploy via ssh password
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USER }}
+            key: ${{ secrets.SSH_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+              find energiecoach1/releases/* -maxdepth 0 -type d -printf "%T@ %p\n" | sort -nr | awk 'NR > 5 {print $2}' | xargs rm -rf
+              ln -sfn ~/energiecoach1/releases/${{ github.sha }} energiecoach1/releases/latest

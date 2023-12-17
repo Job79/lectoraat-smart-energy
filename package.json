@@ -7,7 +7,7 @@
     "build": "nx run-many --target=build --all",
     "lint": "nx run-many --target=lint --all",
     "test": "nx run-many --target=test --all",
-    "ci": "nx format:check && nx affected --target=lint,build --parallel=3"
+    "ci": "nx format:check && nx run-many --target=lint,build --parallel=3"
   },
   "private": true,
   "dependencies": {
