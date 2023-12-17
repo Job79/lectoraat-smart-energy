@@ -1,0 +1,85 @@
+<section
+  class="mx-auto h-screen items-center justify-center bg-background p-2 md:container"
+>
+  <div class="container h-full p-2">
+    <div
+      class="flex h-full flex-wrap items-center justify-center text-graytext"
+    >
+      <div class="w-full">
+        <div class="block rounded-lg bg-white shadow-sm">
+          <div class="lg:flex">
+            <div class="px-4 py-1 md:px-0 lg:w-5/12">
+              <div class="md:mx-6 md:p-12">
+                <div>
+                  <img class="w-13 mb-4 mt-2" [src]="logo" alt="logo" />
+                  <h4 class="mb-2 mt-1 pb-1 text-4xl font-semibold">
+                    Welkom terug
+                  </h4>
+                </div>
+
+                <form (ngSubmit)="login()">
+                  <div class="form-control relative mb-2 block w-full">
+                    <label class="label" for="email">
+                      <span class="label-text font-semibold text-graytext"
+                        >Email</span
+                      >
+                    </label>
+                    <input
+                      required
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Vul jouw email in"
+                      class="input input-bordered inline-block w-full"
+                      [(ngModel)]="user.email"
+                    />
+                  </div>
+                  <div class="form-control relative mb-6 block w-full">
+                    <label class="label" for="password">
+                      <span class="label-text font-semibold text-graytext"
+                        >Wachtwoord</span
+                      >
+                    </label>
+                    <input
+                      required
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="Vul jouw wachtwoord in"
+                      class="input input-bordered inline-block w-full"
+                      [(ngModel)]="user.password"
+                    />
+                  </div>
+
+                  <div class="mb-4 flex items-center">
+                    <input type="checkbox" checked="checked" class="checkbox" />
+                    <span class="label-text ml-2 font-semibold"
+                      >Onthoud mij</span
+                    >
+                    <a class="ml-auto text-sm font-semibold text-primary"
+                      >Wachtwoord vergeten?</a
+                    >
+                  </div>
+
+                  <div class="mb-12 pb-1 pt-2 text-center">
+                    <button
+                      class="inline-block w-full rounded-md bg-primary p-4 px-6 text-xs font-medium uppercase leading-normal text-white"
+                    >
+                      Log in
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div
+              class="hidden lg:block lg:w-7/12 lg:rounded-r-lg lg:rounded-bl-none"
+              [style.background-image]="'url(' + banner + ')'"
+              style="background-size: cover"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
