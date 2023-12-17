@@ -1,11 +1,17 @@
 import { Route } from '@angular/router';
 import { BoilerComponent } from '@lectoraat-smart-energy/ui/pages';
+import { LoginComponent } from '@lectoraat-smart-energy/libs/auth';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'calculator/boiler',
+  },
+  {
+    path: 'auth/login',
+    pathMatch: 'full',
+    component: LoginComponent,
   },
   {
     path: 'calculator',
