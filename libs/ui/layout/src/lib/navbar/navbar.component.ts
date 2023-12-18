@@ -13,6 +13,6 @@ export class NavbarComponent {
   }
   imagePath?: string;
   ngOnInit(): void {
-    this.imagePath = 'assets/logo-home.svg';
+    this.imagePath = '/assets/logo-home.svg';
   }
 }
