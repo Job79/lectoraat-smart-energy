@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { TypedPocketBase, User } from '@lectoraat-smart-energy/shared';
 import PocketBase from 'pocketbase';
+import { environment } from '@lectoraat-smart-energy/shared';
 
 @Injectable()
 export class AuthService {
-  pb = new PocketBase('http://127.0.0.1:8090') as TypedPocketBase;
+  pb = new PocketBase(environment.pocketbase) as TypedPocketBase;
 
   constructor(private router: Router) {}
 
