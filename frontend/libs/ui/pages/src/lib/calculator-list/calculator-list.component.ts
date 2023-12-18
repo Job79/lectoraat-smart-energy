@@ -12,11 +12,6 @@ import { RouterModule } from '@angular/router';
 export class CalculatorListComponent {
   calculators: string[] = [
     'boiler',
-    'boiler',
-    'boiler',
-    'boiler',
-    'boiler',
-    'boiler',
   ];
 
   constructor() {}
