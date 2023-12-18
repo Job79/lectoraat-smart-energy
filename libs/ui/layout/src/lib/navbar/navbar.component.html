@@ -19,25 +19,35 @@
   </div>
   <div class="navbar-end">
     <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-        <div class="avatar placeholder">
-          <div class="bg-neutral text-neutral-content rounded-full w-10">
-            <span class="text-1xl">D.L</span>
+      <ul *ngIf="!user?.id" class="menu menu-horizontal px-1">
+        <li><a routerLink="/auth/login">Inloggen</a></li>
+      </ul>
+      <div>
+        <div
+          *ngIf="user?.id"
+          tabindex="0"
+          role="button"
+          class="btn btn-ghost btn-circle avatar"
+        >
+          <div class="avatar placeholder">
+            <div class="bg-neutral text-neutral-content rounded-full w-10">
+              <span class="text-1xl">D.L</span>
+            </div>
           </div>
         </div>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a class="justify-between"> Profile </a>
+          </li>
+          <li><a>Settings</a></li>
+          <li>
+            <button type="button" (click)="logout()">Logout</button>
+          </li>
+        </ul>
       </div>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li>
-          <a class="justify-between"> Profile </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li>
-          <button type="button" (click)="logout()">Logout</button>
-        </li>
-      </ul>
     </div>
   </div>
 </div>
