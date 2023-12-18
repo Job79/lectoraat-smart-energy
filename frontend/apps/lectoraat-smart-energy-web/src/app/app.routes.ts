@@ -4,6 +4,7 @@ import {
   CalculatorListComponent,
   LocationDetailComponent,
   LocationListComponent,
+  UserListComponent,
 } from '@lectoraat-smart-energy/ui/pages';
 import { LoginComponent } from '@lectoraat-smart-energy/ui/auth';
 
@@ -25,6 +26,11 @@ export const appRoutes: Route[] = [
   {
     path: 'location/:id',
     component: LocationDetailComponent,
+  },
+  {
+    path: 'user',
+    pathMatch: 'full',
+    component: UserListComponent,
   },
   {
     path: 'calculator',
