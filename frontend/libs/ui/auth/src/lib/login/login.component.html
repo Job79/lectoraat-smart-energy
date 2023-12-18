@@ -10,12 +10,9 @@
           <div class="lg:flex">
             <div class="px-4 py-1 md:px-0 lg:w-5/12">
               <div class="md:mx-6 md:p-12">
-                <div>
-                  <img class="w-13 mb-4 mt-2" [src]="logo" alt="logo" />
-                  <h4 class="mb-2 mt-1 pb-1 text-4xl font-semibold">
-                    Welkom terug
-                  </h4>
-                </div>
+                <h4 class="mb-2 mt-1 pb-1 text-4xl font-semibold">
+                  Welkom terug
+                </h4>
 
                 <form (ngSubmit)="login()">
                   <div class="form-control relative mb-2 block w-full">
@@ -51,16 +48,6 @@
                     />
                   </div>
 
-                  <div class="mb-4 flex items-center">
-                    <input type="checkbox" checked="checked" class="checkbox" />
-                    <span class="label-text ml-2 font-semibold"
-                      >Onthoud mij</span
-                    >
-                    <a class="ml-auto text-sm font-semibold text-primary"
-                      >Wachtwoord vergeten?</a
-                    >
-                  </div>
-
                   <div class="mb-12 pb-1 pt-2 text-center">
                     <button
                       class="inline-block w-full rounded-md bg-primary p-4 px-6 text-xs font-medium uppercase leading-normal text-white"
@@ -73,10 +60,16 @@
             </div>
 
             <div
-              class="hidden lg:block lg:w-7/12 lg:rounded-r-lg lg:rounded-bl-none"
+              class="hidden lg:block lg:w-7/12 lg:rounded-r-lg lg:rounded-bl-none relative"
               [style.background-image]="'url(' + banner + ')'"
               style="background-size: cover"
-            ></div>
+            >
+              <img
+                class="w-16 absolute right-2 bottom-2 bg-white rounded-lg opacity-80"
+                [src]="logo"
+                alt="logo"
+              />
+            </div>
           </div>
         </div>
       </div>
