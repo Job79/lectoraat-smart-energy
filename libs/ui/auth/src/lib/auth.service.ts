@@ -13,24 +13,30 @@ export class AuthService {
     console.log('Login attempt:', user);
 
     try {
-      const authData = await this.pb.admins.authWithPassword(
-        user.email,
-        user.password,
-      );
+      const authData = await this.pb
+        .collection('users')
+        .authWithPassword(user.email, user.password);
       console.log('Result:', authData);
       this.router.navigate(['/']);
     } catch (error) {
-      console.error('Admin login failed:', error);
+      console.error(error);
       try {
-        const authData = await this.pb
-          .collection('users')
-          .authWithPassword(user.email, user.password);
+        const authData = await this.pb.admins.authWithPassword(
+          user.email,
+          user.password,
+        );
         console.log('Result:', authData);
         this.router.navigate(['/']);
       } catch (error) {
-        console.error('User login failed:', error);
+        console.error(error);
       }
     }
     // console.log((this.pb.authStore.model as User)?.id);
+  }
+
+  public async logout() {
+    console.log('Logout');
+    await this.pb.authStore.clear();
+    this.router.navigate(['/auth/login']);
   }
 }

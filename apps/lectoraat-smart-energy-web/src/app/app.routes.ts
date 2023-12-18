@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { BoilerComponent } from '@lectoraat-smart-energy/ui/pages';
-import { LoginComponent } from '@lectoraat-smart-energy/libs/auth';
+import { LoginComponent } from '@lectoraat-smart-energy/ui/auth';
 
 export const appRoutes: Route[] = [
   {
