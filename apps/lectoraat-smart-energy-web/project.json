@@ -8,25 +8,19 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/lectoraat-smart-energy-web",
         "index": "apps/lectoraat-smart-energy-web/src/index.html",
         "browser": "apps/lectoraat-smart-energy-web/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/lectoraat-smart-energy-web/tsconfig.app.json",
         "assets": [
           "apps/lectoraat-smart-energy-web/src/favicon.ico",
           "apps/lectoraat-smart-energy-web/src/assets",
           "apps/lectoraat-smart-energy-web/src/manifest.webmanifest"
         ],
-        "styles": [
-          "apps/lectoraat-smart-energy-web/src/styles.css"
-        ],
+        "styles": ["apps/lectoraat-smart-energy-web/src/styles.css"],
         "scripts": []
       },
       "configurations": {
@@ -41,6 +35,12 @@
               "type": "anyComponentStyle",
               "maximumWarning": "2kb",
               "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "libs/shared/src/lib/env/environment.ts",
+              "with": "libs/shared/src/lib/env/environment.production.ts"
             }
           ],
           "outputHashing": "all",
@@ -74,15 +74,11 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": [
-        "{options.outputFile}"
-      ]
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/lectoraat-smart-energy-web/jest.config.ts"
       }
