@@ -6,6 +6,7 @@
     "start": "nx run-many --target=serve --all",
     "build": "nx run-many --target=build --all",
     "lint": "nx run-many --target=lint --all",
+    "format": "nx format",
     "test": "nx run-many --target=test --all",
     "ci": "nx format:check && nx run-many --target=lint,build --parallel=3"
   },

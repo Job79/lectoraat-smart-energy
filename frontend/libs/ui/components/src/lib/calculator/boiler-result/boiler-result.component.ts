@@ -41,7 +41,9 @@ export class BoilerResultComponent {
       return 0;
     }
 
-    const boilerEnergyLabelValue = EnergyLabels[this.boiler.energyLabel](this.boiler.liter)
+    const boilerEnergyLabelValue = EnergyLabels[this.boiler.energyLabel](
+      this.boiler.liter,
+    );
 
     const result = (boilerEnergyLabelValue * 24) / 1000;
     return this.roundToDecimals(result);
