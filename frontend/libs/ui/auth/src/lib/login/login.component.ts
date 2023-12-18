@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   constructor(private authServise: AuthService) {}
 
   ngOnInit(): void {
-    this.banner = '/assets/banner.jpeg';
+    this.banner = '/assets/banner.png';
     this.logo = '/assets/logo-home.svg';
   }
 
