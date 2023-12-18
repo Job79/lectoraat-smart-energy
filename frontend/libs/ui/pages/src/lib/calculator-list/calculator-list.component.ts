@@ -10,9 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './calculator-list.component.css',
 })
 export class CalculatorListComponent {
-  calculators: string[] = [
-    'boiler',
-  ];
+  calculators: string[] = ['boiler'];
 
   constructor() {}
 }
