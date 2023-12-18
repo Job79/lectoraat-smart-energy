@@ -1,12 +1,15 @@
 import { Route } from '@angular/router';
-import { BoilerComponent } from '@lectoraat-smart-energy/ui/pages';
+import {
+  BoilerComponent,
+  CalculatorListComponent,
+} from '@lectoraat-smart-energy/ui/pages';
 import { LoginComponent } from '@lectoraat-smart-energy/ui/auth';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'calculator/boiler',
+    redirectTo: 'calculator',
   },
   {
     path: 'auth/login',
@@ -16,6 +19,11 @@ export const appRoutes: Route[] = [
   {
     path: 'calculator',
     children: [
+      {
+        path: '',
+        component: CalculatorListComponent,
+        pathMatch: 'full',
+      },
       {
         path: 'boiler',
         component: BoilerComponent,
