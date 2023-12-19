@@ -1,1 +1,5 @@
-<p>user-list works!</p>
+<div *ngFor="let building of users$ | async">
+  <a [routerLink]="['/building', building.id]">
+    {{ building.email }}
+  </a>
+</div>
