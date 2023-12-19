@@ -1,5 +1,12 @@
-<div *ngFor="let location of locations$ | async">
+<div *ngFor="let location of locations$ | async" class="mb-4">
   <a [routerLink]="['/location', location.id]">
-    {{ location.name }}
+    <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card-body hover:shadow-md">
+        <h2 class="card-title">{{ location.name }}</h2>
+
+        {{ location.postalCode }}
+        {{ location.residence }}
+      </div>
+    </div>
   </a>
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { BoilerService } from '../boiler.service';
 import { FormsModule } from '@angular/forms';
 import { Boiler, EnergyLabels } from '@lectoraat-smart-energy/shared';

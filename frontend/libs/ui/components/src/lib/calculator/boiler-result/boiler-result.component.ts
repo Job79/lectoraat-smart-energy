@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Boiler, EnergyLabels } from '@lectoraat-smart-energy/shared';
 
 @Component({
@@ -12,7 +12,6 @@ import { Boiler, EnergyLabels } from '@lectoraat-smart-energy/shared';
 export class BoilerResultComponent {
   @Input()
   boiler: Boiler = {} as Boiler;
-
   get costHeatingOnce(): number {
     const result =
       this.energyRequiredForHeating && this.boiler.price
