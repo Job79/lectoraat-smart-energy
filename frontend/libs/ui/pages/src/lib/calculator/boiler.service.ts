@@ -5,16 +5,20 @@ import {
   environment,
 } from '@lectoraat-smart-energy/shared';
 import PocketBase from 'pocketbase';
+import { Observable, from } from 'rxjs';
 
 @Injectable()
 export class BoilerService {
   pb = new PocketBase(environment.pocketbase) as TypedPocketBase;
 
-  public async getBoilers() {
-    const records = await this.pb.collection('boilers').getFullList({
-      sort: '-created',
-    });
-    console.log(records);
+  public getBoilers(id: string): Observable<Boiler[]> {
+    const boilers = from(
+      this.pb.collection('boilers').getFullList({
+        sort: '-created',
+        filter: `location.id="${id}"`,
+      }),
+    );
+    return boilers;
   }
 
   public async storeCalculation(boiler: Boiler) {
