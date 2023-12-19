@@ -1,6 +1,4 @@
-<section
-  class="mx-auto h-screen items-center justify-center bg-background p-2 md:container"
->
+<section class="mx-auto h-screen items-center justify-center bg-background p-2 md:container">
   <div class="container h-full p-2">
     <div
       class="flex h-full flex-wrap items-center justify-center text-graytext"
@@ -60,13 +58,12 @@
             </div>
 
             <div
-              class="hidden lg:block lg:w-7/12 lg:rounded-r-lg lg:rounded-bl-none relative"
-              [style.background-image]="'url(' + banner + ')'"
-              style="background-size: cover"
+              class="hidden lg:block lg:w-7/12 lg:rounded-r-lg lg:rounded-bl-none relative bg-cover"
+              style="background-image: url(/assets/banner.webp)"
             >
               <img
                 class="w-32 absolute right-0 bottom-0 bg-white rounded-tl-lg opacity-80"
-                [src]="logo"
+                src="/assets/logo-home.svg"
                 alt="logo"
               />
             </div>
