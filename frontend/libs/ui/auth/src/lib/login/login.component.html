@@ -1,4 +1,6 @@
-<section class="mx-auto h-screen items-center justify-center bg-background p-2 md:container">
+<section
+  class="mx-auto h-screen items-center justify-center bg-background p-2 container"
+>
   <div class="container h-full p-2">
     <div
       class="flex h-full flex-wrap items-center justify-center text-graytext"
@@ -7,40 +9,40 @@
         <div class="block rounded-lg bg-white shadow-sm">
           <div class="lg:flex">
             <div class="px-4 py-1 md:px-0 lg:w-5/12">
-              <div class="md:mx-6 md:p-12">
-                <h4 class="mb-2 mt-1 pb-1 text-4xl font-semibold">
+              <div class="p-4 px-6 sm:mx-6 sm:p-12">
+                <h4 class="mb-2 mt-8 pb-1 text-4xl font-semibold">
                   Welkom terug
                 </h4>
 
                 <form (ngSubmit)="login()">
                   <div class="form-control relative mb-2 block w-full">
                     <label class="label" for="email">
-                      <span class="label-text font-semibold text-graytext"
-                        >Email</span
-                      >
+                      <span class="label-text font-semibold text-graytext">
+                        Email
+                      </span>
                     </label>
                     <input
                       required
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="Vul jouw email in"
+                      placeholder="Voer uw e-mailadres in"
                       class="input input-bordered inline-block w-full"
                       [(ngModel)]="user.email"
                     />
                   </div>
                   <div class="form-control relative mb-6 block w-full">
                     <label class="label" for="password">
-                      <span class="label-text font-semibold text-graytext"
-                        >Wachtwoord</span
-                      >
+                      <span class="label-text font-semibold text-graytext">
+                        Wachtwoord
+                      </span>
                     </label>
                     <input
                       required
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="Vul jouw wachtwoord in"
+                      placeholder="Voer uw wachtwoord in"
                       class="input input-bordered inline-block w-full"
                       [(ngModel)]="user.password"
                     />
