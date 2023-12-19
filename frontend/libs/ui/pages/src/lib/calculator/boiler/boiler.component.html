@@ -1,9 +1,13 @@
-<!-- Boiler Calculator Title -->
-<div class="flex flex-col w-full items-center justify-center h-20">
-  <h2 class="text-xl font-bold">
-    Boiler Calculator
-  </h2>
+<div class="relative flex flex-col items-center justify-center h-20 w-full">
+  <!-- Boiler Calculator Title -->
+  <h2 class="text-2xl font-extrabold mb-4 md:mb-0">Boiler Calculator</h2>
+
+  <!-- Download as PDF button -->
+  <div class="flex md:absolute md:right-0 right-0">
+    <button class="btn btn-link">Download as Pdf</button>
+  </div>
 </div>
+
 
 <div class="flex flex-col w-full md:flex-row">
   <div>
@@ -104,3 +108,4 @@
     <lectoraat-smart-energy-boiler-result [boiler]="boiler"></lectoraat-smart-energy-boiler-result>
   </div>
 </div>
+
