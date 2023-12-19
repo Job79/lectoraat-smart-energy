@@ -18,9 +18,17 @@ export class UserService {
         sort: '-created',
       }),
     );
-    // users.subscribe((userList) => {
-    //   console.log(userList);
-    // });
     return users;
+  }
+
+  public getUser(id: string): Observable<User> {
+    const user = from(this.pb.collection('users').getOne(id));
+    return user;
+  }
+
+  public async create(user: User) {
+    console.log(user);
+    user.passwordConfirm = user.password;
+    const record = await this.pb.collection('users').create(user);
   }
 }

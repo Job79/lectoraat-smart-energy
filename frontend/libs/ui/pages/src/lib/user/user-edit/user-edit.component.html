@@ -1,0 +1,54 @@
+<div class="flex flex-col w-full md:flex-row">
+  <div>
+    <form #userForm="ngForm" (ngSubmit)="createUser()" class="space-y-6">
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Email</span>
+          </div>
+          <input
+            type="string"
+            name="email"
+            [(ngModel)]="user.email"
+            required
+            placeholder="Email"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Password</span>
+          </div>
+          <input
+            type="string"
+            name="password"
+            [(ngModel)]="user.password"
+            required
+            placeholder="Password"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Password confirm</span>
+          </div>
+          <input
+            type="string"
+            name="password"
+            [(ngModel)]="user.passwordConfirm"
+            required
+            placeholder="Password confirm"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-neutral">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

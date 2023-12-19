@@ -3,3 +3,4 @@ export * from './lib/calculator/boiler/boiler.component';
 export * from './lib/location/location-list/location-list.component';
 export * from './lib/location/location-detail/location-detail.component';
 export * from './lib/user/user-list/user-list.component';
+export * from './lib/user/user-edit/user-edit.component';
