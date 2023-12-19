@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '@lectoraat-smart-energy/shared';
 import { FormsModule } from '@angular/forms';
@@ -12,18 +12,10 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   user: User = {} as User;
 
-  banner?: string;
-  logo?: string;
-
   constructor(private authServise: AuthService) {}
-
-  ngOnInit(): void {
-    this.banner = '/assets/banner.png';
-    this.logo = '/assets/logo-home.svg';
-  }
 
   login(): void {
     this.authServise.login(this.user);
