@@ -30,7 +30,7 @@ export class BoilerResultComponent {
   get timeRequiredForHeating(): number {
     const result =
       this.energyRequiredForHeating && this.boiler.power
-        ? this.energyRequiredForHeating / this.boiler.power
+        ? this.energyRequiredForHeating / (this.boiler.power / 1000) // Converting Watt into Kilowatt is devide by 1000
         : 0;
     return this.roundToDecimals(result);
   }
