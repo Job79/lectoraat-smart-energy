@@ -7,4 +7,6 @@ export interface Boiler {
   power: number;
   energyLabel: EnergyLabel;
   version: number;
+  location: Location;
+  created: Date;
 }

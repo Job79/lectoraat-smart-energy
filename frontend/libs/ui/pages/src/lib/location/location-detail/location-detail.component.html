@@ -1,8 +1,9 @@
 <div *ngIf="location$ | async as location">
-  <p>{{ location.name }}</p>
+  <h2 class="text-3xl font-bold ml-2">{{ location.name }}</h2>
 </div>
+
 <div class="flex flex-col md:flex-row">
-  <div *ngFor="let boiler of boilers$ | async" class="mb-4 md:mr-4">
+  <div *ngFor="let boiler of boilers$ | async" class="mb-6 md:mr-20">
     <lectoraat-smart-energy-boiler-result
       [boiler]="boiler"
     ></lectoraat-smart-energy-boiler-result>

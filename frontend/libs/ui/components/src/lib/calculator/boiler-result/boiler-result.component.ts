@@ -12,7 +12,6 @@ import { Boiler, EnergyLabels } from '@lectoraat-smart-energy/shared';
 export class BoilerResultComponent {
   @Input()
   boiler: Boiler = {} as Boiler;
-
   get costHeatingOnce(): number {
     const result =
       this.energyRequiredForHeating && this.boiler.price
