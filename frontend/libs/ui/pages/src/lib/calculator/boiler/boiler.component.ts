@@ -49,17 +49,14 @@ export class BoilerComponent implements OnInit {
     } else {
       this.boiler = {} as Boiler;
     }
-
     this.locations$ = this.locationService.getLocations();
   }
 
   createCalculation() {
     this.boilerService.createCalculation(this.boiler);
-    console.log(this.boiler);
   }
 
   updateCalculation() {
     this.boilerService.updateCalculation(this.boiler);
-    console.log(this.boiler);
   }
 }

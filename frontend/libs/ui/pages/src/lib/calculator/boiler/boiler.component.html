@@ -18,6 +18,21 @@
       <div>
         <label class="form-control w-full max-w-xs">
           <div class="label">
+            <span class="label-text">Naam boiler</span>
+          </div>
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="boiler.name"
+            required
+            placeholder="Naam boiler"
+            class="input input-bordered w-full max-w-xs"
+          />
+        </label>
+      </div>
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
             <span class="label-text">Aantal liter boiler</span>
           </div>
           <input
@@ -104,6 +119,22 @@
               {{ location.name }}
             </option>
           </select>
+        </label>
+      </div>
+
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Aantekeningen</span>
+          </div>
+          <textarea
+            type="text"
+            name="aantekeningen"
+            [(ngModel)]="boiler.comment"
+            required
+            placeholder="Aantekeningen"
+            class="textarea textarea-bordered textarea-sm w-full max-w-xs"
+          ></textarea>
         </label>
       </div>
 
