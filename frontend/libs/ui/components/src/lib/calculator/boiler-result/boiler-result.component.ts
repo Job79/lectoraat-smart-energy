@@ -15,7 +15,7 @@ export class BoilerResultComponent {
   get costHeatingOnce(): number {
     const result =
       this.energyRequiredForHeating && this.boiler.price
-        ? (this.energyRequiredForHeating * this.boiler.price)
+        ? this.energyRequiredForHeating * this.boiler.price
         : 0;
     return this.roundToDecimals(result);
   }

@@ -8,23 +8,26 @@
   </div>
 </div>
 
-
 <div class="flex flex-col w-full md:flex-row">
   <div>
-    <form #boilerForm="ngForm"
-          (ngSubmit)="storeCalculation()"
-          class="space-y-6">
+    <form
+      #boilerForm="ngForm"
+      (ngSubmit)="storeCalculation()"
+      class="space-y-6"
+    >
       <div>
         <label class="form-control w-full max-w-xs">
           <div class="label">
             <span class="label-text">Aantal liter boiler</span>
           </div>
-          <input type="number"
-                 name="power"
-                 [(ngModel)]="boiler.liter"
-                 required
-                 placeholder="Aantal liter"
-                 class="input input-bordered w-full max-w-xs" />
+          <input
+            type="number"
+            name="power"
+            [(ngModel)]="boiler.liter"
+            required
+            placeholder="Aantal liter"
+            class="input input-bordered w-full max-w-xs"
+          />
         </label>
       </div>
 
@@ -33,12 +36,14 @@
           <div class="label">
             <span class="label-text">Prijs per kWh</span>
           </div>
-          <input type="number"
-                 name="power"
-                 [(ngModel)]="boiler.price"
-                 required
-                 placeholder="Prijs in euro"
-                 class="input input-bordered w-full max-w-xs" />
+          <input
+            type="number"
+            name="power"
+            [(ngModel)]="boiler.price"
+            required
+            placeholder="Prijs in euro"
+            class="input input-bordered w-full max-w-xs"
+          />
         </label>
       </div>
 
@@ -47,12 +52,14 @@
           <div class="label">
             <span class="label-text">Electrisch vermogen boiler</span>
           </div>
-          <input type="number"
-                 name="power"
-                 [(ngModel)]="boiler.power"
-                 required
-                 placeholder="Vermogen in Watt"
-                 class="input input-bordered w-full max-w-xs" />
+          <input
+            type="number"
+            name="power"
+            [(ngModel)]="boiler.power"
+            required
+            placeholder="Vermogen in Watt"
+            class="input input-bordered w-full max-w-xs"
+          />
         </label>
       </div>
 
@@ -61,13 +68,19 @@
           <div class="label">
             <span class="label-text">Energielabel</span>
           </div>
-          <select name="energyLabel"
-                  [(ngModel)]="boiler.energyLabel"
-                  required
-                  class="select select-bordered">
-            <option *ngFor="let label of energyLabels"
-                    [ngStyle]="{ 'color': energyLabelColors[label.toLowerCase()]?.color }"
-                    class="font-extrabold text-xl">
+          <select
+            name="energyLabel"
+            [(ngModel)]="boiler.energyLabel"
+            required
+            class="select select-bordered"
+          >
+            <option
+              *ngFor="let label of energyLabels"
+              [ngStyle]="{
+                color: energyLabelColors[label.toLowerCase()]?.color
+              }"
+              class="font-extrabold text-xl"
+            >
               {{ label }}
             </option>
           </select>
@@ -107,7 +120,8 @@
   </div>
   <div class="divider divider-vertical md:divider-horizontal"></div>
   <div>
-    <lectoraat-smart-energy-boiler-result [boiler]="boiler"></lectoraat-smart-energy-boiler-result>
+    <lectoraat-smart-energy-boiler-result
+      [boiler]="boiler"
+    ></lectoraat-smart-energy-boiler-result>
   </div>
 </div>
-

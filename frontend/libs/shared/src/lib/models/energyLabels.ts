@@ -10,6 +10,3 @@ export const EnergyLabels = {
 };
 
 export type EnergyLabel = keyof typeof EnergyLabels;
-
-
-
