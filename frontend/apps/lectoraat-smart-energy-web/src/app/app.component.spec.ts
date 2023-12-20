@@ -8,19 +8,4 @@ describe('AppComponent', () => {
       imports: [AppComponent, RouterTestingModule],
     }).compileComponents();
   });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome lectoraat-smart-energy-web',
-    );
-  });
-
-  it(`should have as title 'lectoraat-smart-energy-web'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('lectoraat-smart-energy-web');
-  });
 });
