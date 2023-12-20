@@ -1,15 +1,10 @@
-import { Injectable } from '@angular/core';
-import {
-  Location,
-  TypedPocketBase,
-  environment,
-} from '@lectoraat-smart-energy/shared';
-import PocketBase from 'pocketbase';
+import { Inject, Injectable } from '@angular/core';
+import { Location, IPocketBase } from '@lectoraat-smart-energy/shared';
 import { Observable, from } from 'rxjs';
 
 @Injectable()
 export class LocationService {
-  pb = new PocketBase(environment.pocketbase) as TypedPocketBase;
+  constructor(@Inject('pocketbase') private pb: IPocketBase) {}
 
   public getLocations(): Observable<Location[]> {
     const locations = from(

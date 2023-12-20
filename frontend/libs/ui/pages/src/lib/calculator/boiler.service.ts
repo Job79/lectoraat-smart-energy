@@ -1,15 +1,10 @@
-import { Injectable } from '@angular/core';
-import {
-  Boiler,
-  TypedPocketBase,
-  environment,
-} from '@lectoraat-smart-energy/shared';
-import PocketBase from 'pocketbase';
+import { Inject, Injectable } from '@angular/core';
+import { Boiler, IPocketBase } from '@lectoraat-smart-energy/shared';
 import { Observable, from } from 'rxjs';
 
 @Injectable()
 export class BoilerService {
-  pb = new PocketBase(environment.pocketbase) as TypedPocketBase;
+  constructor(@Inject('pocketbase') private pb: IPocketBase) {}
 
   public getBoilers(id: string): Observable<Boiler[]> {
     const boilers = from(
