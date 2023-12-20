@@ -1,6 +1,6 @@
-<a [routerLink]="'/user/new'">Add</a>
+<a [routerLink]="'/users/new'">Add</a>
 <div *ngFor="let user of users$ | async">
-  <a [routerLink]="['/user', user.id]">
+  <a [routerLink]="['/users', user.id]">
     {{ user.email }}
   </a>
 
