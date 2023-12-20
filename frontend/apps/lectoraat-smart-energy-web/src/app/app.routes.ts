@@ -50,6 +50,10 @@ export const appRoutes: Route[] = [
         path: 'boiler',
         component: BoilerComponent,
       },
+      {
+        path: 'boiler/:id',
+        component: BoilerComponent,
+      },
     ],
   },
 ];

@@ -16,7 +16,12 @@ export class BoilerService {
     return boilers;
   }
 
-  public async storeCalculation(boiler: Boiler) {
+  public getBoiler(id: string): Observable<Boiler> {
+    const boiler = from(this.pb.collection('boilers').getOne(id));
+    return boiler;
+  }
+
+  public async createCalculation(boiler: Boiler) {
     const record = await this.pb.collection('boilers').create(boiler);
     console.log(record);
   }

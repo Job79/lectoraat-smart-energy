@@ -7,5 +7,11 @@
     <lectoraat-smart-energy-boiler-result
       [boiler]="boiler"
     ></lectoraat-smart-energy-boiler-result>
+    <button
+      class="btn btn-neutral"
+      [routerLink]="['/calculator/boiler', boiler.id]"
+    >
+      Update
+    </button>
   </div>
 </div>
