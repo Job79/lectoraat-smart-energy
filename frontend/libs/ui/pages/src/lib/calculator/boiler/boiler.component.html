@@ -13,7 +13,7 @@
     <form
       #boilerForm="ngForm"
       (ngSubmit)="boiler.id ? updateCalculation() : createCalculation()"
-      class="space-y-6"
+      class="space-y-4"
     >
       <div>
         <label class="form-control w-full max-w-xs">
@@ -104,6 +104,7 @@
         <label class="form-control w-full max-w-xs">
           <div class="label">
             <span class="label-text">Location</span>
+            <a routerLink="/location/new" class="ml-2 text-blue-500">New</a>
           </div>
           <select
             id="location"
@@ -131,7 +132,6 @@
             type="text"
             name="aantekeningen"
             [(ngModel)]="boiler.comment"
-            required
             placeholder="Aantekeningen"
             class="textarea textarea-bordered textarea-sm w-full max-w-xs"
           ></textarea>
@@ -143,7 +143,7 @@
         [disabled]="boilerForm.invalid"
         class="btn btn-neutral"
       >
-        {{ boiler.id ? 'Update' : 'Save' }}
+        {{ boiler.id ? 'Update' : 'Opslaan' }}
       </button>
     </form>
   </div>

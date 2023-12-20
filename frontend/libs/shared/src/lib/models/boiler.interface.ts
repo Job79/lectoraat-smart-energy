@@ -7,8 +7,8 @@ export interface Boiler {
   price: number;
   power: number;
   version: number;
-  comment: string;
+  comment?: string;
+  location: string;
   energyLabel: EnergyLabel;
-  location: Location;
   created: Date;
 }
