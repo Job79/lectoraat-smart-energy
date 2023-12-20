@@ -3,6 +3,7 @@ import {
   BoilerComponent,
   CalculatorListComponent,
   LocationDetailComponent,
+  LocationEditComponent,
   LocationListComponent,
   UserEditComponent,
   UserListComponent,
@@ -25,9 +26,14 @@ export const appRoutes: Route[] = [
     component: LocationListComponent,
   },
   {
+    path: 'location/new',
+    component: LocationEditComponent,
+  },
+  {
     path: 'location/:id',
     component: LocationDetailComponent,
   },
+
   {
     path: 'user',
     pathMatch: 'full',

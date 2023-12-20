@@ -1,17 +1,17 @@
 <div class="flex flex-col w-full md:flex-row">
   <div>
-    <form #userForm="ngForm" (ngSubmit)="create()" class="space-y-6">
+    <form #locationForm="ngForm" (ngSubmit)="create()" class="space-y-6">
       <div>
         <label class="form-control w-full max-w-xs">
           <div class="label">
-            <span class="label-text">Email</span>
+            <span class="label-text">Name</span>
           </div>
           <input
-            type="email"
-            name="email"
-            [(ngModel)]="user.email"
+            type="text"
+            name="name"
+            [(ngModel)]="location.name"
             required
-            placeholder="Email"
+            placeholder="Name"
             class="input input-bordered w-full max-w-xs"
           />
         </label>
@@ -19,14 +19,14 @@
       <div>
         <label class="form-control w-full max-w-xs">
           <div class="label">
-            <span class="label-text">Wachtwoord</span>
+            <span class="label-text">Postcode</span>
           </div>
           <input
-            type="password"
-            name="password"
-            [(ngModel)]="user.password"
+            type="text"
+            name="postalCode"
+            [(ngModel)]="location.postalCode"
             required
-            placeholder="Password"
+            placeholder="Postcode"
             class="input input-bordered w-full max-w-xs"
           />
         </label>
@@ -34,14 +34,14 @@
       <div>
         <label class="form-control w-full max-w-xs">
           <div class="label">
-            <span class="label-text">Herhaal wachtwoord</span>
+            <span class="label-text">Woonplaats</span>
           </div>
           <input
-            type="password"
-            name="password"
-            [(ngModel)]="user.passwordConfirm"
+            type="text"
+            name="residence"
+            [(ngModel)]="location.residence"
             required
-            placeholder="Herhaal wachtwoord"
+            placeholder="Woonplaats"
             class="input input-bordered w-full max-w-xs"
           />
         </label>

@@ -3,4 +3,5 @@ export interface Location {
   name: string;
   residence: string;
   postalCode: string;
+  user: string;
 }
