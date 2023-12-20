@@ -65,3 +65,4 @@ jobs:
             script: |
               find energiecoach1/releases/* -maxdepth 0 -type d -printf "%T@ %p\n" | sort -nr | awk 'NR > 5 {print $2}' | xargs rm -rf
               ln -sfn ~/energiecoach1/releases/${{ github.sha }} energiecoach1/releases/latest
+              systemctl --user restart pocketbase.service
