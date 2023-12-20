@@ -22,13 +22,13 @@ export class BoilerComponent implements OnInit {
 
   energyLabelColors: { [key: string]: { color: string } } = {
     'a+': { color: 'green' },
-    'a': { color: '#FFD700' }, //yellow was too light, darkyellow too dark so the hexcode #FFD700 will be used.
-    'b': { color: 'orange' },
-    'c': { color: 'red' },
-    'd': { color: 'purple' },
-    'e': { color: 'blue' },
-    'f': { color: 'indigo' },
-    'g': { color: 'violet' },
+    a: { color: '#FFD700' }, //yellow was too light, darkyellow too dark so the hexcode #FFD700 will be used.
+    b: { color: 'orange' },
+    c: { color: 'red' },
+    d: { color: 'purple' },
+    e: { color: 'blue' },
+    f: { color: 'indigo' },
+    g: { color: 'violet' },
   };
 
   constructor(
