@@ -76,9 +76,7 @@
           >
             <option
               *ngFor="let label of energyLabels"
-              [ngStyle]="{
-                color: energyLabelColors[label.toLowerCase()]?.color
-              }"
+              [style.color]="energyLabelColors[label.toLowerCase()]?.color"
               class="font-extrabold text-xl"
             >
               {{ label }}
