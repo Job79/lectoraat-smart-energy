@@ -16,9 +16,7 @@ export class LocationService {
   }
 
   public getLocation(id: string): Observable<Location> {
-    const location = from(
-      this.pb.collection('locations').getOne('w9u3ekpwha8x32k'),
-    );
+    const location = from(this.pb.collection('locations').getOne(id));
     return location;
   }
 
