@@ -65,7 +65,9 @@
                   [(ngModel)]="boiler.energyLabel"
                   required
                   class="select select-bordered">
-            <option *ngFor="let label of energyLabels">
+            <option *ngFor="let label of energyLabels"
+                    [ngStyle]="{ 'color': energyLabelColors[label.toLowerCase()]?.color }"
+                    class="font-extrabold text-xl">
               {{ label }}
             </option>
           </select>
