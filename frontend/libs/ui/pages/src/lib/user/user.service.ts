@@ -1,16 +1,10 @@
-import { Injectable } from '@angular/core';
-import {
-  Boiler,
-  TypedPocketBase,
-  User,
-  environment,
-} from '@lectoraat-smart-energy/shared';
-import PocketBase from 'pocketbase';
+import { Inject, Injectable } from '@angular/core';
+import { IPocketBase, User } from '@lectoraat-smart-energy/shared';
 import { Observable, from } from 'rxjs';
 
 @Injectable()
 export class UserService {
-  pb = new PocketBase(environment.pocketbase) as TypedPocketBase;
+  constructor(@Inject('pocketbase') private pb: IPocketBase) {}
 
   public getUsers(): Observable<User[]> {
     const users = from(
@@ -27,8 +21,10 @@ export class UserService {
   }
 
   public async create(user: User) {
-    console.log(user);
-    user.passwordConfirm = user.password;
-    const record = await this.pb.collection('users').create(user);
+    await this.pb.collection('users').create(user);
+  }
+
+  public async delete(id: string) {
+    await this.pb.collection('users').delete(id);
   }
 }

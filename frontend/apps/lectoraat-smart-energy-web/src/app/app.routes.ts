@@ -34,7 +34,7 @@ export const appRoutes: Route[] = [
     component: UserListComponent,
   },
   {
-    path: 'user/:id',
+    path: 'user/new',
     pathMatch: 'full',
     component: UserEditComponent,
   },
