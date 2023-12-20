@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { NavbarComponent } from '@lectoraat-smart-energy/ui/layout';
+import {
+  MobileNavbarComponent,
+  NavbarComponent,
+} from '@lectoraat-smart-energy/ui/layout';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, NavbarComponent],
+  imports: [CommonModule, RouterModule, NavbarComponent, MobileNavbarComponent],
   selector: 'lectoraat-smart-energy-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'lectoraat-smart-energy-web';
-
   constructor(private router: Router) {}
 
   isAuthPage(): boolean {

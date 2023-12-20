@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { IPocketBase, User } from '@lectoraat-smart-energy/shared';
 import { BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   user$ = new BehaviorSubject({
     data: this.pb.authStore.model as User,

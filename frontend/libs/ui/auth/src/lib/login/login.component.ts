@@ -8,16 +8,15 @@ import { AuthService } from '../auth.service';
   selector: 'lectoraat-smart-energy-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   user: User = {} as User;
 
-  constructor(private authServise: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   login(): void {
-    this.authServise.login(this.user);
+    this.authService.login(this.user);
   }
 }

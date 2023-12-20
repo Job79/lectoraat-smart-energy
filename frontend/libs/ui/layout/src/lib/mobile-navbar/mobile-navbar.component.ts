@@ -4,27 +4,21 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '@lectoraat-smart-energy/ui/auth';
 
 @Component({
-  selector: 'lectoraat-smart-energy-navbar',
+  selector: 'lectoraat-smart-energy-mobile-navbar',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './navbar.component.html',
+  templateUrl: './mobile-navbar.component.html',
 })
-export class NavbarComponent implements OnInit {
+export class MobileNavbarComponent implements OnInit {
   isAdmin = false;
   isLoggedIn = false;
-  initial = '';
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.authService.user$.subscribe((user) => {
       this.isAdmin = user.isAdmin;
       this.isLoggedIn = user.isLoggedIn;
-      this.initial = user.data?.email?.substr(0, 2).toUpperCase();
     });
-  }
-
-  logout() {
-    this.authService.logout();
   }
 }
