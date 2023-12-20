@@ -71,13 +71,35 @@
         </label>
       </div>
 
-      <!--      <button-->
-      <!--        type="submit"-->
-      <!--        [disabled]="boilerForm.invalid"-->
-      <!--        class="btn btn-neutral"-->
-      <!--      >-->
-      <!--        Save-->
-      <!--      </button>-->
+      <div>
+        <label class="form-control w-full max-w-xs">
+          <div class="label">
+            <span class="label-text">Location</span>
+          </div>
+          <select
+            id="location"
+            name="location"
+            [(ngModel)]="boiler.location"
+            required
+            class="select select-bordered"
+          >
+            <option
+              *ngFor="let location of locations$ | async"
+              [value]="location.id"
+            >
+              {{ location.name }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="boilerForm.invalid"
+        class="btn btn-neutral"
+      >
+        Save
+      </button>
     </form>
   </div>
   <div class="divider divider-vertical md:divider-horizontal"></div>
