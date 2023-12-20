@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '@lectoraat-smart-energy/shared';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { UserService } from '../user.service';
 import { RouterModule } from '@angular/router';
 
@@ -20,8 +20,13 @@ export class UserListComponent implements OnInit {
 
   ngOnInit() {
     this.users$ = this.userService.getUsers();
-    this.users$.subscribe((users) => {
-      console.log(users);
+  }
+
+  delete(id: string) {
+    this.userService.delete(id).then(() => {
+      this.users$ = this.users$.pipe(
+        map((users) => users.filter((user) => user.id !== id)),
+      );
     });
   }
 }
