@@ -8,13 +8,17 @@ import {
   UserEditComponent,
   UserListComponent,
 } from '@lectoraat-smart-energy/ui/pages';
-import { LoginComponent } from '@lectoraat-smart-energy/ui/auth';
+import {
+  IsAdmin,
+  IsLoggedIn,
+  LoginComponent,
+} from '@lectoraat-smart-energy/ui/auth';
 
 export const appRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'calculator',
+    redirectTo: 'calculators',
   },
   {
     path: 'auth/login',
@@ -22,35 +26,49 @@ export const appRoutes: Route[] = [
     component: LoginComponent,
   },
   {
-    path: 'location',
-    component: LocationListComponent,
-  },
-  {
-    path: 'location/new',
-    component: LocationEditComponent,
-  },
-  {
-    path: 'location/:id',
-    component: LocationDetailComponent,
-  },
-
-  {
-    path: 'user',
-    pathMatch: 'full',
-    component: UserListComponent,
-  },
-  {
-    path: 'user/new',
-    pathMatch: 'full',
-    component: UserEditComponent,
-  },
-  {
-    path: 'calculator',
+    path: 'locations',
     children: [
       {
         path: '',
-        component: CalculatorListComponent,
         pathMatch: 'full',
+        canActivate: [IsLoggedIn],
+        component: LocationListComponent,
+      },
+      {
+        path: 'new',
+        canActivate: [IsLoggedIn],
+        component: LocationEditComponent,
+      },
+      {
+        path: ':id',
+        canActivate: [IsLoggedIn],
+        component: LocationDetailComponent,
+      },
+    ],
+  },
+  {
+    path: 'users',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        canActivate: [IsLoggedIn, IsAdmin],
+        component: UserListComponent,
+      },
+      {
+        path: 'users/new',
+        canActivate: [IsLoggedIn, IsAdmin],
+        component: UserEditComponent,
+      },
+    ],
+  },
+  {
+    path: 'calculators',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: CalculatorListComponent,
       },
       {
         path: 'boiler',

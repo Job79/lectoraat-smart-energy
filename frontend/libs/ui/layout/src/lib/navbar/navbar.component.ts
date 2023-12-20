@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { User } from '@lectoraat-smart-energy/shared';
 import { AuthService } from '@lectoraat-smart-energy/ui/auth';
 
 @Component({
@@ -13,15 +12,17 @@ import { AuthService } from '@lectoraat-smart-energy/ui/auth';
   styles: [],
 })
 export class NavbarComponent implements OnInit {
-  imagePath?: string;
-  user?: User;
+  isAdmin = false;
+  isLoggedIn = false;
+  initial = '';
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.imagePath = 'assets/logo-home.svg';
-    this.authService.getUser().then((user) => {
-      this.user = user;
+    this.authService.account$.subscribe((account) => {
+      this.isAdmin = account.isAdmin;
+      this.isLoggedIn = account.isLoggedIn;
+      this.initial = account.user?.email?.substr(0, 2).toUpperCase();
     });
   }
 

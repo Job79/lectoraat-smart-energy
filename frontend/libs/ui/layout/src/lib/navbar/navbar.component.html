@@ -1,32 +1,38 @@
 <div class="fixed navbar bg-white md:flex hidden z-[100]">
   <div class="navbar-start">
     <a routerLink="/">
-      <img [src]="imagePath" class="h-[3.5rem] mx-4" alt="mnext logo" />
+      <img
+        src="/assets/logo-home.svg"
+        class="h-[3.5rem] mx-4"
+        alt="mnext logo"
+      />
     </a>
   </div>
   <div class="navbar-center hidden md:flex">
     <ul class="menu menu-horizontal px-1">
-      <li *ngIf="user?.id">
-        <a routerLink="/location" routerLinkActive="bg-gray-50"> Locaties </a>
+      <li *ngIf="isLoggedIn">
+        <a routerLink="/locations" routerLinkActive="bg-gray-50">Locaties</a>
       </li>
-      <li><a routerLink="/user/">Users</a></li>
+      <li *ngIf="isLoggedIn && isAdmin">
+        <a routerLink="/users" routerLinkActive="bg-gray-50">Gebruikers</a>
+      </li>
       <li>
-        <a routerLink="/calculator" routerLinkActive="bg-gray-50">
-          Rekentools
-        </a>
+        <a routerLink="/calculators" routerLinkActive="bg-gray-50"
+          >Rekentools</a
+        >
       </li>
     </ul>
   </div>
   <div class="navbar-end">
     <div class="dropdown dropdown-end">
-      <div *ngIf="!user?.id" class="px-1">
+      <div *ngIf="!isLoggedIn" class="px-1">
         <a class="btn" routerLink="/auth/login">Inloggen</a>
       </div>
-      <div *ngIf="user?.id">
+      <div *ngIf="isLoggedIn">
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="avatar placeholder">
             <div class="bg-neutral text-neutral-content rounded-full w-10">
-              <span class="text-1xl">D.L</span>
+              <span class="text-1xl">{{ initial }}</span>
             </div>
           </div>
         </div>
@@ -48,7 +54,7 @@
 </div>
 
 <div class="md:hidden fixed bottom-0 left-0 w-full bg-white btm-nav z-[100]">
-  <button *ngIf="user?.id" routerLink="/location" routerLinkActive="active">
+  <button *ngIf="isLoggedIn" routerLink="/locations" routerLinkActive="active">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -65,7 +71,11 @@
     </svg>
     <span class="btm-nav-label">Locaties</span>
   </button>
-  <button *ngIf="user?.id" routerLink="/user" routerLinkActive="active">
+  <button
+    *ngIf="isLoggedIn && isAdmin"
+    routerLink="/users"
+    routerLinkActive="active"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -82,7 +92,7 @@
     </svg>
     <span class="btm-nav-label">Gebruikers</span>
   </button>
-  <button routerLink="/calculator" routerLinkActive="active">
+  <button routerLink="/calculators" routerLinkActive="active">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
