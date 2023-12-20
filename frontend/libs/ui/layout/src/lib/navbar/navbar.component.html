@@ -26,13 +26,43 @@
         <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="avatar placeholder">
             <div class="bg-neutral text-neutral-content rounded-full w-10">
-              <span class="text-1xl">D.L</span>
+              <span class="text-1xl">E.C</span>
             </div>
           </div>
         </div>
         <ul
           tabindex="0"
           class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li>
+            <a class="justify-between">Profile</a>
+          </li>
+          <li><a>Settings</a></li>
+          <li>
+            <button type="button" (click)="logout()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="md:hidden fixed top-0 left-0 z-[100]">
+  <div class="navbar-end">
+    <div class="dropdown dropdown-end">
+      <div *ngIf="!user?.id" class="px-1">
+        <a class="btn" routerLink="/auth/login">Inloggen</a>
+      </div>
+      <div *ngIf="user?.id">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+          <div class="avatar placeholder">
+            <div class="bg-neutral text-neutral-content rounded-full w-10">
+              <span class="text-1xl">E.C</span>
+            </div>
+          </div>
+        </div>
+        <ul
+          tabindex="0"
+          class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box w-22 right-0 origin-top-right"
         >
           <li>
             <a class="justify-between">Profile</a>
