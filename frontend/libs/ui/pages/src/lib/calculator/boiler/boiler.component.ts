@@ -6,6 +6,7 @@ import { Boiler, EnergyLabels, Location } from '@lectoraat-smart-energy/shared';
 import { BoilerResultComponent } from '@lectoraat-smart-energy/ui/components';
 import { Observable } from 'rxjs';
 import { LocationService } from '../../location/location.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'lectoraat-smart-energy-boiler',
@@ -16,7 +17,7 @@ import { LocationService } from '../../location/location.service';
   styleUrl: './boiler.component.css',
 })
 export class BoilerComponent implements OnInit {
-  boiler: Boiler = {} as Boiler;
+  boiler!: Boiler;
   locations$!: Observable<Location[]>;
 
   energyLabels = Object.keys(EnergyLabels);
@@ -35,14 +36,25 @@ export class BoilerComponent implements OnInit {
   constructor(
     private boilerService: BoilerService,
     private locationService: LocationService,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id') ?? '';
+
+    if (id) {
+      this.boilerService.getBoiler(id).subscribe((boiler) => {
+        this.boiler = boiler;
+      });
+    } else {
+      this.boiler = {} as Boiler;
+    }
+
     this.locations$ = this.locationService.getLocations();
   }
 
-  storeCalculation() {
-    this.boilerService.storeCalculation(this.boiler);
+  createCalculation() {
+    this.boilerService.createCalculation(this.boiler);
     console.log(this.boiler);
   }
 }

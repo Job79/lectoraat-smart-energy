@@ -5,12 +5,12 @@ import { LocationService } from '../location.service';
 import { BoilerService } from '../../calculator/boiler.service';
 import { Boiler, Location } from '@lectoraat-smart-energy/shared';
 import { Observable } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'lectoraat-smart-energy-location-detail',
   standalone: true,
-  imports: [CommonModule, BoilerResultComponent],
+  imports: [CommonModule, BoilerResultComponent, RouterModule],
   providers: [LocationService, BoilerService],
   templateUrl: './location-detail.component.html',
   styleUrl: './location-detail.component.css',
