@@ -57,4 +57,9 @@ export class BoilerComponent implements OnInit {
     this.boilerService.createCalculation(this.boiler);
     console.log(this.boiler);
   }
+
+  updateCalculation() {
+    this.boilerService.updateCalculation(this.boiler);
+    console.log(this.boiler);
+  }
 }

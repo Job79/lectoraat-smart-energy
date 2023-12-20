@@ -25,4 +25,11 @@ export class BoilerService {
     const record = await this.pb.collection('boilers').create(boiler);
     console.log(record);
   }
+
+  public async updateCalculation(boiler: Boiler) {
+    const record = await this.pb
+      .collection('boilers')
+      .update(boiler.id!, boiler);
+    console.log(record);
+  }
 }

@@ -12,7 +12,7 @@
   <div>
     <form
       #boilerForm="ngForm"
-      (ngSubmit)="createCalculation()"
+      (ngSubmit)="boiler.id ? updateCalculation() : createCalculation()"
       class="space-y-6"
     >
       <div>
@@ -112,7 +112,7 @@
         [disabled]="boilerForm.invalid"
         class="btn btn-neutral"
       >
-        Save
+        {{ boiler.id ? 'Update' : 'Save' }}
       </button>
     </form>
   </div>
