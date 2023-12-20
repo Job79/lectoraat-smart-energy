@@ -18,6 +18,7 @@ import { LocationService } from '../../location/location.service';
 export class BoilerComponent implements OnInit {
   boiler: Boiler = {} as Boiler;
   locations$!: Observable<Location[]>;
+
   energyLabels = Object.keys(EnergyLabels);
 
   energyLabelColors: { [key: string]: { color: string } } = {
