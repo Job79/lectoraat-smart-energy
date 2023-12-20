@@ -1,27 +1,30 @@
 <div class="fixed navbar bg-white md:flex hidden z-[100]">
   <div class="navbar-start">
     <a routerLink="/">
-      <img [src]="imagePath" class="h-[3.5rem]" />
+      <img [src]="imagePath" class="h-[3.5rem] mx-4" alt="mnext logo" />
     </a>
   </div>
   <div class="navbar-center hidden md:flex">
     <ul class="menu menu-horizontal px-1">
-      <li><a routerLink="/location">Locaties</a></li>
-      <li><a routerLink="/calculator">Rekentools</a></li>
+
+      <li *ngIf="user?.id">
+        <a routerLink="/location" routerLinkActive="bg-gray-50"> Locaties </a>
+      </li>
+      <li>
+        <a routerLink="/calculator" routerLinkActive="bg-gray-50">
+          Rekentools
+        </a>
+      </li>
+
     </ul>
   </div>
   <div class="navbar-end">
     <div class="dropdown dropdown-end">
-      <ul *ngIf="!user?.id" class="menu menu-horizontal px-1">
-        <li><a routerLink="/auth/login">Inloggen</a></li>
-      </ul>
-      <div>
-        <div
-          *ngIf="user?.id"
-          tabindex="0"
-          role="button"
-          class="btn btn-ghost btn-circle avatar"
-        >
+      <div *ngIf="!user?.id" class="px-1">
+        <a class="btn" routerLink="/auth/login">Inloggen</a>
+      </div>
+      <div *ngIf="user?.id">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
           <div class="avatar placeholder">
             <div class="bg-neutral text-neutral-content rounded-full w-10">
               <span class="text-1xl">D.L</span>
@@ -33,7 +36,7 @@
           class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <a class="justify-between"> Profile </a>
+            <a class="justify-between">Profile</a>
           </li>
           <li><a>Settings</a></li>
           <li>
@@ -44,8 +47,9 @@
     </div>
   </div>
 </div>
+
 <div class="md:hidden fixed bottom-0 left-0 w-full bg-white btm-nav z-[100]">
-  <button routerLink="/">
+  <button *ngIf="user?.id" routerLink="/location" routerLinkActive="active">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-5 w-5"
@@ -62,7 +66,7 @@
     </svg>
     <span class="btm-nav-label">Locaties</span>
   </button>
-  <button routerLink="/calculator" class="active">
+  <button routerLink="/calculator" routerLinkActive="active">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -79,5 +83,6 @@
     </svg>
 
     <span class="btm-nav-label">Rekentools</span>
+
   </button>
 </div>
