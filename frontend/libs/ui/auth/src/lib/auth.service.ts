@@ -5,11 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  user$ = new BehaviorSubject<{
-    data: User;
-    isAdmin: boolean;
-    isLoggedIn: boolean;
-  }>({
+  user$ = new BehaviorSubject({
     data: this.pb.authStore.model as User,
     isAdmin: this.pb.authStore.isAdmin,
     isLoggedIn: this.pb.authStore.isValid,
