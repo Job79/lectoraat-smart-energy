@@ -9,10 +9,15 @@
     <h2 class="text-2xl font-bold">Boiler</h2>
   </div>
 
-  <div class="flex justify-end space-x-4">
+  <form
+    class="flex justify-end space-x-4"
+    (ngSubmit)="boiler.id ? updateCalculation() : createCalculation()"
+  >
     <button class="btn btn-secondary">Download Pdf</button>
-    <button *ngIf="isLoggedIn" class="btn btn-secondary">Opslaan</button>
-  </div>
+    <button *ngIf="isLoggedIn" class="btn btn-secondary">
+      {{ boiler.id ? 'Update' : 'Opslaan' }}
+    </button>
+  </form>
 </div>
 
 <div class="flex items-center flex-col gap-4 md:flex-row md:items-start">
