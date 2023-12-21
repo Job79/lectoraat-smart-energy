@@ -17,7 +17,17 @@ module.exports = {
     },
   },
   daisyui: {
-    themes: true, // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
+    themes: [
+      {
+        'smart-energy': {
+          primary: '#1eaa7d',
+          secondary: '#293d66',
+          accent: '#49d2a7',
+          neutral: '#293d66',
+          'base-100': '#ffffff',
+        },
+      },
+    ],
     darkTheme: 'light', // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
