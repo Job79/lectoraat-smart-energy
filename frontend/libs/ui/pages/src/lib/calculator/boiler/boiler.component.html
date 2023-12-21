@@ -1,156 +1,142 @@
-<div class="relative flex flex-col items-center justify-center h-20 w-full">
-  <!-- Boiler Calculator Title -->
-  <h2 class="text-2xl font-extrabold mb-4 md:mb-0">Boiler Calculator</h2>
+<!-- Topbar -->
+<div class="flex justify-between items-center mb-5">
+  <div class="flex items-center gap-2">
+    <img
+      src="/assets/calculator/boiler.jpeg"
+      class="w-10 h-10 rounded-full"
+      alt="boiler"
+    />
+    <h2 class="text-2xl font-bold">Boiler</h2>
+  </div>
 
-  <!-- Download as PDF button -->
-  <div class="flex md:absolute md:right-0 right-0">
-    <button class="btn btn-link">Download as Pdf</button>
+  <div class="flex justify-end space-x-4">
+    <button class="btn btn-secondary">Download Pdf</button>
+    <button *ngIf="isLoggedIn" class="btn btn-secondary">Opslaan</button>
   </div>
 </div>
 
-<div class="flex flex-col w-full md:flex-row">
-  <div>
-    <form
-      #boilerForm="ngForm"
-      (ngSubmit)="boiler.id ? updateCalculation() : createCalculation()"
-      class="space-y-4"
-    >
+<div class="flex items-center flex-col gap-4 md:flex-row md:items-start">
+  <!-- Boiler Form -->
+  <div class="bg-white rounded-2xl shadow w-full px-5 py-3">
+    <div class="flex flex-col justify-between md:gap-3 md:flex-row">
       <div>
-        <label class="form-control w-full max-w-xs">
+        <!-- Name -->
+        <label *ngIf="isLoggedIn" class="form-control">
           <div class="label">
             <span class="label-text">Naam boiler</span>
           </div>
           <input
             type="text"
-            name="name"
             [(ngModel)]="boiler.name"
-            required
             placeholder="Naam boiler"
-            class="input input-bordered w-full max-w-xs"
+            class="input input-bordered"
           />
         </label>
-      </div>
-      <div>
-        <label class="form-control w-full max-w-xs">
+
+        <!-- Liters -->
+        <label class="form-control">
           <div class="label">
             <span class="label-text">Aantal liter boiler</span>
           </div>
           <input
             type="number"
-            name="power"
             [(ngModel)]="boiler.liter"
-            required
             placeholder="Aantal liter"
-            class="input input-bordered w-full max-w-xs"
+            class="input input-bordered"
           />
         </label>
-      </div>
 
-      <div>
-        <label class="form-control w-full max-w-xs">
+        <!-- Electricity Price -->
+        <label class="form-control">
           <div class="label">
             <span class="label-text">Prijs per kWh</span>
           </div>
           <input
             type="number"
-            name="power"
             [(ngModel)]="boiler.price"
-            required
             placeholder="Prijs in euro"
-            class="input input-bordered w-full max-w-xs"
+            class="input input-bordered"
           />
         </label>
       </div>
 
       <div>
-        <label class="form-control w-full max-w-xs">
-          <div class="label">
-            <span class="label-text">Electrisch vermogen boiler</span>
-          </div>
-          <input
-            type="number"
-            name="power"
-            [(ngModel)]="boiler.power"
-            required
-            placeholder="Vermogen in Watt"
-            class="input input-bordered w-full max-w-xs"
-          />
-        </label>
-      </div>
-
-      <div>
-        <label class="form-control w-full max-w-xs">
-          <div class="label">
-            <span class="label-text">Energielabel</span>
-          </div>
-          <select
-            name="energyLabel"
-            [(ngModel)]="boiler.energyLabel"
-            required
-            class="select select-bordered"
-          >
-            <option
-              *ngFor="let label of energyLabels"
-              [style.color]="energyLabelColors[label.toLowerCase()]?.color"
-              class="font-extrabold text-xl"
-            >
-              {{ label }}
-            </option>
-          </select>
-        </label>
-      </div>
-
-      <div>
-        <label class="form-control w-full max-w-xs">
+        <!-- Location -->
+        <label *ngIf="isLoggedIn" class="form-control">
           <div class="label">
             <span class="label-text">Location</span>
-            <a routerLink="/locations/new" class="ml-2 text-blue-500">New</a>
           </div>
           <select
-            id="location"
             name="location"
             [(ngModel)]="boiler.location"
-            required
             class="select select-bordered"
+            [class]="{ 'text-gray-400': !boiler.location }"
           >
+            <option selected disabled [value]="undefined">
+              Selecteer een locatie
+            </option>
             <option
               *ngFor="let location of locations$ | async"
               [value]="location.id"
+              class="text-black"
             >
               {{ location.name }}
             </option>
           </select>
         </label>
-      </div>
 
-      <div>
-        <label class="form-control w-full max-w-xs">
+        <!-- Power -->
+        <label class="form-control">
           <div class="label">
-            <span class="label-text">Aantekeningen</span>
+            <span class="label-text">Electrisch vermogen boiler</span>
           </div>
-          <textarea
-            type="text"
-            name="aantekeningen"
-            [(ngModel)]="boiler.comment"
-            placeholder="Aantekeningen"
-            class="textarea textarea-bordered textarea-sm w-full max-w-xs"
-          ></textarea>
+          <input
+            type="number"
+            [(ngModel)]="boiler.power"
+            placeholder="Vermogen in Watt"
+            class="input input-bordered"
+          />
+        </label>
+
+        <!-- Energy Label -->
+        <label class="form-control">
+          <div class="label">
+            <span class="label-text">Energielabel</span>
+          </div>
+          <select
+            [(ngModel)]="boiler.energyLabel"
+            class="select select-bordered"
+            [class]="{ 'text-gray-400': !boiler.energyLabel }"
+          >
+            <option selected disabled [value]="undefined">
+              Selecteer een energielabel
+            </option>
+            <option *ngFor="let label of energyLabels" class="text-black">
+              {{ label }}
+            </option>
+          </select>
         </label>
       </div>
+    </div>
 
-      <button
-        type="submit"
-        [disabled]="boilerForm.invalid"
-        class="btn btn-neutral"
-      >
-        {{ boiler.id ? 'Update' : 'Opslaan' }}
-      </button>
-    </form>
+    <div class="w-full mb-auto">
+      <!-- Notes -->
+      <label class="form-control">
+        <div class="label"><span class="label-text">Aantekeningen</span></div>
+        <textarea
+          type="text"
+          [(ngModel)]="boiler.comment"
+          placeholder="Aantekeningen"
+          class="textarea textarea-bordered textarea-sm w-full h-[10.8rem]"
+        ></textarea>
+      </label>
+    </div>
   </div>
-  <div class="divider divider-vertical md:divider-horizontal"></div>
-  <div>
-    <lectoraat-smart-energy-boiler-result
-      [boiler]="boiler"
-    ></lectoraat-smart-energy-boiler-result>
-  </div>
+
+  <!-- Boiler Result -->
+  <lectoraat-smart-energy-boiler-result
+    [boiler]="boiler"
+    class="w-full md:w-min"
+  >
+  </lectoraat-smart-energy-boiler-result>
 </div>
