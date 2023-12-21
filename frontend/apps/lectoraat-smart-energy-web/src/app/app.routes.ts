@@ -56,7 +56,7 @@ export const appRoutes: Route[] = [
         component: UserListComponent,
       },
       {
-        path: 'users/new',
+        path: 'new',
         canActivate: [IsLoggedIn, IsAdmin],
         component: UserEditComponent,
       },
