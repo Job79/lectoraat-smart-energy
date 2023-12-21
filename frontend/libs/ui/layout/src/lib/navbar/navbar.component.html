@@ -46,9 +46,9 @@
     </div>
   </div>
 </div>
-<div class="md:hidden fixed top-0 left-0 z-[100]">
-  <div class="navbar-end">
-    <div class="dropdown dropdown-end">
+<div class="top-0 w-full bg-white left-0 z-[100]">
+  <div class="navbar-ends">
+    <div class="dropdown dropdown-down">
       <div *ngIf="!user?.id" class="px-1">
         <a class="btn" routerLink="/auth/login">Inloggen</a>
       </div>
@@ -62,7 +62,7 @@
         </div>
         <ul
           tabindex="0"
-          class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box w-22 right-0 origin-top-right"
+          class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box origin-top"
         >
           <li>
             <a class="justify-between">Profile</a>
