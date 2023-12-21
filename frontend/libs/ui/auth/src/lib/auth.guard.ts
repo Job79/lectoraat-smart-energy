@@ -6,7 +6,7 @@ export const IsLoggedIn: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  if (authService.account$.value.isLoggedIn) {
+  if (authService.user$.value.isLoggedIn) {
     return true;
   }
 
@@ -16,5 +16,5 @@ export const IsLoggedIn: CanActivateFn = () => {
 
 export const IsAdmin: CanActivateFn = () => {
   const authService = inject(AuthService);
-  return authService.account$.value.isAdmin;
+  return authService.user$.value.isAdmin;
 };

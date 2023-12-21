@@ -5,12 +5,12 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  account$ = new BehaviorSubject<{
-    user: User;
+  user$ = new BehaviorSubject<{
+    data: User;
     isAdmin: boolean;
     isLoggedIn: boolean;
   }>({
-    user: this.pb.authStore.model as User,
+    data: this.pb.authStore.model as User,
     isAdmin: this.pb.authStore.isAdmin,
     isLoggedIn: this.pb.authStore.isValid,
   });
@@ -26,8 +26,8 @@ export class AuthService {
         .collection('users')
         .authWithPassword(user.email, user.password);
 
-      this.account$.next({
-        user: response.record,
+      this.user$.next({
+        data: response.record,
         isAdmin: false,
         isLoggedIn: true,
       });
@@ -43,8 +43,8 @@ export class AuthService {
         user.password,
       );
 
-      this.account$.next({
-        user: response.admin as unknown as User,
+      this.user$.next({
+        data: response.admin as unknown as User,
         isAdmin: true,
         isLoggedIn: true,
       });
@@ -56,8 +56,8 @@ export class AuthService {
 
   public async logout() {
     this.pb.authStore.clear();
-    this.account$.next({
-      user: {} as User,
+    this.user$.next({
+      data: {} as User,
       isAdmin: false,
       isLoggedIn: false,
     });

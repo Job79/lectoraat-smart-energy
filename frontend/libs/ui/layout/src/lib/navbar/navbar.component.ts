@@ -19,10 +19,10 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.account$.subscribe((account) => {
-      this.isAdmin = account.isAdmin;
-      this.isLoggedIn = account.isLoggedIn;
-      this.initial = account.user?.email?.substr(0, 2).toUpperCase();
+    this.authService.user$.subscribe((user) => {
+      this.isAdmin = user.isAdmin;
+      this.isLoggedIn = user.isLoggedIn;
+      this.initial = user.data?.email?.substr(0, 2).toUpperCase();
     });
   }
 
