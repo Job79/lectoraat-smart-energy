@@ -28,12 +28,12 @@
         <!-- Name -->
         <label *ngIf="isLoggedIn" class="form-control">
           <div class="label">
-            <span class="label-text">Naam boiler</span>
+            <span class="label-text">Naam Berekening</span>
           </div>
           <input
             type="text"
             [(ngModel)]="boiler.name"
-            placeholder="Naam boiler"
+            placeholder="Naam berekening"
             class="input input-bordered"
           />
         </label>
@@ -127,11 +127,11 @@
     <div class="w-full mb-auto">
       <!-- Notes -->
       <label class="form-control">
-        <div class="label"><span class="label-text">Aantekeningen</span></div>
+        <div class="label"><span class="label-text">Opmerkingen</span></div>
         <textarea
           type="text"
           [(ngModel)]="boiler.comment"
-          placeholder="Aantekeningen"
+          placeholder="Opmerkingen"
           class="textarea textarea-bordered textarea-sm w-full h-[10.8rem]"
         ></textarea>
       </label>
