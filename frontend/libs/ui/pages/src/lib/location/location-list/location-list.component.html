@@ -1,7 +1,7 @@
 <button class="btn btn-neutral" routerLink="new">New</button>
-<div *ngFor="let location of locations$" class="mb-4">
+<div *ngFor="let location of locations" class="mb-4">
   <a [routerLink]="['/locations', location.id]">
-    <div class="card w-96 bg-base-100 shadow-xl h-96">
+    <div class="card w-96 bg-base-100 shadow-xl">
       <div class="card-body hover:shadow-md">
         <h2 class="card-title">{{ location.name }}</h2>
 
@@ -15,6 +15,6 @@
 <div
   infiniteScroll
   [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="1000"
+  [infiniteScrollThrottle]="300"
   (scrolled)="onScroll()"
 ></div>
