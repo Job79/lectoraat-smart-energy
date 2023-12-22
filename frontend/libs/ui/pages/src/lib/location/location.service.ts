@@ -16,14 +16,12 @@ export class LocationService {
     return locations;
   }
 
-  public getLocationsList(currentPage: number): Observable<Location[]> {
-    const locations = this.pb.collection('locations').getList(currentPage, 3, {
-      sort: '-created',
-    });
-
-    return from(locations).pipe(
-      map((result: ListResult<Location>) => result.items),
-    );
+  getLocationsList(page: number): Observable<Location[]> {
+    return from(
+      this.pb.collection('locations').getList(page, 10, {
+        sort: '-created',
+      }),
+    ).pipe(map((result: ListResult<Location>) => result.items));
   }
 
   public getLocation(id: string): Observable<Location> {

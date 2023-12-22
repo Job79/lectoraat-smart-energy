@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocationService } from '../location.service';
 import { RouterLink } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Location } from '@lectoraat-smart-energy/shared';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -15,9 +14,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   styleUrl: './location-list.component.css',
 })
 export class LocationListComponent implements OnInit {
-  locations$: Location[] = []; // Initialize locations$ as an array
-  page = 1;
-  finished = false;
+  locations: Location[] = [];
+  page = 0;
 
   constructor(private locationService: LocationService) {}
 
@@ -26,19 +24,14 @@ export class LocationListComponent implements OnInit {
   }
 
   onScroll() {
-    console.log('scrolled!!');
     this.getLocations();
   }
 
   getLocations() {
-    if (this.finished) {
-      return;
-    }
-
     this.locationService
-      .getLocationsList(++this.page)
-      .subscribe((commentaries: Location[]) => {
-        this.locations$.push(...commentaries);
+      .getLocationsList(this.page++)
+      .subscribe((locations: Location[]) => {
+        this.locations.push(...locations);
       });
   }
 }
