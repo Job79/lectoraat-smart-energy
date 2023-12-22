@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Location, IPocketBase, User } from '@lectoraat-smart-energy/shared';
-import { Observable, from } from 'rxjs';
+import { ListResult } from 'pocketbase';
+import { Observable, from, map } from 'rxjs';
 
 @Injectable()
 export class LocationService {
@@ -13,6 +14,16 @@ export class LocationService {
       }),
     );
     return locations;
+  }
+
+  public getLocationsList(currentPage: number): Observable<Location[]> {
+    const locations = this.pb.collection('locations').getList(currentPage, 3, {
+      sort: '-created',
+    });
+
+    return from(locations).pipe(
+      map((result: ListResult<Location>) => result.items),
+    );
   }
 
   public getLocation(id: string): Observable<Location> {
