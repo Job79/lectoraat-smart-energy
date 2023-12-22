@@ -1,4 +1,4 @@
-# LectoraatSmartEnergy
+# SmartEnergy
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
@@ -6,7 +6,7 @@
 
 ## Start the app
 
-To start the development server run `nx serve lectoraat-smart-energy-web`. Open your browser and navigate to http://localhost:4200/. Happy coding!
+To start the development server run `nx serve smart-energy-web`. Open your browser and navigate to http://localhost:4200/. Happy coding!
 
 ## Generate code
 
