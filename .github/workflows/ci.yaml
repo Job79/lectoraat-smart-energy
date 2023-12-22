@@ -23,7 +23,7 @@ jobs:
           npm run ci
 
       - name: build artifact
-        run: mv frontend/dist/apps/lectoraat-smart-energy-web/browser pocketbase/pb_public
+        run: mv frontend/dist/apps/smart-energy-web/browser pocketbase/pb_public
 
       - name: upload artifact
         uses: actions/upload-artifact@v4

@@ -1,0 +1,14 @@
+<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+  <a
+    *ngFor="let calculator of calculators"
+    [routerLink]="['/calculators', calculator]"
+    class="card image-full mx-auto w-full max-w-[30rem] bg-base-100 shadow-xl"
+  >
+    <figure>
+      <img [src]="'/assets/calculator/' + calculator + '.jpeg'" [alt]="calculator" />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">{{ calculator }}</h2>
+    </div>
+  </a>
+</div>

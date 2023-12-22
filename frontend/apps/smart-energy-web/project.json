@@ -1,0 +1,93 @@
+{
+  "name": "smart-energy-web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "smart-energy",
+  "sourceRoot": "apps/smart-energy-web/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/smart-energy-web",
+        "index": "apps/smart-energy-web/src/index.html",
+        "browser": "apps/smart-energy-web/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/smart-energy-web/tsconfig.app.json",
+        "assets": [
+          "apps/smart-energy-web/src/favicon.ico",
+          "apps/smart-energy-web/src/assets",
+          "apps/smart-energy-web/src/manifest.webmanifest"
+        ],
+        "styles": ["apps/smart-energy-web/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "libs/core/src/env/environment.ts",
+              "with": "libs/core/src/env/environment.production.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "smart-energy-web:build:production"
+        },
+        "development": {
+          "buildTarget": "smart-energy-web:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "smart-energy-web:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/smart-energy-web/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "smart-energy-web:build",
+        "staticFilePath": "dist/apps/smart-energy-web/browser"
+      }
+    }
+  }
+}

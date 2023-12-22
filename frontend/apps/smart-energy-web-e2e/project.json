@@ -1,0 +1,30 @@
+{
+  "name": "smart-energy-web-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/smart-energy-web-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/smart-energy-web-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "smart-energy-web:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "smart-energy-web:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "smart-energy-web:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["smart-energy-web"]
+}

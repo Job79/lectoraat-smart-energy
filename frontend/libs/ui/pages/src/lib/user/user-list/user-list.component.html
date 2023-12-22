@@ -1,8 +1,0 @@
-<a [routerLink]="'/users/new'">Add</a>
-<div *ngFor="let user of users$ | async">
-  <a [routerLink]="['/users', user.id]">
-    {{ user.email }}
-  </a>
-
-  <button (click)="delete(user.id!)">Delete</button>
-</div>

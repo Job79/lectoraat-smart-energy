@@ -1,0 +1,94 @@
+<form (ngSubmit)="save()">
+  <!-- Topbar -->
+  <div class="flex flex-col gap-6 sm:flex-row justify-between items-center mb-5">
+    <div class="flex items-center space-x-3">
+      <img
+        src="/assets/calculator/{{ calculation.calculationType }}.jpeg"
+        class="w-10 h-10 rounded-full"
+        alt="{{ calculation.calculationType }}"
+      />
+      <h2 class="text-2xl font-bold">{{ title }}</h2>
+    </div>
+
+    <div class="flex justify-end space-x-4">
+      <button class="btn btn-secondary" (click)="clear()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="16"
+          width="16"
+          viewBox="0 0 512 512"
+          class="fill-current"
+        >
+          <path
+            d="M105.1 202.6c7.7-21.8 20.2-42.3 37.8-59.8 62.5-62.5 163.8-62.5 226.3 0l17.1 17.2H352c-17.7 0-32 14.3-32 32s14.3 32 32 32h111.9c17.7 0 32-14.3 32-32V80c0-17.7-14.3-32-32-32s-32 14.3-32 32v35.2l-17.5-17.6c-87.5-87.5-229.3-87.5-316.8 0-24.4 24.4-42 53.1-52.8 83.8-5.9 16.7 2.9 34.9 19.5 40.8s34.9-2.9 40.8-19.5zM39 289.3c-5 1.5-9.8 4.2-13.7 8.2-4 4-6.7 8.8-8.1 14-.3 1.2-.6 2.5-.8 3.8-.3 1.7-.4 3.4-.4 5.1V432c0 17.7 14.3 32 32 32s32-14.3 32-32v-35.1l17.6 17.5c87.5 87.4 229.3 87.4 316.7 0 24.4-24.4 42.1-53.1 52.9-83.7 5.9-16.7-2.9-34.9-19.5-40.8s-34.9 2.9-40.8 19.5c-7.7 21.8-20.2 42.3-37.8 59.8-62.5 62.5-163.8 62.5-226.3 0l-.1-.1-17.1-17.1H160c17.7 0 32-14.3 32-32s-14.3-32-32-32H48.4c-1.6 0-3.2.1-4.8.3s-3.1.5-4.6 1z"
+          />
+        </svg>
+      </button>
+      <button class="btn btn-secondary">Download Pdf</button>
+      <button class="btn btn-secondary">Opslaan</button>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4 md:flex-row md:items-start">
+    <!-- Input block -->
+    <div class="bg-white rounded-2xl shadow w-full px-5 py-3">
+      <ng-content select="[form]" />
+
+      <div class="-mx-5 border mt-8 mb-3"><!--divider--></div>
+      <div class="flex flex-col justify-between md:gap-3 md:flex-row">
+        <!-- Name -->
+        <label class="w-full form-control">
+          <div class="label">
+            <span class="label-text">Naam Berekening</span>
+          </div>
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="calculation.name"
+            placeholder="Naam berekening"
+            class="input input-bordered"
+          />
+        </label>
+
+        <!-- Location -->
+        <label class="w-full form-control">
+          <div class="label">
+            <span class="label-text">Locatie</span>
+          </div>
+          <select
+            name="location"
+            [(ngModel)]="calculation.location"
+            class="select select-bordered"
+            [class]="{ 'text-gray-400': !calculation.location }"
+          >
+            <option selected disabled [value]="undefined">Selecteer een locatie</option>
+            <option
+              *ngFor="let location of locations$ | async"
+              [value]="location.id"
+              class="text-black"
+            >
+              {{ location.name }}
+            </option>
+          </select>
+        </label>
+      </div>
+
+      <div class="w-full">
+        <!-- Notes -->
+        <label class="form-control">
+          <div class="label"><span class="label-text">Opmerkingen</span></div>
+          <textarea
+            [(ngModel)]="calculation.comment"
+            name="comment"
+            placeholder="Opmerkingen"
+            class="textarea textarea-bordered textarea-sm w-full h-[10rem]"
+          ></textarea>
+        </label>
+      </div>
+    </div>
+
+    <div class="shadow rounded-2xl w-full md:w-min">
+      <ng-content select="[result]" />
+    </div>
+  </div>
+</form>

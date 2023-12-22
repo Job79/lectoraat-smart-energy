@@ -1,0 +1,90 @@
+<smart-energy-calculator title="Boiler" [(calculation)]="boiler">
+  <div form class="flex flex-col justify-between md:gap-3 md:flex-row">
+    <div class="w-full">
+      <!-- Liters -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Aantal liter</span>
+        </div>
+        <input
+          type="number"
+          [(ngModel)]="boiler.parameters.boilerCapacity"
+          placeholder="Aantal liter boiler"
+          class="input input-bordered"
+        />
+      </label>
+
+      <!-- Electricity Price -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Prijs per kWh</span>
+        </div>
+        <input
+          type="number"
+          [(ngModel)]="boiler.parameters.pricePerKwh"
+          placeholder="Prijs in euro"
+          class="input input-bordered"
+        />
+      </label>
+    </div>
+
+    <div class="w-full">
+      <!-- Power -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Electrisch vermogen</span>
+        </div>
+        <input
+          type="number"
+          [(ngModel)]="boiler.parameters.powerOfBoiler"
+          placeholder="Vermogen in Watt"
+          class="input input-bordered"
+        />
+      </label>
+
+      <!-- Energy Label -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Energielabel</span>
+        </div>
+        <select
+          [(ngModel)]="boiler.parameters.energyLabelOfBoiler"
+          class="select select-bordered"
+          [class]="{ 'text-gray-400': !boiler.parameters.energyLabelOfBoiler }"
+        >
+          <option selected disabled [value]="undefined">Selecteer een energielabel</option>
+          <option *ngFor="let label of energyLabels" class="text-black">
+            {{ label }}
+          </option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div result class="stats stats-vertical w-full">
+    <div class="stat">
+      <div class="stat-title">Kosten 1 keer opwarmen</div>
+      <div class="stat-value">€ {{ boilerFormula.costHeatingOnce }}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Nodige tijd om water te verwarmen</div>
+      <div class="stat-value">{{ boilerFormula.timeRequiredForHeating }} Uur</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Hoeveelheid energie om te verwarmen</div>
+      <div class="stat-value">{{ boilerFormula.energyRequiredForHeating }} kWh</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Kosten stilstandverlies per jaar</div>
+      <div class="stat-value">€ {{ boilerFormula.costsEnergyLossPerYear }}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Stilstandverlies per dag</div>
+      <div class="stat-value">{{ boilerFormula.energyLossPerDay }} kWh</div>
+    </div>
+  </div>
+</smart-energy-calculator>

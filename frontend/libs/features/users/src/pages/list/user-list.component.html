@@ -1,0 +1,15 @@
+<!-- Topbar -->
+<div class="flex justify-between items-center mb-5 mx-2">
+  <h2 class="text-2xl font-bold">Gebruikers</h2>
+  <button class="btn btn-secondary" routerLink="new">New</button>
+</div>
+
+<!-- Users -->
+<a *ngFor="let user of users$ | async" [routerLink]="['/users', user.id]">
+  <div class="card bg-base-100 shadow-xl mb-4">
+    <div class="card-body">
+      <h2 class="card-title">{{ user.email }}</h2>
+      {{ user.isManager ? 'manager' : 'coach' }}
+    </div>
+  </div>
+</a>
