@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ICalculation, ILocation } from '@smart-energy/core';
-import { LocationService } from '../../services/location.service';
-import { CalculationService } from '../../services/calculation.service';
+import { CalculationService, ICalculation, ILocation, LocationService } from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-detail',

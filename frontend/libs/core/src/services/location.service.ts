@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { ILocation, IPocketBase } from '@smart-energy/core';
 import { from } from 'rxjs';
+import { IPocketBase } from '../models/pocketbase.interface';
+import { ILocation } from '../models/location.interface';
 
 @Injectable()
 export class LocationService {
