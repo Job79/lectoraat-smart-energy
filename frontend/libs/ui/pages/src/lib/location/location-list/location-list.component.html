@@ -1,20 +1,46 @@
-<button class="btn btn-neutral" routerLink="new">New</button>
-<div *ngFor="let location of locations" class="mb-4">
-  <a [routerLink]="['/locations', location.id]">
-    <div class="card w-96 bg-base-100 shadow-xl">
-      <div class="card-body hover:shadow-md">
-        <h2 class="card-title">{{ location.name }}</h2>
+<div class="w-64">
+  <button class="btn btn-neutral w-full" routerLink="new">New</button>
+  <div class="relative mb-3">
+    <input
+      [(ngModel)]="searchText"
+      (ngModelChange)="onInputChange()"
+      class="form-input w-full p-3"
+      placeholder="Search..."
+    />
+    <button class="absolute top-0 right-0 mt-3 mr-3" (click)="clearSearch()">
+      <svg
+        class="h-6 w-6 text-gray-500"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        ></path>
+      </svg>
+    </button>
+  </div>
+  <div *ngFor="let location of locations" class="mb-4">
+    <a [routerLink]="['/locations', location.id]">
+      <div class="card w-96 bg-base-100 shadow-xl">
+        <div class="card-body hover:shadow-md">
+          <h2 class="card-title">{{ location.name }}</h2>
 
-        {{ location.postalCode }}
-        {{ location.residence }}
-        {{ location.user }}
+          {{ location.postalCode }}
+          {{ location.residence }}
+          {{ location.user }}
+        </div>
       </div>
-    </div>
-  </a>
+    </a>
+  </div>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()"
+  ></div>
 </div>
-<div
-  infiniteScroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="300"
-  (scrolled)="onScroll()"
-></div>
