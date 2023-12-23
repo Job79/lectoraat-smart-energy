@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'lectoraat-smart-energy-search',
+  selector: 'smart-energy-search',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './search.component.html',
@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 export class SearchComponent {
   @Input() searchText: string = '';
   @Output() searchTextChange = new EventEmitter<string>();
-  @Output() clear = new EventEmitter<void>();
 
   private debounceTimer!: ReturnType<typeof setTimeout>;
 
@@ -23,6 +22,8 @@ export class SearchComponent {
   }
 
   clearSearch() {
-    this.clear.emit();
+    clearTimeout(this.debounceTimer);
+    this.searchText = '';
+    this.searchTextChange.emit(this.searchText);
   }
 }
