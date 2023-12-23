@@ -17,7 +17,6 @@ export class LocationService {
   }
 
   getLocationsList(page: number, searchText: string): Observable<Location[]> {
-    console.log('getLocationsList' + page + searchText);
     return from(
       this.pb.collection('locations').getList(page, 10, {
         sort: '-created',

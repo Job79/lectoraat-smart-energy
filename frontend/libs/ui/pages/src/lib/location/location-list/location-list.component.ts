@@ -5,11 +5,18 @@ import { RouterLink } from '@angular/router';
 import { Location } from '@lectoraat-smart-energy/shared';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FormsModule } from '@angular/forms';
+import { SearchComponent } from '@lectoraat-smart-energy/ui/components';
 
 @Component({
   selector: 'lectoraat-smart-energy-location-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, InfiniteScrollModule, FormsModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    InfiniteScrollModule,
+    FormsModule,
+    SearchComponent,
+  ],
   providers: [LocationService],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.css',
@@ -39,11 +46,9 @@ export class LocationListComponent implements OnInit {
       });
   }
 
-  onInputChange() {
-    clearTimeout(this.debounceTimer);
-    this.debounceTimer = setTimeout(() => {
-      this.search();
-    }, 300);
+  onSearchTextChange(newSearchText: string) {
+    this.search();
+    console.log('Search text changed:', newSearchText);
   }
 
   search() {
