@@ -13,7 +13,7 @@ export class SearchComponent {
   @Output() searchTextChange = new EventEmitter<string>();
   @Output() clear = new EventEmitter<void>();
 
-  private debounceTimer: any;
+  private debounceTimer!: ReturnType<typeof setTimeout>;
 
   onInputChange() {
     clearTimeout(this.debounceTimer);

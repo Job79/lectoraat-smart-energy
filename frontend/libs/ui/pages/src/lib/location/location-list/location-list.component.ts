@@ -4,8 +4,11 @@ import { LocationService } from '../location.service';
 import { RouterLink } from '@angular/router';
 import { Location } from '@lectoraat-smart-energy/shared';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { FormsModule } from '@angular/forms';
-import { SearchComponent } from '@lectoraat-smart-energy/ui/components';
+import {
+  LoadingComponent,
+  SearchComponent,
+} from '@lectoraat-smart-energy/ui/components';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'lectoraat-smart-energy-location-list',
@@ -14,8 +17,8 @@ import { SearchComponent } from '@lectoraat-smart-energy/ui/components';
     CommonModule,
     RouterLink,
     InfiniteScrollModule,
-    FormsModule,
     SearchComponent,
+    LoadingComponent,
   ],
   providers: [LocationService],
   templateUrl: './location-list.component.html',
@@ -23,9 +26,8 @@ import { SearchComponent } from '@lectoraat-smart-energy/ui/components';
 })
 export class LocationListComponent implements OnInit {
   locations: Location[] = [];
-  page = 1;
   searchText = '';
-  private debounceTimer: any;
+  page = 1;
 
   constructor(private locationService: LocationService) {}
 
@@ -38,17 +40,13 @@ export class LocationListComponent implements OnInit {
     this.getLocations();
   }
 
-  getLocations() {
-    this.locationService
-      .getLocationsList(this.page, this.searchText)
-      .subscribe((locations: Location[]) => {
-        this.locations.push(...locations);
-      });
+  onSearch() {
+    this.search();
   }
 
-  onSearchTextChange(newSearchText: string) {
+  clearSearch() {
+    this.searchText = '';
     this.search();
-    console.log('Search text changed:', newSearchText);
   }
 
   search() {
@@ -57,8 +55,12 @@ export class LocationListComponent implements OnInit {
     this.getLocations();
   }
 
-  clearSearch() {
-    this.searchText = '';
-    this.search();
+  getLocations() {
+    this.locationService
+      .getLocationsList(this.page, this.searchText)
+      .pipe(delay(300))
+      .subscribe((locations: Location[]) => {
+        this.locations.push(...locations);
+      });
   }
 }

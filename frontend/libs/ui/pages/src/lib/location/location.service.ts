@@ -18,7 +18,7 @@ export class LocationService {
 
   getLocationsList(page: number, searchText: string): Observable<Location[]> {
     return from(
-      this.pb.collection('locations').getList(page, 10, {
+      this.pb.collection('locations').getList(page, 30, {
         sort: '-created',
         filter: searchText
           ? `name ~ "${searchText}" || postalCode ~ "${searchText}" ||  residence ~ "${searchText}"`
