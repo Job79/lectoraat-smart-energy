@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ILocation } from '@smart-energy/core';
-import { LocationService } from '../../services/location.service';
+import { ILocation, LocationService } from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-list',

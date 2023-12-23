@@ -20,3 +20,5 @@ export * from './pages/login/login.component';
 
 // Services
 export * from './services/auth.service';
+export * from './services/location.service';
+export * from './services/calculation.service';

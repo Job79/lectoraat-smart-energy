@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { ICalculation, IPocketBase } from '@smart-energy/core';
 import { from } from 'rxjs';
+import { IPocketBase } from '../models/pocketbase.interface';
+import { ICalculation } from '../models/calculation.interface';
 
 @Injectable()
 export class CalculationService<T> {
@@ -9,7 +10,7 @@ export class CalculationService<T> {
   public list(locationId: string) {
     return from(
       this.pb.collection('calculations').getFullList({
-        filter: `locationId == '${locationId}'`,
+        filter: `location = '${locationId}'`,
       }) as Promise<ICalculation<T>[]>,
     );
   }

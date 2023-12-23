@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LocationService } from '../../services/location.service';
-import { AuthService, ILocation } from '@smart-energy/core';
+import { AuthService, ILocation, LocationService } from '@smart-energy/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({

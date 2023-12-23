@@ -11,9 +11,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService, ICalculation, ILocation } from '@smart-energy/core';
-import { LocationService } from '../../services/location.service';
-import { CalculationService } from '../../services/calculation.service';
+import {
+  AuthService,
+  CalculationService,
+  ICalculation,
+  ILocation,
+  LocationService,
+} from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 
 @Component({

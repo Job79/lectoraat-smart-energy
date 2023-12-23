@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { CalculatorComponent } from '../../components/calculator/calculator.component';
 import { BoilerFormula, EnergyLabels, IBoilerParameters } from './boiler.formula';
-import { CalculationService } from '../../services/calculation.service';
 import { FormsModule } from '@angular/forms';
-import { ICalculation } from '@smart-energy/core';
+import { CalculationService, ICalculation } from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-calculator-boiler',
