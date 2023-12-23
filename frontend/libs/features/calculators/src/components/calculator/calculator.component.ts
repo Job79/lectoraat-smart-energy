@@ -6,9 +6,10 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import {
@@ -35,6 +36,8 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   @Output() downloadPdfClick = new EventEmitter();
 
   locations$!: Observable<ILocation[]>;
+
+  @ViewChild('calculationForm') calculationForm!: NgForm;
 
   constructor(
     private router: Router,
@@ -65,6 +68,11 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   async save() {
     if (!this.authService.user$.value.isLoggedIn) {
       await this.router.navigate(['/login']);
+      return;
+    }
+
+    this.calculationForm.form.markAllAsTouched();
+    if (!this.calculationForm.form.valid) {
       return;
     }
 
