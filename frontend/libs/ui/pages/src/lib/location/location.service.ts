@@ -16,10 +16,12 @@ export class LocationService {
     return locations;
   }
 
-  getLocationsList(page: number): Observable<Location[]> {
+  getLocationsList(page: number, searchText: string): Observable<Location[]> {
+    console.log('getLocationsList' + page + searchText);
     return from(
       this.pb.collection('locations').getList(page, 10, {
         sort: '-created',
+        filter: `name ~ ${searchText}`,
       }),
     ).pipe(map((result: ListResult<Location>) => result.items));
   }
