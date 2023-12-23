@@ -21,7 +21,9 @@ export class LocationService {
     return from(
       this.pb.collection('locations').getList(page, 10, {
         sort: '-created',
-        filter: `name ~ ${searchText}`,
+        filter: searchText
+          ? `name ~ "${searchText}" || postalCode ~ "${searchText}" ||  residence ~ "${searchText}"`
+          : '',
       }),
     ).pipe(map((result: ListResult<Location>) => result.items));
   }
