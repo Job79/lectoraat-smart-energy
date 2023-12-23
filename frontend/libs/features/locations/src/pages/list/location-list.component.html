@@ -4,16 +4,27 @@
   <button class="btn btn-secondary" routerLink="new">Nieuwe Locatie</button>
 </div>
 
-<!-- Locations -->
-<a
-  *ngFor="let location of locations$ | async"
-  [routerLink]="['/locations', location.id, 'calculations']"
->
-  <div class="card bg-base-100 shadow-xl mb-4">
-    <div class="card-body">
-      <h2 class="card-title">{{ location.name }}</h2>
-      {{ location.postalCode }}
-      {{ location.residence }}
+<div>
+  <smart-energy-search
+    [(searchText)]="searchQuery"
+    (searchTextChange)="loadLocations(true)"
+  ></smart-energy-search>
+
+  <a *ngFor="let location of locations" [routerLink]="['/locations', location.id, 'calculations']">
+    <div class="card bg-base-100 shadow-xl mb-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ location.name }}</h2>
+        {{ location.postalCode }}
+        {{ location.residence }}
+      </div>
     </div>
-  </div>
-</a>
+  </a>
+
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="300"
+    (scrolled)="loadLocations(false)"
+    [infiniteScrollContainer]="appComponentDiv"
+  ></div>
+</div>

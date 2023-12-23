@@ -1,6 +1,7 @@
 // Components
 export * from './components/navbar/navbar.component';
 export * from './components/navbar-mobile/navbar-mobile.component';
+export * from './components/loader/loader.component';
 
 // Environment
 export * from './env/environment';
