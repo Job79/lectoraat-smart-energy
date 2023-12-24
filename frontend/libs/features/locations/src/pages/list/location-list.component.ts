@@ -29,18 +29,13 @@ export class LocationListComponent implements OnInit {
       this.page = 1;
     }
 
-    if (this.searchQuery) {
-      this.locationService
-        .search(this.searchQuery, this.page++)
-        .subscribe(
-          (locations) => (this.locations = reset ? locations : [...this.locations, ...locations]),
-        );
-    } else {
-      this.locationService
-        .list(this.page++)
-        .subscribe(
-          (locations) => (this.locations = reset ? locations : [...this.locations, ...locations]),
-        );
-    }
+    this.locationService
+      .list({
+        query: this.searchQuery,
+        page: this.page++,
+      })
+      .subscribe(
+        (locations) => (this.locations = reset ? locations : [...this.locations, ...locations]),
+      );
   }
 }

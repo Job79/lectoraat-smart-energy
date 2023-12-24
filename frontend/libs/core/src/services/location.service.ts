@@ -7,17 +7,13 @@ import { ILocation } from '../models/location.interface';
 export class LocationService {
   constructor(@Inject('pocketbase') private pb: IPocketBase) {}
 
-  public list(page = 1, pageSize = 25) {
-    return from(this.pb.collection('locations').getList(page, pageSize, { sort: '-created' })).pipe(
-      map(({ items }) => items),
-    );
-  }
-
-  public search(query: string, page = 1, pageSize = 25) {
+  public list({ query = '', page = 1, pageSize = 25 } = {}) {
     return from(
       this.pb.collection('locations').getList(page, pageSize, {
         sort: '-created',
-        filter: `name ~ "${query}" || postalCode ~ "${query}" ||  residence ~ "${query}"`,
+        filter: query
+          ? `name ~ "${query}" || postalCode ~ "${query}" || residence ~ "${query}"`
+          : '',
       }),
     ).pipe(map(({ items }) => items));
   }
