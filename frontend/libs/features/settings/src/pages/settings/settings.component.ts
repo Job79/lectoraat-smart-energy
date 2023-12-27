@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'smart-energy-account',
+  selector: 'smart-energy-settings',
   standalone: true,
   imports: [CommonModule, RouterModule, RouterOutlet],
-  templateUrl: './account.component.html',
+  templateUrl: './settings.component.html',
 })
-export class AccountComponent {}
+export class SettingsComponent {}
