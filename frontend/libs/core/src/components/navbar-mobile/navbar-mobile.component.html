@@ -29,3 +29,30 @@
     <span class="btm-nav-label">Rekentools</span>
   </button>
 </div>
+
+<div class="w-full bg-white text-right p-3 md:hidden">
+  <div class="dropdown dropdown-end">
+    <div *ngIf="!isLoggedIn" class="px-1">
+      <a class="btn" routerLink="/login">Inloggen</a>
+    </div>
+    <div *ngIf="isLoggedIn" class="text-right">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="avatar placeholder">
+          <div class="bg-neutral text-neutral-content rounded-full w-10">
+            <span class="text-1xl">{{ initial }}</span>
+          </div>
+        </div>
+      </div>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box origin-top"
+      >
+        <li><a>Instellingen</a></li>
+
+        <li>
+          <button type="button" (click)="logout()">Log uit</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
