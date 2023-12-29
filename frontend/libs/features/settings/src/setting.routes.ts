@@ -3,7 +3,7 @@ import { Route } from '@angular/router';
 export const settingRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'account',
+    redirectTo: 'preferences',
     pathMatch: 'full',
   },
   {
