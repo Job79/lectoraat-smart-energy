@@ -19,7 +19,7 @@ export const EnergyLabels = {
 export class BoilerFormula {
   constructor(private params: IBoilerParameters) {}
 
-  get costHeatingOnce(): number {
+  get costHeatingOnce() {
     if (!this.energyRequiredForHeating || !this.params.pricePerKwh) {
       return 0;
     }
@@ -27,7 +27,7 @@ export class BoilerFormula {
     return +(this.energyRequiredForHeating * this.params.pricePerKwh).toFixed(2);
   }
 
-  get timeRequiredForHeating(): number {
+  get timeRequiredForHeating() {
     if (!this.energyRequiredForHeating || !this.params.powerOfBoiler) {
       return 0;
     }
@@ -35,7 +35,7 @@ export class BoilerFormula {
     return +(this.energyRequiredForHeating / (this.params.powerOfBoiler / 1000)).toFixed(2);
   }
 
-  get energyRequiredForHeating(): number {
+  get energyRequiredForHeating() {
     if (!this.params.boilerCapacity) {
       return 0;
     }
@@ -43,7 +43,7 @@ export class BoilerFormula {
     return +((this.params.boilerCapacity * 4186 * (70 - 15)) / 3600000).toFixed(2);
   }
 
-  get costsEnergyLossPerYear(): number {
+  get costsEnergyLossPerYear() {
     if (!this.energyLossPerDay) {
       return 0;
     }
@@ -51,7 +51,7 @@ export class BoilerFormula {
     return +(this.energyLossPerDay * 365).toFixed(2);
   }
 
-  get energyLossPerDay(): number {
+  get energyLossPerDay() {
     if (!this.params.energyLabelOfBoiler || !this.params.boilerCapacity) {
       return 0;
     }

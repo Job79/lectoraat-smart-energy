@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ILocation, LocationService } from '@smart-energy/core';
+import { ILocation, LocationService, SearchComponent } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { SearchComponent } from '../../components/search/search.component';
 
 @Component({
   selector: 'smart-energy-list',

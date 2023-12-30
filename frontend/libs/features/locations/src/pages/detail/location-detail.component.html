@@ -6,18 +6,18 @@
 <!-- Calculations -->
 <a
   *ngFor="let calculation of calculations$ | async"
-  [routerLink]="['/calculators/', calculation.calculationType, calculation.id!]"
+  [routerLink]="['/calculators/', calculation.type, calculation.id!]"
 >
   <div class="card bg-base-100 shadow-xl mb-4">
     <div class="card-body">
       <h2 class="card-title">{{ calculation.name }}</h2>
       <div class="flex items-center space-x-3">
         <img
-          src="/assets/calculator/{{ calculation.calculationType }}.jpeg"
+          src="/assets/calculator/{{ calculation.type }}.webp"
           class="w-10 h-10 rounded-full"
           alt="boiler"
         />
-        {{ calculation.calculationType }}
+        {{ calculation.type }}
       </div>
     </div>
   </div>

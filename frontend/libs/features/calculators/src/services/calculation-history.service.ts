@@ -11,8 +11,12 @@ export class CalculationHistoryService {
 
   public set(calculation: ICalculation<unknown>): void {
     localStorage.setItem(
-      `calculation-history.${calculation.calculationType}`,
+      `calculation-history.${calculation.type}`,
       JSON.stringify(calculation),
     );
+  }
+
+  public clear(calculationType: string): void {
+    localStorage.removeItem(`calculation-history.${calculationType}`);
   }
 }

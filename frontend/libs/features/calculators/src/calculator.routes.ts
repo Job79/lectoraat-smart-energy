@@ -11,14 +11,38 @@ export const calculatorRoutes: Route[] = [
   },
   {
     path: 'boiler',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
+      },
+    ]
   },
   {
-    path: 'boiler/:id',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
-  },
+    path: 'single-double-rate',
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./calculators/single-double-rate/single-double-rate.component').then(
+            (m) => m.SingleDoubleRateComponent,
+          ),
+      },
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./calculators/single-double-rate/single-double-rate.component').then(
+            (m) => m.SingleDoubleRateComponent,
+          ),
+      },
+    ]
+  }
 ];
