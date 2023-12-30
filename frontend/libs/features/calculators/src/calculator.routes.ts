@@ -23,7 +23,7 @@ export const calculatorRoutes: Route[] = [
         loadComponent: () =>
           import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
       },
-    ]
+    ],
   },
   {
     path: 'single-double-rate',
@@ -43,6 +43,6 @@ export const calculatorRoutes: Route[] = [
             (m) => m.SingleDoubleRateComponent,
           ),
       },
-    ]
-  }
+    ],
+  },
 ];

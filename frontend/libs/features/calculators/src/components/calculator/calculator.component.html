@@ -70,7 +70,12 @@
         <label class="w-full form-control">
           <div class="label">
             <span class="label-text">Locatie</span>
-            <span role="button" class="label-text-alt text-secondary" (click)="locationCreateModal.openModal(); $event.preventDefault()">+ Nieuwe locatie</span>
+            <span
+              role="button"
+              class="label-text-alt text-secondary"
+              (click)="locationCreateModal.openModal(); $event.preventDefault()"
+              >+ Nieuwe locatie</span
+            >
           </div>
           <input
             name="location"
@@ -86,7 +91,6 @@
             (click)="locationSearchModal.openModal()"
             placeholder="Selecteer een locatie"
           />
-
         </label>
       </div>
 

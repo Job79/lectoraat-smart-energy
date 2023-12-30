@@ -6,16 +6,12 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import {
-  AuthService,
-  CalculationService,
-  ICalculation
-} from '@smart-energy/core';
+import { AuthService, CalculationService, ICalculation } from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
 import { CreateLocationModalComponent } from '../create-location-modal/create-location-modal.component';
@@ -23,9 +19,15 @@ import { CreateLocationModalComponent } from '../create-location-modal/create-lo
 @Component({
   selector: 'smart-energy-calculator',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, SearchLocationModalComponent, CreateLocationModalComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    SearchLocationModalComponent,
+    CreateLocationModalComponent,
+  ],
   providers: [CalculationHistoryService],
-  templateUrl: './calculator.component.html'
+  templateUrl: './calculator.component.html',
 })
 export class CalculatorComponent implements OnInit, OnDestroy {
   @Input() title = '';
@@ -36,15 +38,14 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   @Output() downloadPdfClick = new EventEmitter();
 
   @ViewChild('calculationForm') calculationForm!: NgForm;
-  selectedLocationName = ""
+  selectedLocationName = '';
 
   constructor(
     private router: Router,
     private calculationHistory: CalculationHistoryService,
     private calculationService: CalculationService<unknown>,
-    private authService: AuthService
-  ) {
-  }
+    private authService: AuthService,
+  ) {}
 
   ngOnInit() {
     if (!this.calculation.id) {
@@ -76,7 +77,9 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     this.calculationService.save(this.calculation).subscribe((calculation) => {
       this.calculation = calculation;
       this.calculationHistory.clear(calculation.type);
-      this.router.navigate(['/calculators', calculation.type, calculation.id], { replaceUrl: true });
+      this.router.navigate(['/calculators', calculation.type, calculation.id], {
+        replaceUrl: true,
+      });
     });
   }
 
@@ -84,7 +87,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     this.calculationHistory.clear(this.calculation.type);
     this.calculationChange.emit({
       type: this.calculation.type,
-      parameters: {}
+      parameters: {},
     });
   }
 
