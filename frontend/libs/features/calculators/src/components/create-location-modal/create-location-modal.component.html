@@ -2,7 +2,12 @@
   <div class="modal-box flex flex-col w-full max-w-[40rem]">
     <div class="flex justify-between items-center mb-4">
       <h3 class="font-bold text-lg">Nieuwe locatie</h3>
-      <button (click)="isModalOpen = false" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      <button
+        (click)="isModalOpen = false"
+        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+      >
+        ✕
+      </button>
     </div>
 
     <form (ngSubmit)="create()">

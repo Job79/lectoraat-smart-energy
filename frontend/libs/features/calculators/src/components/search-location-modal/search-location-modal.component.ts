@@ -10,7 +10,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   standalone: true,
   imports: [CommonModule, FormsModule, SearchComponent, InfiniteScrollModule],
   providers: [LocationService, CalculationHistoryService],
-  templateUrl: './search-location-modal.component.html'
+  templateUrl: './search-location-modal.component.html',
 })
 export class SearchLocationModalComponent {
   @Output() locationSelect = new EventEmitter();
@@ -22,7 +22,7 @@ export class SearchLocationModalComponent {
 
   constructor(
     private locationService: LocationService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   openModal() {
