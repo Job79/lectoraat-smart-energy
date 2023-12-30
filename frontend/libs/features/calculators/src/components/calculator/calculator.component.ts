@@ -6,52 +6,49 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import {
   AuthService,
   CalculationService,
-  ICalculation,
-  ILocation,
-  LocationService,
+  ICalculation
 } from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
+import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
+import { CreateLocationModalComponent } from '../create-location-modal/create-location-modal.component';
 
 @Component({
   selector: 'smart-energy-calculator',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
-  providers: [LocationService, CalculationHistoryService],
-  templateUrl: './calculator.component.html',
+  imports: [CommonModule, FormsModule, RouterModule, SearchLocationModalComponent, CreateLocationModalComponent],
+  providers: [CalculationHistoryService],
+  templateUrl: './calculator.component.html'
 })
 export class CalculatorComponent implements OnInit, OnDestroy {
   @Input() title = '';
+  @Input() description = '';
   @Input() calculation = {} as ICalculation<unknown>;
 
   @Output() calculationChange = new EventEmitter();
   @Output() downloadPdfClick = new EventEmitter();
 
-  locations$!: Observable<ILocation[]>;
-
   @ViewChild('calculationForm') calculationForm!: NgForm;
+  selectedLocationName = ""
 
   constructor(
     private router: Router,
     private calculationHistory: CalculationHistoryService,
-    private locationService: LocationService,
     private calculationService: CalculationService<unknown>,
-    private authService: AuthService,
-  ) {}
+    private authService: AuthService
+  ) {
+  }
 
-  ngOnInit(): void {
-    this.locations$ = this.locationService.list();
-
+  ngOnInit() {
     if (!this.calculation.id) {
-      const previousCalculation = this.calculationHistory.get(this.calculation.calculationType);
+      const previousCalculation = this.calculationHistory.get(this.calculation.type);
       if (previousCalculation) {
         this.calculationChange.emit(previousCalculation);
       }
@@ -76,24 +73,24 @@ export class CalculatorComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.calculation.id) {
-      this.calculationService.update(this.calculation);
-    } else {
-      this.calculationService.create(this.calculation);
-    }
+    this.calculationService.save(this.calculation).subscribe((calculation) => {
+      this.calculation = calculation;
+      this.calculationHistory.clear(calculation.type);
+      this.router.navigate(['/calculators', calculation.type, calculation.id], { replaceUrl: true });
+    });
   }
 
   clear() {
-    if (this.calculation.id) {
-      this.calculation = { ...this.calculation, parameters: {} } as ICalculation<unknown>;
-    } else {
-      this.calculation = {
-        calculationType: this.calculation.calculationType,
-        parameters: {},
-      } as ICalculation<unknown>;
-      this.calculationHistory.set(this.calculation);
-    }
+    this.calculationHistory.clear(this.calculation.type);
+    this.calculationChange.emit({
+      type: this.calculation.type,
+      parameters: {}
+    });
+  }
 
-    this.calculationChange.emit(this.calculation);
+  delete() {
+    this.calculationService.delete(this.calculation.id!).subscribe(() => {
+      this.router.navigate(['/calculators', this.calculation.type], { replaceUrl: true });
+    });
   }
 }
