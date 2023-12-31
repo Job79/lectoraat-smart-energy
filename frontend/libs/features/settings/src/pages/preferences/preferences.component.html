@@ -1,1 +1,21 @@
-<p>preferences works!</p>
+<div>
+  <input
+    type="radio"
+    name="theme-buttons"
+    class="btn theme-controller join-item"
+    aria-label="Default"
+    value="smart-energy"
+    [(ngModel)]="theme"
+    (change)="handleThemeChange()"
+  />
+
+  <input
+    type="radio"
+    name="theme-buttons"
+    class="btn theme-controller join-item"
+    aria-label="Dark"
+    value="dim"
+    [(ngModel)]="theme"
+    (change)="handleThemeChange()"
+  />
+</div>
