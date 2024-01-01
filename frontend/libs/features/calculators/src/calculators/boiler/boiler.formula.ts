@@ -1,8 +1,8 @@
 export interface IBoilerParameters {
-  boilerCapacity: number;
   pricePerKwh: number;
-  powerOfBoiler: number;
-  energyLabelOfBoiler: keyof typeof EnergyLabels;
+  capacity: number;
+  power: number;
+  energyLabel: keyof typeof EnergyLabels;
 }
 
 export const EnergyLabels = {
@@ -28,19 +28,19 @@ export class BoilerFormula {
   }
 
   get timeRequiredForHeating() {
-    if (!this.energyRequiredForHeating || !this.params.powerOfBoiler) {
+    if (!this.energyRequiredForHeating || !this.params.power) {
       return 0;
     }
 
-    return +(this.energyRequiredForHeating / (this.params.powerOfBoiler / 1000)).toFixed(2);
+    return +(this.energyRequiredForHeating / (this.params.power / 1000)).toFixed(2);
   }
 
   get energyRequiredForHeating() {
-    if (!this.params.boilerCapacity) {
+    if (!this.params.capacity) {
       return 0;
     }
 
-    return +((this.params.boilerCapacity * 4186 * (70 - 15)) / 3600000).toFixed(2);
+    return +((this.params.capacity * 4186 * (70 - 15)) / 3600000).toFixed(2);
   }
 
   get costsEnergyLossPerYear() {
@@ -52,13 +52,11 @@ export class BoilerFormula {
   }
 
   get energyLossPerDay() {
-    if (!this.params.energyLabelOfBoiler || !this.params.boilerCapacity) {
+    if (!this.params.energyLabel || !this.params.capacity) {
       return 0;
     }
 
-    const energyLabelValue = EnergyLabels[this.params.energyLabelOfBoiler](
-      this.params.boilerCapacity,
-    );
+    const energyLabelValue = EnergyLabels[this.params.energyLabel](this.params.capacity);
     return +((energyLabelValue * 24) / 1000).toFixed(2);
   }
 }
