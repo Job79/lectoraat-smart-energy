@@ -19,16 +19,18 @@ export class CalculationService<T> {
     return from(this.pb.collection('calculations').getOne(id) as Promise<ICalculation<T>>);
   }
 
-  public create(calculation: ICalculation<T>) {
-    return from(this.pb.collection('calculations').create(calculation) as Promise<ICalculation<T>>);
-  }
-
-  public update(calculation: ICalculation<T>) {
-    return from(
-      this.pb.collection('calculations').update(calculation.id!, calculation) as Promise<
-        ICalculation<T>
-      >,
-    );
+  public save(calculation: ICalculation<T>) {
+    if (calculation.id) {
+      return from(
+        this.pb.collection('calculations').update(calculation.id, calculation) as Promise<
+          ICalculation<T>
+        >,
+      );
+    } else {
+      return from(
+        this.pb.collection('calculations').create(calculation) as Promise<ICalculation<T>>,
+      );
+    }
   }
 
   public delete(id: string) {

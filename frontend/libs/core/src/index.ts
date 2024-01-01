@@ -2,6 +2,8 @@
 export * from './components/navbar/navbar.component';
 export * from './components/navbar-mobile/navbar-mobile.component';
 export * from './components/loader/loader.component';
+export * from './components/search/search.component';
+export * from './components/tooltip/tooltip.component';
 
 // Environment
 export * from './env/environment';

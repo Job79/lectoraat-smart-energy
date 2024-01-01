@@ -2,27 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { CalculatorComponent } from '../../components/calculator/calculator.component';
-import { BoilerFormula, EnergyLabels, IBoilerParameters } from './boiler.formula';
+import { ISingleDoubleRateParameters, SingleDoubleRateFormula } from './single-double-rate.formula';
 import { FormsModule } from '@angular/forms';
 import { CalculationService, ICalculation } from '@smart-energy/core';
 
 @Component({
-  selector: 'smart-energy-calculator-boiler',
+  selector: 'smart-energy-calculator-single-double-rate',
   standalone: true,
   imports: [CommonModule, CalculatorComponent, FormsModule],
   providers: [CalculationService],
-  templateUrl: './boiler.component.html',
+  templateUrl: './single-double-rate.component.html',
 })
-export class BoilerComponent implements OnInit {
+export class SingleDoubleRateComponent implements OnInit {
   calculation = {
-    type: 'boiler',
+    type: 'single-double-rate',
     parameters: {},
-  } as ICalculation<IBoilerParameters>;
-
-  energyLabels = Object.keys(EnergyLabels);
+  } as ICalculation<ISingleDoubleRateParameters>;
 
   constructor(
-    private calculationService: CalculationService<IBoilerParameters>,
+    private calculationService: CalculationService<ISingleDoubleRateParameters>,
     private route: ActivatedRoute,
   ) {}
 
@@ -33,13 +31,13 @@ export class BoilerComponent implements OnInit {
     }
 
     this.calculationService.get(id).subscribe((calculation) => {
-      if (calculation.type === 'boiler') {
+      if (calculation.type === 'single-double-rate') {
         this.calculation = calculation;
       }
     });
   }
 
   get formula() {
-    return new BoilerFormula(this.calculation.parameters);
+    return new SingleDoubleRateFormula(this.calculation.parameters);
   }
 }
