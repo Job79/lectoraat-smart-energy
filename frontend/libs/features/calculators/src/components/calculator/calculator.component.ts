@@ -3,6 +3,7 @@ import {
   EventEmitter,
   HostListener,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
@@ -11,7 +12,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService, CalculationService, ICalculation } from '@smart-energy/core';
+import { AuthService, CalculationService, ICalculation, LocationService } from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
 import { CreateLocationModalComponent } from '../create-location-modal/create-location-modal.component';
@@ -26,10 +27,10 @@ import { CreateLocationModalComponent } from '../create-location-modal/create-lo
     SearchLocationModalComponent,
     CreateLocationModalComponent,
   ],
-  providers: [CalculationHistoryService],
+  providers: [CalculationHistoryService, LocationService],
   templateUrl: './calculator.component.html',
 })
-export class CalculatorComponent implements OnInit, OnDestroy {
+export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
   @Input() title = '';
   @Input() description = '';
   @Input() calculation = {} as ICalculation<unknown>;
@@ -42,6 +43,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private locationService: LocationService,
     private calculationHistory: CalculationHistoryService,
     private calculationService: CalculationService<unknown>,
     private authService: AuthService,
@@ -53,6 +55,14 @@ export class CalculatorComponent implements OnInit, OnDestroy {
       if (previousCalculation) {
         this.calculationChange.emit(previousCalculation);
       }
+    }
+  }
+
+  ngOnChanges() {
+    if (this.calculation.location) {
+      this.locationService.get(this.calculation.location).subscribe((location) => {
+        this.selectedLocationName = location.name;
+      });
     }
   }
 
