@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IUser } from '@smart-energy/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
