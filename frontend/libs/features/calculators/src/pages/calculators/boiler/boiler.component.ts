@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { CalculatorComponent } from '../../components/calculator/calculator.component';
+import { CalculatorComponent } from '../../../components/calculator/calculator.component';
 import { BoilerFormula, EnergyLabels, IBoilerParameters } from './boiler.formula';
 import { FormsModule } from '@angular/forms';
 import { CalculationService, ICalculation } from '@smart-energy/core';
