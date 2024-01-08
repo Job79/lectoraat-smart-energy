@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { UserService, IUser, AuthService } from '@smart-energy/core';
 
@@ -17,6 +17,7 @@ export class AccountComponent {
   constructor(
     private userService: UserService,
     private authService: AuthService,
+    private router: Router,
   ) {}
   ngOnInit() {
     const id = this.authService.user$.value.data?.id;
@@ -28,5 +29,15 @@ export class AccountComponent {
 
   save() {
     this.userService.update(this.user);
+  }
+
+  async logout() {
+    await this.authService.logout();
+    await this.router.navigate(['/']);
+  }
+
+  async delete() {
+    await this.userService.delete(this.user);
+    await this.logout();
   }
 }
