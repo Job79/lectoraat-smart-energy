@@ -16,6 +16,8 @@ import { AuthService, CalculationService, ICalculation, LocationService } from '
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
 import { CreateLocationModalComponent } from '../create-location-modal/create-location-modal.component';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'smart-energy-calculator',
@@ -105,5 +107,25 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     this.calculationService.delete(this.calculation.id!).subscribe(() => {
       this.router.navigate(['/calculators', this.calculation.type], { replaceUrl: true });
     });
+  }
+
+  pdf() {
+    html2canvas(document.getElementById('content')!).then((canvas) => {
+      let pdf = new jsPDF('p', 'mm', 'a4');
+      pdf.addImage(
+        canvas.toDataURL('image/png'),
+        'PNG',
+        0,
+        0,
+        pdf.internal.pageSize.getWidth(),
+        canvas.height * (pdf.internal.pageSize.getWidth() / canvas.width),
+      );
+      pdf.save('download.pdf');
+    });
+
+    // const doc = new jsPDF();
+
+    // doc.text('Hello world!', 10, 10);
+    // doc.save('a4.pdf');
   }
 }
