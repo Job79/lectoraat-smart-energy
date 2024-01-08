@@ -4,4 +4,5 @@ export interface IUser {
   isManager: boolean;
   password: string;
   passwordConfirm?: string;
+  oldPassword?: string;
 }

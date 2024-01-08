@@ -1,7 +1,7 @@
 <form #userForm="ngForm" (ngSubmit)="save()">
   <!-- Topbar -->
   <div class="flex justify-between items-center mb-5 mx-2">
-    <h2 class="text-2xl font-bold">{{ user.id ? 'Gebruiker aanpassen' : 'Nieuwe gebruiker' }}</h2>
+    <h2 class="text-2xl font-bold">Gebruiker aanpassen</h2>
     <div class="flex space-x-3">
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
@@ -19,6 +19,21 @@
         [(ngModel)]="user.email"
         required
         placeholder="Email"
+        class="input input-bordered w-full"
+      />
+    </label>
+
+    <!-- OldPassword -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Oude wacthwoord</span>
+      </div>
+      <input
+        type="password"
+        name="confirmation-password"
+        [(ngModel)]="user.oldPassword"
+        required
+        placeholder="Herhaal wachtwoord"
         class="input input-bordered w-full"
       />
     </label>
@@ -50,20 +65,6 @@
         required
         placeholder="Herhaal wachtwoord"
         class="input input-bordered w-full"
-      />
-    </label>
-
-    <!-- IsManager -->
-    <label class="form-control">
-      <div class="label">
-        <span class="label-text">Is Manager?</span>
-      </div>
-
-      <input
-        type="checkbox"
-        name="isManager"
-        [(ngModel)]="user.isManager"
-        class="checkbox checkbox-accent"
       />
     </label>
   </div>
