@@ -35,9 +35,4 @@ export class AccountComponent {
     await this.authService.logout();
     await this.router.navigate(['/']);
   }
-
-  async delete() {
-    await this.userService.delete(this.user);
-    await this.logout();
-  }
 }

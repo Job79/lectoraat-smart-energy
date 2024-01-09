@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
-import { IPocketBase, IUser } from '@smart-energy/core';
+import { IUser } from '../models/user.interface';
+import { IPocketBase } from '../models/pocketbase.interface';
 import { from } from 'rxjs';
 
 @Injectable()

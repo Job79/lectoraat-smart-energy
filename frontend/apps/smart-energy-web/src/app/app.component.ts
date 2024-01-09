@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent, NavbarMobileComponent } from '@smart-energy/core';
 import { NgIf } from '@angular/common';
-// import { themeChange } from 'theme-change';
-// themeChange();
 
 @Component({
   standalone: true,
