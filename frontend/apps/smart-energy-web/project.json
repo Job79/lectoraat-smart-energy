@@ -37,6 +37,10 @@
               "maximumError": "4kb"
             }
           ],
+          "index": {
+            "input": "src/index.prod.html",
+            "output": "index.html"
+          },
           "fileReplacements": [
             {
               "replace": "libs/core/src/env/environment.ts",
