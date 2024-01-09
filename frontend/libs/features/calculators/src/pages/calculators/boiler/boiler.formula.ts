@@ -1,8 +1,8 @@
 export interface IBoilerParameters {
-  boilerCapacity: number;
   pricePerKwh: number;
-  powerOfBoiler: number;
-  energyLabelOfBoiler: keyof typeof EnergyLabels;
+  capacity: number;
+  power: number;
+  energyLabel: keyof typeof EnergyLabels;
 }
 
 export const EnergyLabels = {
@@ -19,7 +19,7 @@ export const EnergyLabels = {
 export class BoilerFormula {
   constructor(private params: IBoilerParameters) {}
 
-  get costHeatingOnce(): number {
+  get costHeatingOnce() {
     if (!this.energyRequiredForHeating || !this.params.pricePerKwh) {
       return 0;
     }
@@ -27,23 +27,23 @@ export class BoilerFormula {
     return +(this.energyRequiredForHeating * this.params.pricePerKwh).toFixed(2);
   }
 
-  get timeRequiredForHeating(): number {
-    if (!this.energyRequiredForHeating || !this.params.powerOfBoiler) {
+  get timeRequiredForHeating() {
+    if (!this.energyRequiredForHeating || !this.params.power) {
       return 0;
     }
 
-    return +(this.energyRequiredForHeating / (this.params.powerOfBoiler / 1000)).toFixed(2);
+    return +(this.energyRequiredForHeating / (this.params.power / 1000)).toFixed(2);
   }
 
-  get energyRequiredForHeating(): number {
-    if (!this.params.boilerCapacity) {
+  get energyRequiredForHeating() {
+    if (!this.params.capacity) {
       return 0;
     }
 
-    return +((this.params.boilerCapacity * 4186 * (70 - 15)) / 3600000).toFixed(2);
+    return +((this.params.capacity * 4186 * (70 - 15)) / 3600000).toFixed(2);
   }
 
-  get costsEnergyLossPerYear(): number {
+  get costsEnergyLossPerYear() {
     if (!this.energyLossPerDay) {
       return 0;
     }
@@ -51,14 +51,12 @@ export class BoilerFormula {
     return +(this.energyLossPerDay * 365).toFixed(2);
   }
 
-  get energyLossPerDay(): number {
-    if (!this.params.energyLabelOfBoiler || !this.params.boilerCapacity) {
+  get energyLossPerDay() {
+    if (!this.params.energyLabel || !this.params.capacity) {
       return 0;
     }
 
-    const energyLabelValue = EnergyLabels[this.params.energyLabelOfBoiler](
-      this.params.boilerCapacity,
-    );
+    const energyLabelValue = EnergyLabels[this.params.energyLabel](this.params.capacity);
     return +((energyLabelValue * 24) / 1000).toFixed(2);
   }
 }

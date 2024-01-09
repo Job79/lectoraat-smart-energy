@@ -1,17 +1,20 @@
 <form #calculationForm="ngForm" (ngSubmit)="save()">
-  <!-- Topbar -->
+  <!-- topbar -->
   <div class="flex flex-col gap-6 sm:flex-row justify-between items-center mb-5">
     <div class="flex items-center space-x-3">
       <img
-        src="/assets/calculator/{{ calculation.calculationType }}.jpeg"
-        class="w-10 h-10 rounded-full"
-        alt="{{ calculation.calculationType }}"
+        src="/assets/calculator/{{ calculation.type }}.webp"
+        class="w-16 h-16 p-1 bg-white rounded-full border"
+        alt="{{ calculation.type }}"
       />
-      <h2 class="text-2xl font-bold">{{ title }}</h2>
+      <div>
+        <h2 class="text-2xl font-bold">{{ title }}</h2>
+        <p class="text-sm text-gray-500 max-w-[18rem] md:max-w-[40rem]">{{ description }}</p>
+      </div>
     </div>
 
     <div class="flex justify-end space-x-4">
-      <button type="button" class="btn btn-secondary" (click)="clear()">
+      <button *ngIf="!calculation.id" type="button" class="btn btn-secondary" (click)="clear()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="16"
@@ -24,22 +27,32 @@
           />
         </svg>
       </button>
-      <button type="button" class="btn btn-secondary">Download Pdf</button>
+      <div class="dropdown dropdown-bottom dropdown-start">
+        <button type="button" class="btn btn-secondary">Download Pdf</button>
+        <ul class="dropdown-content z-[1] menu my-2 p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a>Standaard</a></li>
+          <li><a>Inclusief opmerkingen</a></li>
+        </ul>
+      </div>
+      <button *ngIf="calculation.id" type="button" class="btn btn-secondary" (click)="delete()">
+        Verwijderen
+      </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
   </div>
 
   <div class="flex flex-col gap-4 md:flex-row md:items-start">
-    <!-- Input block -->
+    <!-- input block -->
     <div class="bg-white rounded-2xl shadow w-full px-5 py-3">
+      <!-- calculation specific inputs -->
       <ng-content select="[form]" />
 
       <div class="-mx-5 border mt-8 mb-3"><!--divider--></div>
       <div class="flex flex-col justify-between md:gap-3 md:flex-row">
-        <!-- Name -->
+        <!-- name -->
         <label class="w-full form-control">
           <div class="label">
-            <span class="label-text">Naam Berekening</span>
+            <span class="label-text">Naam berekening</span>
           </div>
           <input
             type="text"
@@ -57,46 +70,55 @@
         <label class="w-full form-control">
           <div class="label">
             <span class="label-text">Locatie</span>
+            <span
+              role="button"
+              class="label-text-alt text-secondary"
+              (click)="locationCreateModal.openModal(); $event.preventDefault()"
+              >+ Nieuwe locatie</span
+            >
           </div>
-          <select
+          <input
             name="location"
-            [(ngModel)]="calculation.location"
             class="select select-bordered"
+            [(ngModel)]="selectedLocationName"
             #location="ngModel"
             [class]="{
               'text-gray-400': !calculation.location,
               'border-red-500': location.touched && location.invalid
             }"
             required
-          >
-            <option selected disabled [value]="undefined">Selecteer een locatie</option>
-            <option
-              *ngFor="let location of locations$ | async"
-              [value]="location.id"
-              class="text-black"
-            >
-              {{ location.name }}
-            </option>
-          </select>
+            readonly
+            (click)="locationSearchModal.openModal()"
+            placeholder="Selecteer een locatie"
+          />
         </label>
       </div>
 
-      <div class="w-full">
-        <!-- Notes -->
-        <label class="form-control">
-          <div class="label"><span class="label-text">Opmerkingen</span></div>
-          <textarea
-            [(ngModel)]="calculation.comment"
-            name="comment"
-            placeholder="Opmerkingen"
-            class="textarea textarea-bordered textarea-sm w-full h-[10rem]"
-          ></textarea>
-        </label>
-      </div>
+      <!-- notes -->
+      <label class="form-control w-full">
+        <div class="label"><span class="label-text">Opmerkingen</span></div>
+        <textarea
+          [(ngModel)]="calculation.comment"
+          name="comment"
+          placeholder="Opmerkingen"
+          class="textarea textarea-bordered textarea-sm w-full h-[10rem]"
+        ></textarea>
+      </label>
     </div>
 
+    <!-- calculation specific results -->
     <div class="shadow rounded-2xl w-full md:w-min">
       <ng-content select="[result]" />
     </div>
   </div>
 </form>
+
+<smart-energy-search-location-modal
+  #locationSearchModal
+  (locationSelect)="calculation.location = $event.id; selectedLocationName = $event.name"
+/>
+
+<smart-energy-create-location-modal
+  #locationCreateModal
+  (locationSelect)="calculation.location = $event.id; selectedLocationName = $event.name"
+/>

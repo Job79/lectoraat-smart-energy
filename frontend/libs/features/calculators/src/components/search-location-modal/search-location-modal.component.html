@@ -1,0 +1,37 @@
+<dialog id="locationModal" class="modal" [class.modal-open]="isModalOpen">
+  <div class="modal-box flex flex-col w-full max-w-[50rem]">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-lg">Selecteer een locatie</h3>
+      <button
+        (click)="isModalOpen = false"
+        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="px-2">
+      <smart-energy-search
+        [(searchText)]="searchQuery"
+        (searchTextChange)="loadLocations(true)"
+      ></smart-energy-search>
+    </div>
+
+    <div
+      infinite-scroll
+      [scrollWindow]="false"
+      (scrolled)="loadLocations(false)"
+      class="px-2 max-h-[50rem] overflow-y-scroll"
+    >
+      <div role="button" *ngFor="let location of locations" (click)="select(location)">
+        <div class="card bg-base-100 shadow-lg mb-4">
+          <div class="card-body">
+            <h2 class="card-title">{{ location.name }}</h2>
+            {{ location.postalCode }}
+            {{ location.residence }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>

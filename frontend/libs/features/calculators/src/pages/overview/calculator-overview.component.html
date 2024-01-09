@@ -1,14 +1,33 @@
-<div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+<!-- topbar -->
+<div class="flex flex-col sm:flex-row justify-between items-center mb-5">
+  <div>
+    <h2 class="text-2xl font-bold">Rekentools</h2>
+    <p class="text-sm text-gray-500">Ondersteunende tools voor energiecoaches.</p>
+  </div>
+  <smart-energy-search [(searchText)]="searchQuery" (searchTextChange)="search()" />
+</div>
+
+<!-- calculators grid -->
+<div class="grid gap-5 md:grid-cols-2">
   <a
     *ngFor="let calculator of calculators"
-    [routerLink]="['/calculators', calculator]"
-    class="card image-full mx-auto w-full max-w-[30rem] bg-base-100 shadow-xl"
+    [routerLink]="['/calculators', calculator.type]"
+    class="card image-full mx-auto w-full max-w-[40rem] shadow-xl hover:scale-105 duration-300"
   >
     <figure>
-      <img [src]="'/assets/calculator/' + calculator + '.jpeg'" [alt]="calculator" />
+      <img
+        class="max-h-52"
+        [src]="'/assets/calculator/' + calculator.type + '.webp'"
+        [alt]="calculator.name"
+      />
     </figure>
-    <div class="card-body">
-      <h2 class="card-title">{{ calculator }}</h2>
+    <div class="card-body group relative">
+      <h2 class="card-title">{{ calculator.name }}</h2>
+
+      <smart-energy-tooltip
+        class="hidden group-hover:block absolute top-0 right-0 p-8"
+        [description]="calculator.description"
+      />
     </div>
   </a>
 </div>

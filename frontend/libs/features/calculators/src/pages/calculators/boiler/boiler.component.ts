@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { CalculatorComponent } from '../../components/calculator/calculator.component';
+import { CalculatorComponent } from '../../../components/calculator/calculator.component';
 import { BoilerFormula, EnergyLabels, IBoilerParameters } from './boiler.formula';
 import { FormsModule } from '@angular/forms';
 import { CalculationService, ICalculation } from '@smart-energy/core';
@@ -14,8 +14,8 @@ import { CalculationService, ICalculation } from '@smart-energy/core';
   templateUrl: './boiler.component.html',
 })
 export class BoilerComponent implements OnInit {
-  boiler = {
-    calculationType: 'boiler',
+  calculation = {
+    type: 'boiler',
     parameters: {},
   } as ICalculation<IBoilerParameters>;
 
@@ -32,14 +32,14 @@ export class BoilerComponent implements OnInit {
       return;
     }
 
-    this.calculationService.get(id).subscribe((boiler) => {
-      if (boiler.calculationType === 'boiler') {
-        this.boiler = boiler;
+    this.calculationService.get(id).subscribe((calculation) => {
+      if (calculation.type === 'boiler') {
+        this.calculation = calculation;
       }
     });
   }
 
-  get boilerFormula() {
-    return new BoilerFormula(this.boiler.parameters);
+  get formula() {
+    return new BoilerFormula(this.calculation.parameters);
   }
 }
