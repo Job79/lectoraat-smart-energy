@@ -1,0 +1,55 @@
+<form #userForm="ngForm" (ngSubmit)="save()">
+  <div class="flex justify-between mb-2">
+    <h2 class="text-2xl font-bold">Account</h2>
+    <div class="flex space-x-3">
+      <button (click)="logout()" class="btn">Logout</button>
+      <button type="submit" class="btn btn-secondary">Opslaan</button>
+    </div>
+  </div>
+  <div class="bg-white rounded-2xl shadow px-5 py-4 space-y-2">
+    <!-- OldPassword -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Oude wacthwoord</span>
+      </div>
+      <input
+        type="password"
+        name="confirmation-password"
+        [(ngModel)]="user.oldPassword"
+        required
+        placeholder="Oud wacthwoord"
+        class="input input-bordered w-full"
+      />
+    </label>
+
+    <!-- Password -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Nieuwe Wachtwoord</span>
+      </div>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="user.password"
+        required
+        placeholder="Nieuw wachtwoord"
+        class="input input-bordered w-full"
+      />
+    </label>
+
+    <!-- Confirmation Password -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Herhaal Nieuwe Wachtwoord</span>
+      </div>
+      <input
+        type="password"
+        name="confirmation-password"
+        [(ngModel)]="user.passwordConfirm"
+        required
+        placeholder="Herhaal nieuw wachtwoord"
+        class="input input-bordered w-full"
+      />
+    </label>
+  </div>
+</form>

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { RouterModule } from '@angular/router';
 import { IUser } from '@smart-energy/core';
-import { UserService } from '../../services/user.service';
+import { UserService } from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-list',

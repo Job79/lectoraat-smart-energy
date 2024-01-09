@@ -28,7 +28,7 @@
     </div>
 
     <!-- profile button -->
-    <div *ngIf="isLoggedIn" class="dropdown dropdown-end">
+    <div routerLink="/settings/account" *ngIf="isLoggedIn">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="avatar placeholder">
           <div class="bg-secondary text-neutral-content rounded-full w-10">
@@ -36,14 +36,6 @@
           </div>
         </div>
       </div>
-      <ul
-        class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li><a>Instellingen</a></li>
-        <li>
-          <button type="button" (click)="logout()">Log uit</button>
-        </li>
-      </ul>
     </div>
   </div>
 </nav>

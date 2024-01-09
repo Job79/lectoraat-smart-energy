@@ -30,11 +30,12 @@
   </button>
 </div>
 
+<!-- profile button -->
 <div class="fixed w-full bg-white z-[100] p-2">
   <div *ngIf="!isLoggedIn" class="px-1 text-right">
     <a class="btn" routerLink="/login">Inloggen</a>
   </div>
-  <div routerLink="/" *ngIf="isLoggedIn" class="text-right">
+  <div routerLink="/settings" *ngIf="isLoggedIn" class="text-right">
     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
       <div class="avatar placeholder">
         <div class="bg-neutral text-neutral-content rounded-full w-10">

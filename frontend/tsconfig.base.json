@@ -18,6 +18,7 @@
       "@smart-energy/calculators": ["libs/features/calculators/src/index.ts"],
       "@smart-energy/core": ["libs/core/src/index.ts"],
       "@smart-energy/locations": ["libs/features/locations/src/index.ts"],
+      "@smart-energy/settings": ["libs/features/settings/src/index.ts"],
       "@smart-energy/users": ["libs/features/users/src/index.ts"]
     }
   },

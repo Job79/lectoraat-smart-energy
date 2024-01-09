@@ -8,6 +8,7 @@
 *.sublime-workspace
 
 # IDE - VSCode
+.DS_Store
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
