@@ -12,6 +12,7 @@ import { CalculationService, ICalculation } from '@smart-energy/core';
   imports: [CommonModule, CalculatorComponent, FormsModule],
   providers: [CalculationService],
   templateUrl: './boiler.component.html',
+  styles: '@page { size: 210mm 235mm; }',
 })
 export class BoilerComponent implements OnInit {
   calculation = {

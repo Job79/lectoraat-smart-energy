@@ -106,4 +106,8 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
       this.router.navigate(['/calculators', this.calculation.type], { replaceUrl: true });
     });
   }
+
+  pdf() {
+    window.print();
+  }
 }

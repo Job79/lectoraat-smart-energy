@@ -12,6 +12,7 @@ import { CalculationService, ICalculation } from '@smart-energy/core';
   imports: [CommonModule, CalculatorComponent, FormsModule],
   providers: [CalculationService],
   templateUrl: './single-double-rate.component.html',
+  styles: '@page { size: 210mm 305mm; }',
 })
 export class SingleDoubleRateComponent implements OnInit {
   calculation = {

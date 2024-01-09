@@ -9,11 +9,13 @@
       />
       <div>
         <h2 class="text-2xl font-bold">{{ title }}</h2>
-        <p class="text-sm text-gray-500 max-w-[18rem] md:max-w-[40rem]">{{ description }}</p>
+        <p class="text-sm text-gray-500 max-w-[18rem] md:max-w-[40rem] print:max-w-[80rem]">
+          {{ description }}
+        </p>
       </div>
     </div>
 
-    <div class="flex justify-end space-x-4">
+    <div class="flex justify-end space-x-4 print:hidden">
       <button *ngIf="!calculation.id" type="button" class="btn btn-secondary" (click)="clear()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,8 +30,10 @@
         </svg>
       </button>
       <div class="dropdown dropdown-bottom dropdown-start">
-        <button type="button" class="btn btn-secondary">Download Pdf</button>
-        <ul class="dropdown-content z-[1] menu my-2 p-2 shadow bg-base-100 rounded-box w-52">
+        <button (click)="pdf()" type="button" class="btn btn-secondary">Download Pdf</button>
+        <ul
+          class="dropdown-content z-[1] menu my-2 p-2 shadow bg-base-100 rounded-box w-52 print:hidden"
+        >
           <li><a>Standaard</a></li>
           <li><a>Inclusief opmerkingen</a></li>
         </ul>
@@ -39,9 +43,10 @@
       </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
+    <img src="/assets/logo/mnext.svg" class="h-[3.5rem] hidden print:block" alt="mnext logo" />
   </div>
 
-  <div class="flex flex-col gap-4 md:flex-row md:items-start">
+  <div class="flex flex-col gap-4 md:flex-row md:items-start print:flex-row print:items-start">
     <!-- input block -->
     <div class="bg-white rounded-2xl shadow w-full px-5 py-3">
       <!-- calculation specific inputs -->
@@ -72,7 +77,7 @@
             <span class="label-text">Locatie</span>
             <span
               role="button"
-              class="label-text-alt text-secondary"
+              class="label-text-alt text-secondary print:hidden"
               (click)="locationCreateModal.openModal(); $event.preventDefault()"
               >+ Nieuwe locatie</span
             >
@@ -107,7 +112,7 @@
     </div>
 
     <!-- calculation specific results -->
-    <div class="shadow rounded-2xl w-full md:w-min">
+    <div class="shadow rounded-2xl w-full md:w-min print:w-min">
       <ng-content select="[result]" />
     </div>
   </div>
