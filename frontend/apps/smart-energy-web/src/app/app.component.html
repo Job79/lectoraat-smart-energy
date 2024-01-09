@@ -1,9 +1,9 @@
-<smart-energy-navbar *ngIf="!isAuthPage" class="hidden md:block" />
-<smart-energy-navbar-mobile *ngIf="!isAuthPage" class="block md:hidden" />
+<smart-energy-navbar *ngIf="!isAuthPage" class="hidden md:block print:!hidden" />
+<smart-energy-navbar-mobile *ngIf="!isAuthPage" class="block md:hidden print:!hidden" />
 
 <div
   class="app-component bg-background h-screen overflow-y-scroll px-2"
-  [class]="isAuthPage ? '' : 'pb-[5rem] pt-[6rem] md:pb-3'"
+  [class]="isAuthPage ? '' : 'pb-[5rem] pt-[6rem] md:pb-3 print:!p-0'"
 >
   <div class="flex justify-center min-h-full">
     <div class="w-full max-w-[65rem]">
