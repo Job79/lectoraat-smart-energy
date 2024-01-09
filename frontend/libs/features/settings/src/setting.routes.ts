@@ -1,10 +1,11 @@
 import { Route } from '@angular/router';
+import { SettingsNavbarMobileComponent } from './components/settings-navbar-mobile/settings-navbar-mobile.component';
 
 export const settingRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'account',
     pathMatch: 'full',
+    component: SettingsNavbarMobileComponent,
   },
   {
     path: '',
