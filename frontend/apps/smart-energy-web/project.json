@@ -43,6 +43,10 @@
           },
           "fileReplacements": [
             {
+              "replace": "apps/smart-energy-web/src/index.html",
+              "with": "apps/smart-energy-web/src/index.prod.html"
+            },
+            {
               "replace": "libs/core/src/env/environment.ts",
               "with": "libs/core/src/env/environment.production.ts"
             }
