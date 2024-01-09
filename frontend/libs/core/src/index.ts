@@ -4,6 +4,7 @@ export * from './components/navbar-mobile/navbar-mobile.component';
 export * from './components/loader/loader.component';
 export * from './components/search/search.component';
 export * from './components/tooltip/tooltip.component';
+export * from './components/toast/toast.component';
 
 // Environment
 export * from './env/environment';
@@ -25,3 +26,4 @@ export * from './pages/login/login.component';
 export * from './services/auth.service';
 export * from './services/location.service';
 export * from './services/calculation.service';
+export * from './services/toast.service';

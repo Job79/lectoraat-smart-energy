@@ -1,14 +1,12 @@
-import { Inject, Injectable } from '@angular/core';
-import { from, map } from 'rxjs';
-import { Subject } from 'rxjs';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ToastService {
-    toastSubject = new Subject<string>();
+    toastEvent: EventEmitter<{message: string, type: 'info' | 'warning' | 'error'}> = new EventEmitter();
 
-    show(message: string) {
-        this.toastSubject.next(message);
+    showToast(message: string, type: 'info' | 'warning' | 'error' = 'info') {
+        this.toastEvent.emit({message, type});
     }
 }
