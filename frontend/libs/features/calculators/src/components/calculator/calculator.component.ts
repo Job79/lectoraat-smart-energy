@@ -110,22 +110,28 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   pdf() {
-    html2canvas(document.getElementById('content')!).then((canvas) => {
-      let pdf = new jsPDF('p', 'mm', 'a4');
-      pdf.addImage(
-        canvas.toDataURL('image/png'),
-        'PNG',
-        0,
-        0,
-        pdf.internal.pageSize.getWidth(),
-        canvas.height * (pdf.internal.pageSize.getWidth() / canvas.width),
-      );
-      pdf.save('download.pdf');
-    });
+    const domElement = document.getElementById('content');
 
-    // const doc = new jsPDF();
-
-    // doc.text('Hello world!', 10, 10);
-    // doc.save('a4.pdf');
+    if (domElement) {
+      html2canvas(domElement, {
+        onclone: (document) => {
+          const printButton = document.getElementById('location');
+          if (printButton) {
+            printButton.style.visibility = 'hidden';
+          }
+        },
+      }).then((canvas) => {
+        let pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(
+          canvas.toDataURL('image/png'),
+          'PNG',
+          0,
+          0,
+          pdf.internal.pageSize.getWidth(),
+          canvas.height * (pdf.internal.pageSize.getWidth() / canvas.width),
+        );
+        pdf.save(this.calculation.name);
+      });
+    }
   }
 }
