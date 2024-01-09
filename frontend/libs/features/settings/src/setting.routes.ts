@@ -13,16 +13,28 @@ export const settingRoutes: Route[] = [
       import('./pages/settings/settings.component').then((m) => m.SettingsComponent),
     children: [
       {
+        path: 'account',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/account/account.component').then((m) => m.AccountComponent),
+      },
+      {
         path: 'preferences',
         pathMatch: 'full',
         loadComponent: () =>
           import('./pages/preferences/preferences.component').then((m) => m.PreferencesComponent),
       },
       {
-        path: 'account',
+        path: 'security',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./pages/account/account.component').then((m) => m.AccountComponent),
+          import('./pages/security/security.component').then((m) => m.SecurityComponent),
+      },
+      {
+        path: 'advanced',
+        pathMatch: 'full',
+        loadComponent: () =>
+          import('./pages/advanced/advanced.component').then((m) => m.AdvancedComponent),
       },
     ],
   },
