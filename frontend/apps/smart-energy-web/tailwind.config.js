@@ -27,6 +27,7 @@ module.exports = {
           'base-100': '#ffffff',
         },
       },
+      'dim',
     ],
     darkTheme: 'light',
     base: true,
