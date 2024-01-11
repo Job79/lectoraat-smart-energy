@@ -40,6 +40,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   @ViewChild('calculationForm') calculationForm!: NgForm;
   selectedLocationName = '';
+  hidePdfComment = false;
 
   constructor(
     private router: Router,
@@ -107,7 +108,8 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  pdf() {
+  pdf(hidePdfComment : boolean) {
+    this.hidePdfComment=hidePdfComment;
     window.print();
   }
 }
