@@ -6,7 +6,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build-frontend:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,10 +22,6 @@ jobs:
           npm ci
           npm run ci
 
-      - name: Cypress run
-        working-directory: ./frontend
-        run: npm run test
-
       - name: build artifact
         run: mv frontend/dist/apps/smart-energy-web/browser pocketbase/pb_public
 
@@ -35,9 +31,17 @@ jobs:
           name: build-artifact
           path: pocketbase
 
-  deploy:
+  test:
     runs-on: ubuntu-latest
     needs: build-frontend
+    steps:
+      - name: run cypress tests
+        working-directory: ./frontend
+        run: npm run test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/download-artifact@v4
