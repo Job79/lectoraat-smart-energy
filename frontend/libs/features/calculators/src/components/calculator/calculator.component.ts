@@ -110,6 +110,8 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   pdf(hidePdfComment: boolean) {
     this.hidePdfComment = hidePdfComment;
-    setTimeout(function(){window.print()}, 100);
+    setTimeout(function () {
+      window.print();
+    }, 100);
   }
 }
