@@ -30,12 +30,12 @@
         </svg>
       </button>
       <div class="dropdown dropdown-bottom dropdown-start">
-        <button (click)="pdf()" type="button" class="btn btn-secondary">Download Pdf</button>
+        <button type="button" class="btn btn-secondary">Download Pdf</button>
         <ul
           class="dropdown-content z-[1] menu my-2 p-2 shadow bg-base-100 rounded-box w-52 print:hidden"
         >
-          <li><a>Standaard</a></li>
-          <li><a>Inclusief opmerkingen</a></li>
+          <li><button type="button" (click)="pdf(false)">Standaard</button></li>
+          <li><button type="button" (click)="pdf(true)">Inclusief opmerkingen</button></li>
         </ul>
       </div>
       <button *ngIf="calculation.id" type="button" class="btn btn-secondary" (click)="delete()">
@@ -100,7 +100,7 @@
       </div>
 
       <!-- notes -->
-      <label class="form-control w-full">
+      <label class="form-control w-full" [class]="{'print:hidden': hidePdfComment}">
         <div class="label"><span class="label-text">Opmerkingen</span></div>
         <textarea
           [(ngModel)]="calculation.comment"
