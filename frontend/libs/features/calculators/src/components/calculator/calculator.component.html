@@ -34,8 +34,8 @@
         <ul
           class="dropdown-content z-[1] menu my-2 p-2 shadow bg-base-100 rounded-box w-52 print:hidden"
         >
-          <li><button type="button" (click)="pdf(false)">Standaard</button></li>
-          <li><button type="button" (click)="pdf(true)">Inclusief opmerkingen</button></li>
+          <li><button type="button" (click)="pdf(true)">Standaard</button></li>
+          <li><button type="button" (click)="pdf(false)">Inclusief opmerkingen</button></li>
         </ul>
       </div>
       <button *ngIf="calculation.id" type="button" class="btn btn-secondary" (click)="delete()">
