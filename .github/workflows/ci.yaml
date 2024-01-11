@@ -22,6 +22,11 @@ jobs:
           npm ci
           npm run ci
 
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          test: npm run test
+
       - name: build artifact
         run: mv frontend/dist/apps/smart-energy-web/browser pocketbase/pb_public
 
@@ -30,16 +35,6 @@ jobs:
         with:
           name: build-artifact
           path: pocketbase
-
-  cypress-run:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          test: npm run test
 
   deploy:
     runs-on: ubuntu-latest
