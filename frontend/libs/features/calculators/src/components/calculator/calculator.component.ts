@@ -108,8 +108,8 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  pdf(hidePdfComment : boolean) {
-    this.hidePdfComment=hidePdfComment;
+  pdf(hidePdfComment: boolean) {
+    this.hidePdfComment = hidePdfComment;
     window.print();
   }
 }
