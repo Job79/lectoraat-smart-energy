@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SearchComponent, TooltipComponent } from '@smart-energy/core';
+import { PageHeaderComponent, SearchComponent, TooltipComponent } from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-calculator-overview',
   standalone: true,
-  imports: [CommonModule, RouterModule, SearchComponent, TooltipComponent],
+  imports: [CommonModule, RouterModule, SearchComponent, TooltipComponent, PageHeaderComponent],
   templateUrl: './calculator-overview.component.html',
 })
 export class CalculatorOverviewComponent {
