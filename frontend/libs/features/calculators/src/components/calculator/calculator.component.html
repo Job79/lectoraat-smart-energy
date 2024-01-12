@@ -4,7 +4,7 @@
     <div class="flex items-center space-x-3">
       <img
         src="/assets/calculator/{{ calculation.type }}.webp"
-        class="w-16 h-16 p-1 bg-white rounded-full border"
+        class="w-16 h-16 p-1 bg-base-100 rounded-full border"
         alt="{{ calculation.type }}"
       />
       <div>
@@ -48,11 +48,11 @@
 
   <div class="flex flex-col gap-4 md:flex-row md:items-start print:flex-row print:items-start">
     <!-- input block -->
-    <div class="bg-white rounded-2xl shadow w-full px-5 py-3">
+    <div class="bg-base-100 rounded-2xl shadow w-full px-5 py-3">
       <!-- calculation specific inputs -->
       <ng-content select="[form]" />
 
-      <div class="-mx-5 border mt-8 mb-3"><!--divider--></div>
+      <div class="divider"></div>
       <div class="flex flex-col justify-between md:gap-3 md:flex-row">
         <!-- name -->
         <label class="w-full form-control">
