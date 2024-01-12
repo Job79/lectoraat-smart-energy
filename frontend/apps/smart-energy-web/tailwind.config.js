@@ -21,6 +21,7 @@ module.exports = {
         },
       },
       'dim',
+      'cyberpunk',
     ],
     darkTheme: 'light',
     base: true,
