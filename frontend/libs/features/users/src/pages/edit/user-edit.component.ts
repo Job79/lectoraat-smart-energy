@@ -6,7 +6,7 @@ import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'smart-energy-edit',
+  selector: 'smart-energy-create',
   standalone: true,
   imports: [CommonModule, FormsModule],
   providers: [UserService],

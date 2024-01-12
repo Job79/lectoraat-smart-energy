@@ -4,6 +4,7 @@ export * from './components/navbar-mobile/navbar-mobile.component';
 export * from './components/loader/loader.component';
 export * from './components/search/search.component';
 export * from './components/tooltip/tooltip.component';
+export * from './components/page-header/page-header.component';
 
 // Environment
 export * from './env/environment';

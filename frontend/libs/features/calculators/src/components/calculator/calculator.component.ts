@@ -12,10 +12,16 @@ import {
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService, CalculationService, ICalculation, LocationService } from '@smart-energy/core';
+import {
+  AuthService,
+  CalculationService,
+  CreateLocationModalComponent,
+  ICalculation,
+  LocationService,
+  PageHeaderComponent,
+} from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
-import { CreateLocationModalComponent } from '../create-location-modal/create-location-modal.component';
 
 @Component({
   selector: 'smart-energy-calculator',
@@ -26,6 +32,7 @@ import { CreateLocationModalComponent } from '../create-location-modal/create-lo
     RouterModule,
     SearchLocationModalComponent,
     CreateLocationModalComponent,
+    PageHeaderComponent,
   ],
   providers: [CalculationHistoryService, LocationService],
   templateUrl: './calculator.component.html',

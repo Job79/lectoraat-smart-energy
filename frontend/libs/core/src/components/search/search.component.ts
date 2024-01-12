@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './search.component.html',
 })
 export class SearchComponent {
-  @Input() searchText: string = '';
+  @Input() hasButtons = false;
+  @Input() searchText = '';
   @Output() searchTextChange = new EventEmitter<string>();
 
   private debounceTimer!: ReturnType<typeof setTimeout>;

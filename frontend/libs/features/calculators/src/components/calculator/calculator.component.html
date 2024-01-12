@@ -1,21 +1,14 @@
 <form #calculationForm="ngForm" (ngSubmit)="save()">
-  <!-- topbar -->
-  <div class="flex flex-col gap-6 sm:flex-row justify-between items-center mb-5">
-    <div class="flex items-center bg-base-200 space-x-3">
+  <smart-energy-page-header [title]="title" [description]="description">
+    <div icon>
       <img
         src="/assets/calculator/{{ calculation.type }}.webp"
-        class="w-16 h-16 p-1 bg-base-100 rounded-full"
-        alt="{{ calculation.type }}"
+        class="w-16 h-16 p-1 bg-white rounded-full border"
+        alt="{{ title }}"
       />
-      <div>
-        <h2 class="text-2xl font-bold">{{ title }}</h2>
-        <p class="text-sm text-gray-500 max-w-[18rem] md:max-w-[40rem] print:max-w-[80rem]">
-          {{ description }}
-        </p>
-      </div>
     </div>
 
-    <div class="flex justify-end space-x-4 print:hidden">
+    <div buttons class="flex justify-end space-x-4 print:hidden">
       <button *ngIf="!calculation.id" type="button" class="btn btn-secondary" (click)="clear()">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +37,7 @@
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
     <img src="/assets/logo/mnext.svg" class="h-[3.5rem] hidden print:block" alt="mnext logo" />
-  </div>
+  </smart-energy-page-header>
 
   <div class="flex flex-col gap-4 md:flex-row md:items-start print:flex-row print:items-start">
     <!-- input block -->
@@ -125,5 +118,5 @@
 
 <smart-energy-create-location-modal
   #locationCreateModal
-  (locationSelect)="calculation.location = $event.id; selectedLocationName = $event.name"
+  (locationCreated)="calculation.location = $event.id; selectedLocationName = $event.name"
 />
