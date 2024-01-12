@@ -31,15 +31,19 @@
 </div>
 
 <!-- profile button -->
-<div class="fixed w-full bg-white z-[100] p-2">
-  <div *ngIf="!isLoggedIn" class="px-1 text-right">
-    <a class="btn" routerLink="/login">Inloggen</a>
-  </div>
-  <div routerLink="/settings" *ngIf="isLoggedIn" class="text-right">
-    <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-      <div class="avatar placeholder">
-        <div class="bg-neutral text-neutral-content rounded-full w-10">
-          <span class="text-1xl">{{ initial }}</span>
+<div class="fixed navbar bg-white flex z-[100]">
+  <a class="navbar-start" routerLink="/">
+    <img src="/assets/logo/mnext.svg" class="h-[3rem]" alt="mnext logo" />
+  </a>
+
+  <div class="navbar-end">
+    <a *ngIf="!isLoggedIn" class="btn" routerLink="/login">Inloggen</a>
+    <div routerLink="/settings" *ngIf="isLoggedIn">
+      <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+        <div class="avatar placeholder">
+          <div class="bg-neutral text-neutral-content rounded-full w-10">
+            <span class="text-1xl">{{ initial }}</span>
+          </div>
         </div>
       </div>
     </div>
