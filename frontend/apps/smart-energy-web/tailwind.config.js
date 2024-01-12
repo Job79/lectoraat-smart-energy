@@ -7,15 +7,7 @@ module.exports = {
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#1eaa7d',
-        secondary: '#293d66',
-        background: '#f5f8fa',
-      },
-    },
-  },
+  theme: {},
   daisyui: {
     themes: [
       {
@@ -25,6 +17,7 @@ module.exports = {
           accent: '#49d2a7',
           neutral: '#293d66',
           'base-100': '#ffffff',
+          'base-200': '#f5f8fa',
         },
       },
       'dim',
