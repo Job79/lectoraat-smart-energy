@@ -116,14 +116,6 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
       const styleElement = document.createElement('style');
       document.head.appendChild(styleElement);
 
-      const printStyles = `
-      @media print {
-        body * {
-          color: black !important;
-        }
-      }
-    `;
-      styleElement.innerHTML = printStyles;
       window.print();
       document.head.removeChild(styleElement);
     }, 20);

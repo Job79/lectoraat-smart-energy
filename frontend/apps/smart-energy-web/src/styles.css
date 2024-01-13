@@ -6,3 +6,9 @@
   size: A4;
   margin: 1rem;
 }
+
+@media print {
+  body * {
+    color: black !important;
+  }
+}
