@@ -114,17 +114,19 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     this.hidePdfComment = hidePdfComment;
 
     setTimeout(() => {
-      const calculatorDivs = document.querySelectorAll('.calculator');
+      const styleElement = document.createElement('style');
+      document.head.appendChild(styleElement);
 
-      calculatorDivs.forEach((div) => {
-        this.renderer.setAttribute(div, 'data-theme', 'smart-energy');
-      });
-
+      const printStyles = `
+      @media print {
+        body * {
+          color: black !important;
+        }
+      }
+    `;
+      styleElement.innerHTML = printStyles;
       window.print();
-
-      calculatorDivs.forEach((div) => {
-        this.renderer.setAttribute(div, 'data-theme', localStorage.getItem('theme')!);
-      });
-    }, 5);
+      document.head.removeChild(styleElement);
+    }, 20);
   }
 }
