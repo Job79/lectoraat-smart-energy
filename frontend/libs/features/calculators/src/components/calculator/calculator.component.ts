@@ -7,6 +7,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
+  Renderer2,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -48,6 +49,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     private calculationHistory: CalculationHistoryService,
     private calculationService: CalculationService<unknown>,
     private authService: AuthService,
+    private renderer: Renderer2,
   ) {}
 
   ngOnInit() {
@@ -110,8 +112,13 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   pdf(hidePdfComment: boolean) {
     this.hidePdfComment = hidePdfComment;
-    setTimeout(function () {
+
+    setTimeout(() => {
+      const calculatorDiv = document.getElementById('calculator');
+      this.renderer.setAttribute(calculatorDiv, 'data-theme', 'smart-energy');
       window.print();
-    }, 100);
+      localStorage.getItem('theme');
+      this.renderer.setAttribute(calculatorDiv, 'data-theme', localStorage.getItem('theme')!);
+    }, 5);
   }
 }
