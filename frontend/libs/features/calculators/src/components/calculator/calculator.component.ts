@@ -49,7 +49,6 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     private calculationHistory: CalculationHistoryService,
     private calculationService: CalculationService<unknown>,
     private authService: AuthService,
-    private renderer: Renderer2,
   ) {}
 
   ngOnInit() {
