@@ -1,14 +1,31 @@
-<form #userForm="ngForm" (ngSubmit)="save()">
-  <!-- Topbar -->
-  <div class="flex justify-between items-center mb-5 mx-2">
-    <h2 class="text-2xl font-bold">{{ user.id ? 'Gebruiker aanpassen' : 'Nieuwe gebruiker' }}</h2>
-    <div class="flex space-x-3">
+<form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && save()">
+  <smart-energy-page-header
+    [title]="user.id ? 'Gebruiker details' : 'Nieuwe gebruiker'"
+    [description]="user.id ? 'Pas een bestaande gebruiker aan.' : 'Voeg een nieuwe gebruiker toe aan het systeem.'"
+  >
+    <div
+      icon
+      class="w-16 h-16 flex items-center justify-center bg-white fill-secondary rounded-full border"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        height="28"
+        class="fill-secondary"
+        viewBox="0 0 448 512"
+      >
+        <path
+          d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
+        />
+      </svg>
+    </div>
+
+    <div buttons class="flex space-x-3">
       <button *ngIf="user.id" type="button" class="btn btn-secondary" (click)="delete()">
         Verwijderen
       </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
-  </div>
+  </smart-energy-page-header>
 
   <div class="bg-base-100 rounded-2xl shadow px-5 py-4">
     <!-- Email -->
@@ -20,9 +37,12 @@
         type="email"
         name="email"
         [(ngModel)]="user.email"
-        required
+        #email="ngModel"
+        [class]="{ 'border-red-500': email.touched && email.invalid }"
         placeholder="Email"
         class="input input-bordered w-full"
+        required
+        email
       />
     </label>
 
@@ -35,39 +55,26 @@
         type="password"
         name="password"
         [(ngModel)]="user.password"
-        required
+        #password="ngModel"
+        [class]="{ 'border-red-500': password.touched && password.invalid }"
         placeholder="Password"
         class="input input-bordered w-full"
-      />
-    </label>
-
-    <!-- Confirmation Password -->
-    <label class="form-control">
-      <div class="label">
-        <span class="label-text">Herhaal Wachtwoord</span>
-      </div>
-      <input
-        type="password"
-        name="confirmation-password"
-        [(ngModel)]="user.passwordConfirm"
-        required
-        placeholder="Herhaal wachtwoord"
-        class="input input-bordered w-full"
+        [required]="!user.id"
+        minlength="8"
       />
     </label>
 
     <!-- IsManager -->
-    <label class="form-control">
-      <div class="label">
-        <span class="label-text">Is Manager?</span>
-      </div>
-
-      <input
-        type="checkbox"
-        name="isManager"
-        [(ngModel)]="user.isManager"
-        class="checkbox checkbox-accent"
-      />
-    </label>
+    <div class="form-control max-w-max my-2">
+      <label class="cursor-pointer label">
+        <input
+          type="checkbox"
+          name="isManager"
+          [(ngModel)]="user.isManager"
+          class="checkbox checkbox-secondary"
+        />
+        <span class="ml-2 label-text">Is Manager?</span>
+      </label>
+    </div>
   </div>
 </form>

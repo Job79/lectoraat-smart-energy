@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IUser } from '@smart-energy/core';
+import { IUser, PageHeaderComponent, SearchComponent } from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'smart-energy-create',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PageHeaderComponent, RouterLink, SearchComponent],
   providers: [UserService],
   templateUrl: './user-edit.component.html',
 })
@@ -33,6 +33,7 @@ export class UserEditComponent implements OnInit {
   }
 
   save() {
+    this.user.passwordConfirm = this.user.password;
     if (this.user.id) {
       this.userService.update(this.user);
     } else {
