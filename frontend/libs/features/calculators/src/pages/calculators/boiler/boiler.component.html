@@ -12,6 +12,7 @@
         </div>
         <input
           type="number"
+          name="liter"
           [(ngModel)]="calculation.parameters.capacity"
           placeholder="Aantal liter boiler"
           class="input input-bordered"
@@ -25,6 +26,7 @@
         </div>
         <input
           type="number"
+          name="pricePerKwh"
           [(ngModel)]="calculation.parameters.pricePerKwh"
           placeholder="Prijs elektriciteit in euro"
           class="input input-bordered"
@@ -40,6 +42,7 @@
         </div>
         <input
           type="number"
+          name="power"
           [(ngModel)]="calculation.parameters.power"
           placeholder="Vermogen in Watt"
           class="input input-bordered"
@@ -52,6 +55,7 @@
           <span class="label-text">Energielabel</span>
         </div>
         <select
+          name="energyLabel"
           [(ngModel)]="calculation.parameters.energyLabel"
           class="select select-bordered"
           [class]="{ 'text-gray-400': !calculation.parameters.energyLabel }"
