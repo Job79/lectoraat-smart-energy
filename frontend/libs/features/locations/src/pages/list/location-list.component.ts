@@ -3,23 +3,31 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import {
   CreateLocationModalComponent,
+  IconLocationComponent,
+  IconLocationsComponent,
+  IconUrlComponent,
+  IconUserComponent,
   ILocation,
   LocationService,
-  PageHeaderComponent,
+  HeaderComponent,
   SearchComponent,
 } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'smart-energy-list',
+  selector: 'smart-energy-location-list',
   standalone: true,
   imports: [
     CommonModule,
     RouterLink,
     InfiniteScrollModule,
     SearchComponent,
-    PageHeaderComponent,
+    HeaderComponent,
     CreateLocationModalComponent,
+    IconLocationsComponent,
+    IconUserComponent,
+    IconUrlComponent,
+    IconLocationComponent,
   ],
   providers: [LocationService],
   templateUrl: './location-list.component.html',
@@ -29,7 +37,6 @@ export class LocationListComponent implements OnInit {
   locations: ILocation[] = [];
   searchQuery = '';
   page = 1;
-  isCreateModalOpen = false;
 
   constructor(private locationService: LocationService) {}
 

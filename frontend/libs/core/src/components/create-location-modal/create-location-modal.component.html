@@ -19,9 +19,9 @@
         <input
           type="text"
           name="name"
-          [(ngModel)]="newLocation.name"
+          [(ngModel)]="location.name"
           #name="ngModel"
-          [ngClass]="{ 'border-red-500': name.touched && name.invalid }"
+          [class]="{ 'border-red-500': name.touched && name.invalid }"
           placeholder="Naam"
           class="input input-bordered w-full"
           required
@@ -36,9 +36,9 @@
         <input
           type="text"
           name="postalCode"
-          [(ngModel)]="newLocation.postalCode"
+          [(ngModel)]="location.postalCode"
           #postalCode="ngModel"
-          [ngClass]="{ 'border-red-500': postalCode.touched && postalCode.invalid }"
+          [class]="{ 'border-red-500': postalCode.touched && postalCode.invalid }"
           placeholder="Postcode"
           class="input input-bordered w-full"
           required
@@ -53,9 +53,9 @@
         <input
           type="text"
           name="residence"
-          [(ngModel)]="newLocation.residence"
+          [(ngModel)]="location.residence"
           #residence="ngModel"
-          [ngClass]="{ 'border-red-500': residence.touched && residence.invalid }"
+          [class]="{ 'border-red-500': residence.touched && residence.invalid }"
           placeholder="Woonplaats"
           class="input input-bordered w-full"
           required

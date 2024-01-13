@@ -1,14 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { IUser, PageHeaderComponent, SearchComponent } from '@smart-energy/core';
+import {
+  IconCalculatorsComponent,
+  IconUrlComponent,
+  IconUserComponent,
+  IconUsersComponent,
+  IUser,
+  HeaderComponent,
+  SearchComponent,
+} from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'smart-energy-list',
+  selector: 'smart-energy-user-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, InfiniteScrollModule, PageHeaderComponent, SearchComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    InfiniteScrollModule,
+    HeaderComponent,
+    SearchComponent,
+    IconCalculatorsComponent,
+    IconUsersComponent,
+    IconUserComponent,
+    IconUrlComponent,
+  ],
   providers: [UserService],
   templateUrl: './user-list.component.html',
 })

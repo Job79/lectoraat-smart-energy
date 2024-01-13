@@ -1,29 +1,35 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PageHeaderComponent, SearchComponent, TooltipComponent } from '@smart-energy/core';
+import {
+  CalculationDescriptions,
+  IconCalculatorsComponent,
+  HeaderComponent,
+  SearchComponent,
+  TooltipComponent,
+} from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-calculator-overview',
   standalone: true,
-  imports: [CommonModule, RouterModule, SearchComponent, TooltipComponent, PageHeaderComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SearchComponent,
+    TooltipComponent,
+    HeaderComponent,
+    IconCalculatorsComponent,
+  ],
   templateUrl: './calculator-overview.component.html',
 })
 export class CalculatorOverviewComponent {
-  allCalculators = [
-    {
-      type: 'boiler',
-      name: 'Boiler',
-      description: 'Bereken het energieverlies van een boiler.',
-    },
-    {
-      type: 'single-double-rate',
-      name: 'Enkel-dubbel tarief',
-      description: 'Vergelijk de kosten voor een enkel- en dubbeltarief aansluiting.',
-    },
-  ];
-  searchQuery = '';
+  allCalculators = Object.entries(CalculationDescriptions).map(([k, v]) => ({
+    type: k,
+    name: v.name,
+    description: v.description,
+  }));
   calculators = this.allCalculators;
+  searchQuery = '';
 
   search() {
     this.calculators = this.allCalculators.filter((calculator) =>

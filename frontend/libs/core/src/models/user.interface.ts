@@ -5,4 +5,8 @@ export interface IUser {
   password: string;
   passwordConfirm?: string;
   oldPassword?: string;
+  emailVisibility: boolean;
+
+  created: number;
+  updated: number;
 }

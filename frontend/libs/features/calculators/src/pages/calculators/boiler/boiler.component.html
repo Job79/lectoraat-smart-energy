@@ -1,74 +1,4 @@
-<smart-energy-calculator
-  title="Boiler"
-  description="Bereken het energieverlies van een boiler."
-  [(calculation)]="calculation"
->
-  <div form class="flex flex-col justify-between md:gap-3 md:flex-row">
-    <div class="w-full">
-      <!-- Liters -->
-      <label class="form-control">
-        <div class="label">
-          <span class="label-text">Aantal liter</span>
-        </div>
-        <input
-          type="number"
-          name="liter"
-          [(ngModel)]="calculation.parameters.capacity"
-          placeholder="Aantal liter boiler"
-          class="input input-bordered"
-        />
-      </label>
-
-      <!-- Electricity Price -->
-      <label class="form-control">
-        <div class="label">
-          <span class="label-text">Prijs per kWh</span>
-        </div>
-        <input
-          type="number"
-          name="pricePerKwh"
-          [(ngModel)]="calculation.parameters.pricePerKwh"
-          placeholder="Prijs elektriciteit in euro"
-          class="input input-bordered"
-        />
-      </label>
-    </div>
-
-    <div class="w-full">
-      <!-- Power -->
-      <label class="form-control">
-        <div class="label">
-          <span class="label-text">Electrisch vermogen</span>
-        </div>
-        <input
-          type="number"
-          name="power"
-          [(ngModel)]="calculation.parameters.power"
-          placeholder="Vermogen in Watt"
-          class="input input-bordered"
-        />
-      </label>
-
-      <!-- Energy Label -->
-      <label class="form-control">
-        <div class="label">
-          <span class="label-text">Energielabel</span>
-        </div>
-        <select
-          name="energyLabel"
-          [(ngModel)]="calculation.parameters.energyLabel"
-          class="select select-bordered"
-          [class]="{ 'text-gray-400': !calculation.parameters.energyLabel }"
-        >
-          <option selected disabled [value]="undefined">Selecteer een energielabel</option>
-          <option *ngFor="let label of energyLabels" class="text-black">
-            {{ label }}
-          </option>
-        </select>
-      </label>
-    </div>
-  </div>
-
+<smart-energy-calculator [(calculation)]="calculation">
   <div result class="stats stats-vertical w-full">
     <div class="stat">
       <div class="stat-title">Kosten 1 keer opwarmen</div>
@@ -93,6 +23,72 @@
     <div class="stat">
       <div class="stat-title">Stilstandverlies per dag</div>
       <div class="stat-value">{{ formula.energyLossPerDay }} kWh</div>
+    </div>
+  </div>
+
+  <div form class="flex flex-col justify-between md:gap-3 md:flex-row">
+    <div class="w-full">
+      <!-- capacity -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Aantal liter</span>
+        </div>
+        <input
+          type="number"
+          name="liter"
+          [(ngModel)]="calculation.parameters.capacity"
+          placeholder="Aantal liter boiler"
+          class="input input-bordered"
+        />
+      </label>
+
+      <!-- pricePerKwh -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Prijs per kWh</span>
+        </div>
+        <input
+          type="number"
+          name="pricePerKwh"
+          [(ngModel)]="calculation.parameters.pricePerKwh"
+          placeholder="Prijs elektriciteit in euro"
+          class="input input-bordered"
+        />
+      </label>
+    </div>
+
+    <div class="w-full">
+      <!-- power -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Electrisch vermogen</span>
+        </div>
+        <input
+          type="number"
+          name="power"
+          [(ngModel)]="calculation.parameters.power"
+          placeholder="Vermogen boiler in Watt"
+          class="input input-bordered"
+        />
+      </label>
+
+      <!-- energyLabel -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Energielabel</span>
+        </div>
+        <select
+          name="energyLabel"
+          [(ngModel)]="calculation.parameters.energyLabel"
+          class="select select-bordered text-base"
+          [class]="{ 'text-gray-400': !calculation.parameters.energyLabel }"
+        >
+          <option selected disabled [value]="undefined">Energielabel boiler</option>
+          <option *ngFor="let label of energyLabels" class="text-black">
+            {{ label }}
+          </option>
+        </select>
+      </label>
     </div>
   </div>
 </smart-energy-calculator>

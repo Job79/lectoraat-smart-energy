@@ -19,7 +19,6 @@ export class BoilerComponent implements OnInit {
     type: 'boiler',
     parameters: {},
   } as ICalculation<IBoilerParameters>;
-
   energyLabels = Object.keys(EnergyLabels);
 
   constructor(

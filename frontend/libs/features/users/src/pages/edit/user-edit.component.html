@@ -1,31 +1,25 @@
 <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && save()">
-  <smart-energy-page-header
+  <smart-energy-header
     [title]="user.id ? 'Gebruiker details' : 'Nieuwe gebruiker'"
-    [description]="user.id ? 'Pas een bestaande gebruiker aan.' : 'Voeg een nieuwe gebruiker toe aan het systeem.'"
+    [description]="
+      user.id
+        ? 'Pas een bestaande gebruiker aan.'
+        : 'Voeg een nieuwe gebruiker toe aan het systeem.'
+    "
   >
-    <div
+    <smart-energy-icon-user
       icon
-      class="w-16 h-16 flex items-center justify-center bg-white fill-secondary rounded-full border"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        height="28"
-        class="fill-secondary"
-        viewBox="0 0 448 512"
-      >
-        <path
-          d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"
-        />
-      </svg>
-    </div>
+      [size]="28"
+      class="w-16 h-16 flex items-center justify-center bg-base-100 text-secondary rounded-full"
+    />
 
-    <div buttons class="flex space-x-3">
+    <div buttons class="flex space-x-4">
       <button *ngIf="user.id" type="button" class="btn btn-secondary" (click)="delete()">
         Verwijderen
       </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
-  </smart-energy-page-header>
+  </smart-energy-header>
 
   <div class="bg-base-100 rounded-2xl shadow px-5 py-4">
     <!-- Email -->

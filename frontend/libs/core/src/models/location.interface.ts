@@ -6,4 +6,7 @@ export interface ILocation {
   residence: string;
   postalCode: string;
   owner: IUser['id'];
+
+  created: number;
+  updated: number;
 }

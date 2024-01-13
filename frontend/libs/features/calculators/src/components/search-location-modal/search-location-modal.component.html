@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <div class="px-2">
+    <div class="px-2 mb-4">
       <smart-energy-search
         [(searchText)]="searchQuery"
         (searchTextChange)="loadLocations(true)"
@@ -24,11 +24,18 @@
       class="px-2 max-h-[50rem] overflow-y-scroll"
     >
       <div role="button" *ngFor="let location of locations" (click)="select(location)">
-        <div class="card bg-base-100 shadow-lg mb-4">
-          <div class="card-body">
-            <h2 class="card-title">{{ location.name }}</h2>
-            {{ location.postalCode }}
-            {{ location.residence }}
+        <div class="card bg-base-100 shadow-xl mb-4">
+          <div class="card-body flex-row items-center justify-between">
+            <div class="flex items-center">
+              <smart-energy-icon-location [size]="28" class="text-secondary" />
+              <div class="mx-6">
+                <div class="card-title">{{ location.name }}</div>
+                <div class="text-sm text-gray-500">
+                  {{ location.postalCode }} {{ location.residence }} |
+                  {{ location.created | date: 'dd-MM-yyyy' }}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
