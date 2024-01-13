@@ -1,14 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IUser, PageHeaderComponent, SearchComponent } from '@smart-energy/core';
+import {
+  IconUserComponent,
+  IconUsersComponent,
+  IUser,
+  HeaderComponent,
+  SearchComponent,
+} from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'smart-energy-create',
+  selector: 'smart-energy-user-edit',
   standalone: true,
-  imports: [CommonModule, FormsModule, PageHeaderComponent, RouterLink, SearchComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    HeaderComponent,
+    RouterLink,
+    SearchComponent,
+    IconUsersComponent,
+    IconUserComponent,
+  ],
   providers: [UserService],
   templateUrl: './user-edit.component.html',
 })

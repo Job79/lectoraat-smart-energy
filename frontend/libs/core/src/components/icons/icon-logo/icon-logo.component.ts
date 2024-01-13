@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'smart-energy-loader',
+  selector: 'smart-energy-icon-logo',
   standalone: true,
   imports: [CommonModule],
-  template: `<span class="loading loading-infinity loading-lg"></span>`,
+  templateUrl: './icon-logo.component.html',
 })
-export class LoaderComponent {}
+export class IconLogoComponent {}

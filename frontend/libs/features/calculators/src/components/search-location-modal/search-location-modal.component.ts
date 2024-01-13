@@ -1,15 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AuthService, ILocation, LocationService, SearchComponent } from '@smart-energy/core';
-import { CalculationHistoryService } from '../../services/calculation-history.service';
+import {
+  IconLocationComponent,
+  ILocation,
+  LocationService,
+  SearchComponent,
+} from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'smart-energy-search-location-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, SearchComponent, InfiniteScrollModule],
-  providers: [LocationService, CalculationHistoryService],
+  imports: [CommonModule, SearchComponent, InfiniteScrollModule, IconLocationComponent],
+  providers: [LocationService],
   templateUrl: './search-location-modal.component.html',
 })
 export class SearchLocationModalComponent {
@@ -20,10 +23,7 @@ export class SearchLocationModalComponent {
   searchQuery = '';
   page = 1;
 
-  constructor(
-    private locationService: LocationService,
-    private authService: AuthService,
-  ) {}
+  constructor(private locationService: LocationService) {}
 
   openModal() {
     this.loadLocations(true);

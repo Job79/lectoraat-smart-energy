@@ -1,14 +1,19 @@
 import { Inject, Injectable } from '@angular/core';
 import { IUser } from '../models/user.interface';
 import { IPocketBase } from '../models/pocketbase.interface';
-import { from } from 'rxjs';
+import { from, map } from 'rxjs';
 
 @Injectable()
 export class UserService {
   constructor(@Inject('pocketbase') private pb: IPocketBase) {}
 
-  public list() {
-    return from(this.pb.collection('users').getFullList());
+  public list({ query = '', page = 1, pageSize = 25 } = {}) {
+    return from(
+      this.pb.collection('users').getList(page, pageSize, {
+        sort: '-created',
+        filter: query ? `email ~ "${query}"` : '',
+      }),
+    ).pipe(map(({ items }) => items));
   }
 
   public get(id: string) {
@@ -16,6 +21,7 @@ export class UserService {
   }
 
   public create(user: IUser) {
+    user.emailVisibility = true;
     return from(this.pb.collection('users').create(user));
   }
 
@@ -23,7 +29,7 @@ export class UserService {
     return from(this.pb.collection('users').update(user.id!, user));
   }
 
-  delete(user: IUser) {
+  public delete(user: IUser) {
     return from(this.pb.collection('users').delete(user.id!));
   }
 }

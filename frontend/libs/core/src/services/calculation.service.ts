@@ -11,6 +11,7 @@ export class CalculationService<T> {
     return from(
       this.pb.collection('calculations').getFullList({
         filter: `location = '${locationId}'`,
+        sort: '-created',
       }) as Promise<ICalculation<T>[]>,
     );
   }

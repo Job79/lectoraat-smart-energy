@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth.service';
 export class CreateLocationModalComponent {
   @Output() locationCreated = new EventEmitter<ILocation>();
   isModalOpen = false;
-  newLocation = {} as ILocation;
+  location = {} as ILocation;
 
   constructor(
     private locationService: LocationService,
@@ -26,11 +26,11 @@ export class CreateLocationModalComponent {
 
   openModal() {
     this.isModalOpen = true;
-    this.newLocation = { owner: this.authService.user$.value.data.id } as ILocation;
+    this.location = { owner: this.authService.user$.value.data.id } as ILocation;
   }
 
   create() {
-    this.locationService.create(this.newLocation).subscribe((location) => {
+    this.locationService.create(this.location).subscribe((location) => {
       this.locationCreated.emit(location);
       this.isModalOpen = false;
     });

@@ -3,12 +3,12 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'smart-energy-page-header',
+  selector: 'smart-energy-header',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './page-header.component.html',
+  templateUrl: './header.component.html',
 })
-export class PageHeaderComponent {
+export class HeaderComponent {
   @Input() title!: string;
   @Input() description!: string;
 }

@@ -29,4 +29,8 @@ export class LocationService {
   public update(location: ILocation) {
     return from(this.pb.collection('locations').update(location.id!, location));
   }
+
+  public delete(location: ILocation) {
+    return from(this.pb.collection('locations').delete(location.id!));
+  }
 }

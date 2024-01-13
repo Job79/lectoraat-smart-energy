@@ -14,11 +14,14 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import {
   AuthService,
+  CalculationDescriptions,
   CalculationService,
   CreateLocationModalComponent,
   ICalculation,
+  IconLogoComponent,
   LocationService,
-  PageHeaderComponent,
+  HeaderComponent,
+  IconReloadComponent,
 } from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
@@ -32,18 +35,18 @@ import { SearchLocationModalComponent } from '../search-location-modal/search-lo
     RouterModule,
     SearchLocationModalComponent,
     CreateLocationModalComponent,
-    PageHeaderComponent,
+    HeaderComponent,
+    IconLogoComponent,
+    IconReloadComponent,
   ],
   providers: [CalculationHistoryService, LocationService],
   templateUrl: './calculator.component.html',
 })
 export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
-  @Input() title = '';
-  @Input() description = '';
-  @Input() calculation = {} as ICalculation<unknown>;
+  calculationDescriptions = CalculationDescriptions;
 
+  @Input() calculation = {} as ICalculation<unknown>;
   @Output() calculationChange = new EventEmitter();
-  @Output() downloadPdfClick = new EventEmitter();
 
   @ViewChild('calculationForm') calculationForm!: NgForm;
   selectedLocationName = '';
@@ -67,7 +70,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    if (this.calculation.location) {
+    if (this.isAuthenticated && this.calculation.location) {
       this.locationService.get(this.calculation.location).subscribe((location) => {
         this.selectedLocationName = location.name;
       });
@@ -82,7 +85,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   async save() {
-    if (!this.authService.user$.value.isLoggedIn) {
+    if (!this.isAuthenticated) {
       await this.router.navigate(['/login']);
       return;
     }
@@ -93,7 +96,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.calculationService.save(this.calculation).subscribe((calculation) => {
-      this.calculation = calculation;
+      this.calculation = calculation; // prevent ngOnDestroy from saving to history
       this.calculationHistory.clear(calculation.type);
       this.router.navigate(['/calculators', calculation.type, calculation.id], {
         replaceUrl: true,
@@ -103,6 +106,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   clear() {
     this.calculationHistory.clear(this.calculation.type);
+    this.selectedLocationName = '';
     this.calculationChange.emit({
       type: this.calculation.type,
       parameters: {},
@@ -117,9 +121,10 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   pdf(hidePdfComment: boolean) {
     this.hidePdfComment = hidePdfComment;
+    setTimeout(() => window.print(), 50);
+  }
 
-    setTimeout(() => {
-      window.print();
-    }, 20);
+  get isAuthenticated() {
+    return this.authService.user$.value.isLoggedIn;
   }
 }

@@ -1,19 +1,11 @@
-<smart-energy-page-header
-  title="Rekentools"
-  description="Ondersteunende tools voor energiecoaches."
->
-  <div
+<smart-energy-header title="Rekentools" description="Ondersteunende tools voor energiecoaches.">
+  <smart-energy-icon-calculators
     icon
-    class="w-16 h-16 flex items-center justify-center bg-white fill-secondary rounded-full border"
-  >
-    <svg xmlns="http://www.w3.org/2000/svg" height="28" viewBox="0 0 384 512">
-      <path
-        d="M64 0C28.7 0 0 28.7 0 64v384c0 35.3 28.7 64 64 64h256c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zm32 64h192c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V96c0-17.7 14.3-32 32-32zm32 160a32 32 0 1 1-64 0 32 32 0 1 1 64 0zM96 352a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm-32 64c0-17.7 14.3-32 32-32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zm128-160a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1-64 0 32 32 0 1 1 64 0zm64-64a32 32 0 1 1 0-64 32 32 0 1 1 0 64zm32 64a32 32 0 1 1-64 0 32 32 0 1 1 64 0zm-32 128a32 32 0 1 1 0-64 32 32 0 1 1 0 64z"
-      />
-    </svg>
-  </div>
+    [size]="28"
+    class="w-16 h-16 flex items-center justify-center bg-base-100 text-secondary rounded-full"
+  />
   <smart-energy-search buttons [(searchText)]="searchQuery" (searchTextChange)="search()" />
-</smart-energy-page-header>
+</smart-energy-header>
 
 <!-- calculators grid -->
 <div class="grid gap-5 md:grid-cols-2">

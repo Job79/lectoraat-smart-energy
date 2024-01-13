@@ -7,10 +7,8 @@
   margin: 1rem;
 }
 
-@media print {
-  body * {
-    color: black !important;
-  }
+body * {
+  @apply print:!text-black;
 }
 
 .navbar-center .menu li a:active {
