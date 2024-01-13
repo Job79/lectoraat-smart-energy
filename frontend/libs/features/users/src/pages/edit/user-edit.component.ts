@@ -25,7 +25,7 @@ export class UserEditComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
       const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*';
-      let password = Array.from(
+      const password = Array.from(
         { length: 12 },
         () => chars[Math.floor(Math.random() * chars.length)],
       ).join('');
