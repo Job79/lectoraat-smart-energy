@@ -9,6 +9,7 @@ export * from './components/tooltip/tooltip.component';
 export * from './env/environment';
 
 // Guards
+export * from './guards/is-activated.guard';
 export * from './guards/is-logged-in.guard';
 export * from './guards/is-manager.guard';
 
