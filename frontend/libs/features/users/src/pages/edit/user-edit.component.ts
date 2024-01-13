@@ -24,6 +24,14 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
+      const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*';
+      let password = Array.from(
+        { length: 12 },
+        () => chars[Math.floor(Math.random() * chars.length)],
+      ).join('');
+
+      this.user.password = password;
+      this.user.passwordConfirm = password;
       return;
     }
 
@@ -36,9 +44,13 @@ export class UserEditComponent implements OnInit {
     if (this.user.id) {
       this.userService.update(this.user);
     } else {
-      this.userService
-        .create(this.user)
-        .subscribe((user) => this.router.navigate(['/users', user.id]));
+      this.userService.create(this.user).subscribe(() => this.router.navigate(['/users']));
+
+      const subject = encodeURIComponent('Smart Energy - Account gegevens');
+      const body = encodeURIComponent(
+        `Email: ${this.user.email}\nPassword: ${this.user.password}\n https://energiecoach1.sendlab.nl/login`,
+      );
+      window.location.href = `mailto:${this.user.email}?subject=${subject}&body=${body}`;
     }
   }
 
