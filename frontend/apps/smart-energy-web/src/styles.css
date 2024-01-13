@@ -12,3 +12,7 @@
     color: black !important;
   }
 }
+
+.navbar-center .menu li a:active {
+  @apply !bg-base-200 !text-gray-900;
+}
