@@ -1,7 +1,7 @@
-<form #calculationForm="ngForm" (ngSubmit)="save()" id="calculator">
+<form #calculationForm="ngForm" (ngSubmit)="save()">
   <!-- topbar -->
   <div class="flex flex-col gap-6 sm:flex-row justify-between items-center mb-5">
-    <div class="flex items-center space-x-3">
+    <div class="calculator flex items-center bg-base-200 space-x-3">
       <img
         src="/assets/calculator/{{ calculation.type }}.webp"
         class="w-16 h-16 p-1 bg-base-100 rounded-full"
@@ -48,7 +48,7 @@
 
   <div class="flex flex-col gap-4 md:flex-row md:items-start print:flex-row print:items-start">
     <!-- input block -->
-    <div class="bg-base-100 rounded-2xl shadow w-full px-5 py-3">
+    <div class="calculator bg-base-100 rounded-2xl shadow w-full px-5 py-3">
       <!-- calculation specific inputs -->
       <ng-content select="[form]" />
 
