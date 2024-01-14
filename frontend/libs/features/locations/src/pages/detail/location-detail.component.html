@@ -1,11 +1,6 @@
 <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && save()">
   <smart-energy-header title="Locatie details" description="Pas een bestaande locatie aan.">
-    <smart-energy-icon-location
-      icon
-      [size]="28"
-      class="w-16 h-16 flex items-center justify-center bg-base-100 text-secondary rounded-full"
-    />
-
+    <smart-energy-icon-location icon [size]="28" />
     <div buttons class="flex gap-4">
       <button type="button" class="btn btn-secondary" (click)="deleteModal.openModal()">
         Verwijderen
@@ -72,11 +67,7 @@
   title="Berekeningen"
   description="Lijst met opgeslagen berekeningen voor locatie."
 >
-  <smart-energy-icon-calculators
-    icon
-    [size]="28"
-    class="w-16 h-16 flex items-center justify-center bg-base-100 text-secondary rounded-full"
-  />
+  <smart-energy-icon-calculators icon [size]="28" />
   <smart-energy-search buttons [(searchText)]="searchQuery" (searchTextChange)="search()" />
 </smart-energy-header>
 
