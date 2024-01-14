@@ -7,6 +7,7 @@ import {
   IUser,
   HeaderComponent,
   SearchComponent,
+  ConfirmModalComponent,
 } from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -22,6 +23,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
     SearchComponent,
     IconUsersComponent,
     IconUserComponent,
+    ConfirmModalComponent,
   ],
   providers: [UserService],
   templateUrl: './user-edit.component.html',

@@ -7,7 +7,9 @@
     />
 
     <div buttons class="flex gap-4">
-      <button type="button" class="btn btn-secondary" (click)="delete()">Verwijderen</button>
+      <button type="button" class="btn btn-secondary" (click)="deleteModal.openModal()">
+        Verwijderen
+      </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
   </smart-energy-header>
@@ -67,8 +69,8 @@
 </form>
 
 <smart-energy-header
-  title="Calculaties"
-  description="Lijst met opgeslagen calculaties voor locatie."
+  title="Berekeningen"
+  description="Lijst met opgeslagen berekeningen voor locatie."
 >
   <smart-energy-icon-calculators
     icon
@@ -107,6 +109,13 @@
 
 <div *ngIf="!filteredCalculations.length" class="card bg-base-100 shadow-xl mb-4">
   <div class="card-body">
-    <h2 class="card-title justify-center">Geen calculaties gevonden</h2>
+    <h2 class="card-title justify-center">Geen berekeningen gevonden</h2>
   </div>
 </div>
+
+<smart-energy-confirm-modal
+  #deleteModal
+  title="Locatie verwijderen"
+  description="Weet je zeker dat je deze locatie wilt verwijderen? De bijhorende berekeningen zullen worden verwijderd."
+  (confirmClicked)="delete()"
+/>

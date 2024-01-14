@@ -13,6 +13,7 @@ import {
   HeaderComponent,
   SearchComponent,
   IconUrlComponent,
+  ConfirmModalComponent,
 } from '@smart-energy/core';
 import { FormsModule } from '@angular/forms';
 
@@ -29,17 +30,18 @@ import { FormsModule } from '@angular/forms';
     IconLocationComponent,
     IconCalculatorsComponent,
     IconUrlComponent,
+    ConfirmModalComponent,
   ],
   providers: [LocationService, CalculationService],
   templateUrl: './location-detail.component.html',
 })
 export class LocationDetailComponent implements OnInit {
   calculationDescriptions = CalculationDescriptions;
-  location!: ILocation;
-  calculations!: ICalculation<unknown>[];
+  location = {} as ILocation;
+  calculations = [] as ICalculation<unknown>[];
 
   searchQuery = '';
-  filteredCalculations!: ICalculation<unknown>[];
+  filteredCalculations = [] as ICalculation<unknown>[];
 
   constructor(
     private route: ActivatedRoute,

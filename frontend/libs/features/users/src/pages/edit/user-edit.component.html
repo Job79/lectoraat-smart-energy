@@ -14,7 +14,12 @@
     />
 
     <div buttons class="flex space-x-4">
-      <button *ngIf="user.id" type="button" class="btn btn-secondary" (click)="delete()">
+      <button
+        *ngIf="user.id"
+        type="button"
+        class="btn btn-secondary"
+        (click)="deleteModal.openModal()"
+      >
         Verwijderen
       </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
@@ -72,3 +77,10 @@
     </div>
   </div>
 </form>
+
+<smart-energy-confirm-modal
+  #deleteModal
+  title="Gebruiker verwijderen"
+  description="Weet je zeker dat je deze gebruiker wilt verwijderen? De data van deze gebruiker zal verloren gaan."
+  (confirmClicked)="delete()"
+/>
