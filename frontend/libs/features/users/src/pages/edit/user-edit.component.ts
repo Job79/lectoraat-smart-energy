@@ -24,14 +24,16 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
-      const chars = '0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*';
-      const password = Array.from(
-        { length: 12 },
-        () => chars[Math.floor(Math.random() * chars.length)],
-      ).join('');
+      const generatePassword = (
+        length = 20,
+        characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$',
+      ) =>
+        Array.from(crypto.getRandomValues(new Uint32Array(length)))
+          .map((x) => characters[x % characters.length])
+          .join('');
 
-      this.user.password = password;
-      this.user.passwordConfirm = password;
+      this.user.password = generatePassword();
+      this.user.passwordConfirm = this.user.password;
       return;
     }
 
