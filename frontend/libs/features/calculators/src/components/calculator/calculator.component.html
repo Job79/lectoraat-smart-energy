@@ -29,7 +29,12 @@
             </li>
           </ul>
         </div>
-        <button *ngIf="calculation.id" type="button" class="btn btn-secondary" (click)="delete()">
+        <button
+          *ngIf="calculation.id"
+          type="button"
+          class="btn btn-secondary"
+          (click)="deleteModal.openModal()"
+        >
           Verwijderen
         </button>
         <button type="submit" class="btn btn-secondary">Opslaan</button>
@@ -120,4 +125,11 @@
 <smart-energy-create-location-modal
   #locationCreateModal
   (locationCreated)="calculation.location = $event.id; selectedLocationName = $event.name"
+/>
+
+<smart-energy-confirm-modal
+  #deleteModal
+  title="Berekening verwijderen"
+  description="Weet je zeker dat je deze berekening wilt verwijderen?"
+  (confirmClicked)="delete()"
 />

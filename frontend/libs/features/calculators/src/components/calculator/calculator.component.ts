@@ -22,6 +22,7 @@ import {
   LocationService,
   HeaderComponent,
   IconReloadComponent,
+  ConfirmModalComponent,
 } from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
@@ -38,6 +39,7 @@ import { SearchLocationModalComponent } from '../search-location-modal/search-lo
     HeaderComponent,
     IconLogoComponent,
     IconReloadComponent,
+    ConfirmModalComponent,
   ],
   providers: [CalculationHistoryService, LocationService],
   templateUrl: './calculator.component.html',
