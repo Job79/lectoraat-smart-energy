@@ -13,7 +13,7 @@ import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'smart-energy-user-edit',
+  selector: 'smart-energy-user-detail',
   standalone: true,
   imports: [
     CommonModule,
@@ -26,9 +26,9 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
     ConfirmModalComponent,
   ],
   providers: [UserService],
-  templateUrl: './user-edit.component.html',
+  templateUrl: './user-detail.component.html',
 })
-export class UserEditComponent implements OnInit {
+export class UserDetailComponent implements OnInit {
   user = {} as IUser;
 
   constructor(
@@ -50,13 +50,7 @@ export class UserEditComponent implements OnInit {
 
   save() {
     this.user.passwordConfirm = this.user.password;
-    if (this.user.id) {
-      this.userService.update(this.user);
-    } else {
-      this.userService
-        .create(this.user)
-        .subscribe((user) => this.router.navigate(['/users', user.id]));
-    }
+    this.userService.update(this.user);
   }
 
   delete() {

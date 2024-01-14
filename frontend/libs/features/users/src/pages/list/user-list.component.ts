@@ -12,6 +12,7 @@ import {
 } from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { CreateUserModalComponent } from '../../components/create-user-modal/create-user-modal.component';
 
 @Component({
   selector: 'smart-energy-user-list',
@@ -26,6 +27,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     IconUsersComponent,
     IconUserComponent,
     IconUrlComponent,
+    CreateUserModalComponent,
   ],
   providers: [UserService],
   templateUrl: './user-list.component.html',

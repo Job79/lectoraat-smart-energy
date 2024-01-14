@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { SearchComponent } from '../utilities/search/search.component';
 import { LocationService } from '../../services/location.service';
 import { ILocation } from '../../models/location.interface';
 import { AuthService } from '../../services/auth.service';
@@ -10,7 +8,7 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'smart-energy-create-location-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, SearchComponent, InfiniteScrollModule],
+  imports: [CommonModule, FormsModule],
   providers: [LocationService],
   templateUrl: './create-location-modal.component.html',
 })
