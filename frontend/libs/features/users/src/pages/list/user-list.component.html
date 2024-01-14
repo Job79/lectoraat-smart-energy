@@ -6,7 +6,7 @@
     [(searchText)]="searchQuery"
     (searchTextChange)="loadUsers(true)"
   >
-    <button class="btn btn-secondary join-item" routerLink="new">Nieuw</button>
+    <button class="btn btn-secondary join-item" (click)="userCreateModal.openModal()">Nieuw</button>
   </smart-energy-search>
 </smart-energy-header>
 
@@ -35,3 +35,5 @@
 </div>
 
 <div infiniteScroll (scrolled)="loadUsers(false)" [infiniteScrollContainer]="appComponentDiv"></div>
+
+<smart-energy-create-user-modal #userCreateModal (userCreated)="loadUsers(true)" />

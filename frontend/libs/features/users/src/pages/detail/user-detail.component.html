@@ -1,14 +1,6 @@
 <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && save()">
-  <smart-energy-header
-    [title]="user.id ? 'Gebruiker details' : 'Nieuwe gebruiker'"
-    [description]="
-      user.id
-        ? 'Pas een bestaande gebruiker aan.'
-        : 'Voeg een nieuwe gebruiker toe aan het systeem.'
-    "
-  >
+  <smart-energy-header title="Gebruiker details" description="Pas een bestaande gebruiker aan.">
     <smart-energy-icon-user icon [size]="28" />
-
     <div buttons class="flex space-x-4">
       <button
         *ngIf="user.id"
