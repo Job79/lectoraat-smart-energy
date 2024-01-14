@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { IsLoggedIn, IsManager, LoginComponent, isActivated } from '@smart-energy/core';
+import { IsLoggedIn, IsManager, LoginComponent } from '@smart-energy/core';
 
 export const appRoutes: Route[] = [
   {
@@ -17,7 +17,7 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@smart-energy/calculators').then((m) => m.calculatorRoutes),
   },
   {
-    canActivate: [IsLoggedIn, isActivated],
+    canActivate: [IsLoggedIn],
     path: 'locations',
     loadChildren: () => import('@smart-energy/locations').then((m) => m.locationRoutes),
   },
@@ -26,7 +26,7 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@smart-energy/settings').then((m) => m.settingRoutes),
   },
   {
-    canActivate: [IsLoggedIn, IsManager, isActivated],
+    canActivate: [IsLoggedIn, IsManager],
     path: 'users',
     loadChildren: () => import('@smart-energy/users').then((m) => m.userRoutes),
   },

@@ -7,6 +7,10 @@ export const IsLoggedIn: CanActivateFn = () => {
   const router = inject(Router);
 
   if (authService.user$.value.isLoggedIn) {
+    if (!authService.user$.value.data?.isActivated) {
+      router.navigate(['/settings/account']);
+      return false;
+    }
     return true;
   }
 
