@@ -3,13 +3,12 @@
     [title]="calculationDescriptions[this.calculation.type].name"
     [description]="calculationDescriptions[this.calculation.type].description"
   >
-    <div icon>
-      <img
-        src="/assets/calculator/{{ calculation.type }}.webp"
-        class="w-16 h-16 p-1 bg-base-100 rounded-full"
-        alt="{{ calculationDescriptions[this.calculation.type].name }}"
-      />
-    </div>
+    <img
+      icon
+      class="w-12 h-12"
+      src="/assets/calculator/{{ calculation.type }}.webp"
+      alt="{{ calculationDescriptions[this.calculation.type].name }}"
+    />
 
     <div buttons>
       <div class="flex justify-end space-x-4 print:hidden">
