@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
+import { IconLogoComponent } from '../../components/icons/icon-logo/icon-logo.component';
 
 @Component({
   selector: 'smart-energy-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, IconLogoComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

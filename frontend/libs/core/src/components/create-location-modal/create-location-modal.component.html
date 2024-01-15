@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <form (ngSubmit)="create()">
+    <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && create()">
       <!-- Name -->
       <label class="form-control">
         <div class="label">
@@ -19,10 +19,12 @@
         <input
           type="text"
           name="name"
-          [(ngModel)]="newLocation.name"
-          required
+          [(ngModel)]="location.name"
+          #name="ngModel"
+          [class]="{ 'border-red-500': name.touched && name.invalid }"
           placeholder="Naam"
           class="input input-bordered w-full"
+          required
         />
       </label>
 
@@ -34,10 +36,12 @@
         <input
           type="text"
           name="postalCode"
-          [(ngModel)]="newLocation.postalCode"
-          required
+          [(ngModel)]="location.postalCode"
+          #postalCode="ngModel"
+          [class]="{ 'border-red-500': postalCode.touched && postalCode.invalid }"
           placeholder="Postcode"
           class="input input-bordered w-full"
+          required
         />
       </label>
 
@@ -49,10 +53,12 @@
         <input
           type="text"
           name="residence"
-          [(ngModel)]="newLocation.residence"
-          required
+          [(ngModel)]="location.residence"
+          #residence="ngModel"
+          [class]="{ 'border-red-500': residence.touched && residence.invalid }"
           placeholder="Woonplaats"
           class="input input-bordered w-full"
+          required
         />
       </label>
 

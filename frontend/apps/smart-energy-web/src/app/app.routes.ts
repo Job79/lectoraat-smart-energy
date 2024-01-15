@@ -27,6 +27,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'settings',
+    canActivate: [IsLoggedIn],
     loadChildren: () => import('@smart-energy/settings').then((m) => m.settingRoutes),
   },
   {

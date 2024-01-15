@@ -1,11 +1,7 @@
-<!-- topbar -->
-<div class="flex flex-col sm:flex-row justify-between items-center mb-5">
-  <div>
-    <h2 class="text-2xl font-bold">Rekentools</h2>
-    <p class="text-sm text-gray-500">Ondersteunende tools voor energiecoaches.</p>
-  </div>
-  <smart-energy-search [(searchText)]="searchQuery" (searchTextChange)="search()" />
-</div>
+<smart-energy-header title="Rekentools" description="Ondersteunende tools voor energiecoaches.">
+  <smart-energy-icon-calculators icon [size]="28" />
+  <smart-energy-search buttons [(searchText)]="searchQuery" (searchTextChange)="search()" />
+</smart-energy-header>
 
 <!-- calculators grid -->
 <div class="grid gap-5 md:grid-cols-2">

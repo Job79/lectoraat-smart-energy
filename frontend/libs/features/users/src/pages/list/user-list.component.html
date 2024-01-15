@@ -1,15 +1,39 @@
-<!-- Topbar -->
-<div class="flex justify-between items-center mb-5 mx-2">
-  <h2 class="text-2xl font-bold">Gebruikers</h2>
-  <button class="btn btn-secondary" routerLink="new">New</button>
-</div>
+<smart-energy-header title="Gebruikers" description="Beheer wie toegang heeft tot het systeem.">
+  <smart-energy-icon-users icon [size]="28" />
+  <smart-energy-search
+    buttons
+    [hasButtons]="true"
+    [(searchText)]="searchQuery"
+    (searchTextChange)="loadUsers(true)"
+  >
+    <button class="btn btn-secondary join-item" (click)="userCreateModal.openModal()">Nieuw</button>
+  </smart-energy-search>
+</smart-energy-header>
 
-<!-- Users -->
-<a *ngFor="let user of users$ | async" [routerLink]="['/users', user.id]">
+<a *ngFor="let user of users" [routerLink]="['/users', user.id]">
   <div class="card bg-base-100 shadow-xl mb-4">
-    <div class="card-body">
-      <h2 class="card-title">{{ user.email }}</h2>
-      {{ user.isManager ? 'manager' : 'coach' }}
+    <div class="card-body flex-row items-center justify-between">
+      <div class="flex items-center">
+        <smart-energy-icon-user [size]="28" class="text-secondary" />
+        <div class="mx-6">
+          <div class="card-title">{{ user.email }}</div>
+          <div class="text-sm text-gray-500">
+            {{ user.isManager ? 'manager' : 'coach' }} |
+            {{ user.created | date: 'dd-MM-yyyy' }}
+          </div>
+        </div>
+      </div>
+      <smart-energy-icon-url />
     </div>
   </div>
 </a>
+
+<div *ngIf="!users.length" class="card bg-base-100 shadow-xl mb-4">
+  <div class="card-body">
+    <h2 class="card-title justify-center">Geen gebruikers gevonden</h2>
+  </div>
+</div>
+
+<div infiniteScroll (scrolled)="loadUsers(false)" [infiniteScrollContainer]="appComponentDiv"></div>
+
+<smart-energy-create-user-modal #userCreateModal (userCreated)="loadUsers(true)" />

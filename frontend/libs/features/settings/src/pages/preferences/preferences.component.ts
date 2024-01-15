@@ -9,12 +9,10 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './preferences.component.html',
 })
 export class PreferencesComponent {
-  theme!: string;
-
   constructor(private renderer: Renderer2) {}
 
-  handleThemeChange() {
-    localStorage.setItem('theme', this.theme);
-    this.renderer.setAttribute(document.documentElement, 'data-theme', this.theme);
+  handleThemeChange(theme: string) {
+    localStorage.setItem('theme', theme);
+    this.renderer.setAttribute(document.documentElement, 'data-theme', theme);
   }
 }

@@ -6,3 +6,11 @@
   size: A4;
   margin: 1rem;
 }
+
+body * {
+  @apply print:!text-black;
+}
+
+.navbar-center .menu li a:active {
+  @apply !bg-base-200 !text-gray-900;
+}

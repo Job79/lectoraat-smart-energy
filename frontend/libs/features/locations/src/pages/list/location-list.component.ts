@@ -1,13 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ILocation, LocationService, SearchComponent } from '@smart-energy/core';
+import {
+  CreateLocationModalComponent,
+  IconLocationComponent,
+  IconLocationsComponent,
+  IconUrlComponent,
+  IconUserComponent,
+  ILocation,
+  LocationService,
+  HeaderComponent,
+  SearchComponent,
+} from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'smart-energy-list',
+  selector: 'smart-energy-location-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, InfiniteScrollModule, SearchComponent],
+  imports: [
+    CommonModule,
+    RouterLink,
+    InfiniteScrollModule,
+    SearchComponent,
+    HeaderComponent,
+    CreateLocationModalComponent,
+    IconLocationsComponent,
+    IconUserComponent,
+    IconUrlComponent,
+    IconLocationComponent,
+  ],
   providers: [LocationService],
   templateUrl: './location-list.component.html',
 })

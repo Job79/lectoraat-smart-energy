@@ -1,8 +1,16 @@
-<smart-energy-calculator
-  title="Enkel-dubbel tarief"
-  description="Vergelijk de kosten voor een enkel- en dubbeltarief aansluiting."
-  [(calculation)]="calculation"
->
+<smart-energy-calculator [(calculation)]="calculation">
+  <div result class="stats stats-vertical w-full min-w-[20rem]">
+    <div class="stat">
+      <div class="stat-title">Prijs enkel tarief</div>
+      <div class="stat-value">€ {{ formula.singleRatePrice }}</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Prijs dubbel tarief</div>
+      <div class="stat-value">€ {{ formula.doubleRatePrice }}</div>
+    </div>
+  </div>
+
   <div form class="flex flex-col justify-between md:gap-3 md:flex-row">
     <div class="w-full">
       <!-- normalElectricityUsage -->
@@ -13,7 +21,7 @@
         <input
           type="number"
           [(ngModel)]="calculation.parameters.normalElectricityUsage"
-          placeholder="Normaal energiegebruik in kWh"
+          placeholder="Energiegebruik normaal in kWh"
           class="input input-bordered"
         />
       </label>
@@ -26,7 +34,7 @@
         <input
           type="number"
           [(ngModel)]="calculation.parameters.offPeakElectricityUsage"
-          placeholder="Dal energiegebruik in kWh"
+          placeholder="Energiegebruik dal in kWh"
           class="input input-bordered"
         />
       </label>
@@ -39,20 +47,20 @@
         <input
           type="number"
           [(ngModel)]="calculation.parameters.normalPricePerKwh"
-          placeholder="Prijs elektriciteit normaal in €/kWh"
+          placeholder="Prijs elektriciteit normaal in euro"
           class="input input-bordered"
         />
       </label>
 
-      <!-- offPeakPricePerKwh -->
+      <!-- singleRatePricePerKwh -->
       <label class="form-control">
         <div class="label">
-          <span class="label-text">Prijs dal</span>
+          <span class="label-text">Prijs enkel tarief</span>
         </div>
         <input
           type="number"
-          [(ngModel)]="calculation.parameters.offPeakPricePerKwh"
-          placeholder="Prijs elektriciteit dal in €/kWh"
+          [(ngModel)]="calculation.parameters.singleRatePricePerKwh"
+          placeholder="Prijs elektriciteit enkel tarief in euro"
           class="input input-bordered"
         />
       </label>
@@ -85,30 +93,18 @@
         />
       </label>
 
-      <!-- singleRatePricePerKwh -->
+      <!-- offPeakPricePerKwh -->
       <label class="form-control">
         <div class="label">
-          <span class="label-text">Prijs enkel tarief</span>
+          <span class="label-text">Prijs dal</span>
         </div>
         <input
           type="number"
-          [(ngModel)]="calculation.parameters.singleRatePricePerKwh"
-          placeholder="Prijs elektriciteit enkel tarief in €/kWh"
+          [(ngModel)]="calculation.parameters.offPeakPricePerKwh"
+          placeholder="Prijs elektriciteit dal in euro"
           class="input input-bordered"
         />
       </label>
-    </div>
-  </div>
-
-  <div result class="stats stats-vertical w-full min-w-[20rem]">
-    <div class="stat">
-      <div class="stat-title">Prijs enkel tarief</div>
-      <div class="stat-value">€ {{ formula.singleRatePrice }}</div>
-    </div>
-
-    <div class="stat">
-      <div class="stat-title">Prijs dubbel tarief</div>
-      <div class="stat-value">€ {{ formula.doubleRatePrice }}</div>
     </div>
   </div>
 </smart-energy-calculator>

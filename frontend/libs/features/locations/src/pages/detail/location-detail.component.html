@@ -1,24 +1,112 @@
-<!-- Topbar -->
-<div class="flex justify-between items-center mb-5 mx-2">
-  <h2 class="text-2xl font-bold">{{ (location$ | async)?.name }}</h2>
-</div>
+<form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && save()">
+  <smart-energy-header title="Locatie details" description="Pas een bestaande locatie aan.">
+    <smart-energy-icon-location icon [size]="28" />
+    <div buttons class="flex gap-4">
+      <button type="button" class="btn btn-secondary" (click)="deleteModal.openModal()">
+        Verwijderen
+      </button>
+      <button type="submit" class="btn btn-secondary">Opslaan</button>
+    </div>
+  </smart-energy-header>
 
-<!-- Calculations -->
+  <div class="bg-base-100 rounded-2xl shadow px-5 py-4 mb-6">
+    <!-- Name -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Naam</span>
+      </div>
+      <input
+        type="text"
+        name="name"
+        [(ngModel)]="location.name"
+        #name="ngModel"
+        [class]="{ 'border-red-500': name.touched && name.invalid }"
+        placeholder="Naam"
+        class="input input-bordered w-full"
+        required
+      />
+    </label>
+
+    <!-- Postal Code -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Postcode</span>
+      </div>
+      <input
+        type="text"
+        name="postalCode"
+        [(ngModel)]="location.postalCode"
+        #postalCode="ngModel"
+        [class]="{ 'border-red-500': postalCode.touched && postalCode.invalid }"
+        placeholder="Postcode"
+        class="input input-bordered w-full"
+        required
+      />
+    </label>
+
+    <!-- Residence -->
+    <label class="form-control">
+      <div class="label">
+        <span class="label-text">Woonplaats</span>
+      </div>
+      <input
+        type="text"
+        name="residence"
+        [(ngModel)]="location.residence"
+        #residence="ngModel"
+        [class]="{ 'border-red-500': residence.touched && residence.invalid }"
+        placeholder="Woonplaats"
+        class="input input-bordered w-full"
+        required
+      />
+    </label>
+  </div>
+</form>
+
+<smart-energy-header
+  title="Berekeningen"
+  description="Lijst met opgeslagen berekeningen voor locatie."
+>
+  <smart-energy-icon-calculators icon [size]="28" />
+  <smart-energy-search buttons [(searchText)]="searchQuery" (searchTextChange)="search()" />
+</smart-energy-header>
+
 <a
-  *ngFor="let calculation of calculations$ | async"
+  *ngFor="let calculation of filteredCalculations"
   [routerLink]="['/calculators/', calculation.type, calculation.id!]"
 >
   <div class="card bg-base-100 shadow-xl mb-4">
-    <div class="card-body">
-      <h2 class="card-title">{{ calculation.name }}</h2>
-      <div class="flex items-center space-x-3">
+    <div class="card-body flex-row items-center justify-between">
+      <div class="flex items-center">
         <img
           src="/assets/calculator/{{ calculation.type }}.webp"
-          class="w-10 h-10 rounded-full"
+          class="w-16 h-16 rounded-full"
           alt="boiler"
         />
-        {{ calculation.type }}
+
+        <div class="mx-6">
+          <div class="card-title">{{ calculation.name }}</div>
+          <div class="text-sm text-gray-500">
+            {{ calculationDescriptions[calculation.type].name }} |
+            {{ calculation.created | date: 'dd-MM-yyyy' }}
+          </div>
+        </div>
       </div>
+
+      <smart-energy-icon-url />
     </div>
   </div>
 </a>
+
+<div *ngIf="!filteredCalculations.length" class="card bg-base-100 shadow-xl mb-4">
+  <div class="card-body">
+    <h2 class="card-title justify-center">Geen berekeningen gevonden</h2>
+  </div>
+</div>
+
+<smart-energy-confirm-modal
+  #deleteModal
+  title="Locatie verwijderen"
+  description="Weet je zeker dat je deze locatie wilt verwijderen? De bijhorende berekeningen zullen worden verwijderd."
+  (confirmClicked)="delete()"
+/>
