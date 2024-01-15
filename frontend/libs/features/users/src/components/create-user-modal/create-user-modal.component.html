@@ -1,0 +1,66 @@
+<dialog id="userModal" class="modal" [class.modal-open]="isModalOpen">
+  <div class="modal-box flex flex-col w-full max-w-[40rem]">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-lg">Nieuwe gebruiker</h3>
+      <button
+        (click)="isModalOpen = false"
+        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+      >
+        ✕
+      </button>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && create()">
+      <!-- Email -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Email</span>
+        </div>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="user.email"
+          #email="ngModel"
+          [class]="{ 'border-red-500': email.touched && email.invalid }"
+          placeholder="Email"
+          class="input input-bordered w-full"
+          required
+          email
+        />
+      </label>
+
+      <!-- Password -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Wachtwoord</span>
+        </div>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="user.password"
+          #password="ngModel"
+          [class]="{ 'border-red-500': password.touched && password.invalid }"
+          placeholder="Password"
+          class="input input-bordered w-full"
+          [required]="!user.id"
+          minlength="8"
+        />
+      </label>
+
+      <!-- IsManager -->
+      <div class="form-control max-w-max my-2">
+        <label class="cursor-pointer label">
+          <input
+            type="checkbox"
+            name="isManager"
+            [(ngModel)]="user.isManager"
+            class="checkbox checkbox-secondary"
+          />
+          <span class="ml-2 label-text">Is Manager?</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-secondary w-full mt-4">Opslaan</button>
+    </form>
+  </div>
+</dialog>

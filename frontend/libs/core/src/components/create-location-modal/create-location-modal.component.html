@@ -1,0 +1,68 @@
+<dialog id="locationModal" class="modal" [class.modal-open]="isModalOpen">
+  <div class="modal-box flex flex-col w-full max-w-[40rem]">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-bold text-lg">Nieuwe locatie</h3>
+      <button
+        (click)="isModalOpen = false"
+        class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+      >
+        ✕
+      </button>
+    </div>
+
+    <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && create()">
+      <!-- Name -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Naam</span>
+        </div>
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="location.name"
+          #name="ngModel"
+          [class]="{ 'border-red-500': name.touched && name.invalid }"
+          placeholder="Naam"
+          class="input input-bordered w-full"
+          required
+        />
+      </label>
+
+      <!-- Postal Code -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Postcode</span>
+        </div>
+        <input
+          type="text"
+          name="postalCode"
+          [(ngModel)]="location.postalCode"
+          #postalCode="ngModel"
+          [class]="{ 'border-red-500': postalCode.touched && postalCode.invalid }"
+          placeholder="Postcode"
+          class="input input-bordered w-full"
+          required
+        />
+      </label>
+
+      <!-- Residence -->
+      <label class="form-control">
+        <div class="label">
+          <span class="label-text">Woonplaats</span>
+        </div>
+        <input
+          type="text"
+          name="residence"
+          [(ngModel)]="location.residence"
+          #residence="ngModel"
+          [class]="{ 'border-red-500': residence.touched && residence.invalid }"
+          placeholder="Woonplaats"
+          class="input input-bordered w-full"
+          required
+        />
+      </label>
+
+      <button type="submit" class="btn btn-secondary w-full mt-4">Opslaan</button>
+    </form>
+  </div>
+</dialog>

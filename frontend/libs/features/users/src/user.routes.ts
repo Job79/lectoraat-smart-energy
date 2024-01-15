@@ -8,15 +8,9 @@ export const userRoutes: Route[] = [
       import('./pages/list/user-list.component').then((m) => m.UserListComponent),
   },
   {
-    path: 'new',
-    pathMatch: 'full',
-    loadComponent: () =>
-      import('./pages/edit/user-edit.component').then((m) => m.UserEditComponent),
-  },
-  {
     path: ':id',
     pathMatch: 'full',
     loadComponent: () =>
-      import('./pages/edit/user-edit.component').then((m) => m.UserEditComponent),
+      import('./pages/detail/user-detail.component').then((m) => m.UserDetailComponent),
   },
 ];

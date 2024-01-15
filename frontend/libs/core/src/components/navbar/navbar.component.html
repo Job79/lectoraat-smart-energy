@@ -1,8 +1,8 @@
-<nav class="fixed navbar bg-white flex z-[100]">
+<nav class="fixed navbar bg-base-100 flex z-[100]">
   <!-- navbar left -->
   <div class="navbar-start">
     <a routerLink="/">
-      <img src="/assets/logo/mnext.svg" class="h-[3.5rem]" alt="mnext logo" />
+      <smart-energy-icon-logo />
     </a>
   </div>
 
@@ -10,13 +10,13 @@
   <div class="navbar-center flex">
     <ul class="menu menu-horizontal px-1 space-x-1">
       <li *ngIf="isLoggedIn && isManager">
-        <a routerLink="/users" routerLinkActive="bg-gray-100">Gebruikers</a>
+        <a routerLink="/users" routerLinkActive="bg-base-200">Gebruikers</a>
       </li>
       <li>
-        <a routerLink="/locations" routerLinkActive="bg-gray-100">Locaties</a>
+        <a routerLink="/locations" routerLinkActive="bg-base-200">Locaties</a>
       </li>
       <li>
-        <a routerLink="/calculators" routerLinkActive="bg-gray-100">Rekentools</a>
+        <a routerLink="/calculators" routerLinkActive="bg-base-200">Rekentools</a>
       </li>
     </ul>
   </div>
@@ -28,22 +28,14 @@
     </div>
 
     <!-- profile button -->
-    <div *ngIf="isLoggedIn" class="dropdown dropdown-end">
+    <div routerLink="/settings/account" *ngIf="isLoggedIn">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
         <div class="avatar placeholder">
-          <div class="bg-secondary text-neutral-content rounded-full w-10">
+          <div class="bg-secondary text-secondary-content rounded-full w-10">
             <span class="text-1xl">{{ initial }}</span>
           </div>
         </div>
       </div>
-      <ul
-        class="menu menu-sm dropdown-content mt-3 z-[101] p-2 shadow bg-base-100 rounded-box w-52"
-      >
-        <li><a>Instellingen</a></li>
-        <li>
-          <button type="button" (click)="logout()">Log uit</button>
-        </li>
-      </ul>
     </div>
   </div>
 </nav>

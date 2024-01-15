@@ -1,19 +1,19 @@
 name: CI
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  build-frontend:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 21
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: frontend/package-lock.json
 
       - name: lint, test and build
@@ -21,6 +21,10 @@ jobs:
         run: |
           npm ci
           npm run ci
+
+      - name: Cypress run
+        working-directory: ./frontend
+        run: npm run test
 
       - name: build artifact
         run: mv frontend/dist/apps/smart-energy-web/browser pocketbase/pb_public
@@ -33,34 +37,34 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build-frontend
+    needs: build
     if: github.ref == 'refs/heads/main'
     steps:
-        - uses: actions/download-artifact@v4
-          with:
-              name: build-artifact
-              path: artifact
+      - uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+          path: artifact
 
-        - name: copy artifact to server
-          uses: appleboy/scp-action@v0.1.4
-          with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USER }}
-            key: ${{ secrets.SSH_KEY }}
-            port: ${{ secrets.SSH_PORT }}
-            source: "artifact"
-            target: "energiecoach1/releases/${{ github.sha }}"
-            strip_components: 1
-            rm: true
+      - name: copy artifact to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          source: "artifact"
+          target: "energiecoach1/releases/${{ github.sha }}"
+          strip_components: 1
+          rm: true
 
-        - name: deploy via ssh password
-          uses: appleboy/ssh-action@master
-          with:
-            host: ${{ secrets.SSH_HOST }}
-            username: ${{ secrets.SSH_USER }}
-            key: ${{ secrets.SSH_KEY }}
-            port: ${{ secrets.SSH_PORT }}
-            script: |
-              find energiecoach1/releases/* -maxdepth 0 -type d -printf "%T@ %p\n" | sort -nr | awk 'NR > 5 {print $2}' | xargs rm -rf
-              ln -sfn ~/energiecoach1/releases/${{ github.sha }} energiecoach1/releases/latest
-              systemctl --user restart pocketbase.service
+      - name: deploy via ssh password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            find energiecoach1/releases/* -maxdepth 0 -type d -printf "%T@ %p\n" | sort -nr | awk 'NR > 5 {print $2}' | xargs rm -rf
+            ln -sfn ~/energiecoach1/releases/${{ github.sha }} energiecoach1/releases/latest
+            systemctl --user restart pocketbase.service

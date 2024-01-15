@@ -16,12 +16,12 @@ export const calculatorRoutes: Route[] = [
         path: '',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
+          import('./pages/calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
       },
       {
         path: ':id',
         loadComponent: () =>
-          import('./calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
+          import('./pages/calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
       },
     ],
   },
@@ -32,14 +32,14 @@ export const calculatorRoutes: Route[] = [
         path: '',
         pathMatch: 'full',
         loadComponent: () =>
-          import('./calculators/single-double-rate/single-double-rate.component').then(
+          import('./pages/calculators/single-double-rate/single-double-rate.component').then(
             (m) => m.SingleDoubleRateComponent,
           ),
       },
       {
         path: ':id',
         loadComponent: () =>
-          import('./calculators/single-double-rate/single-double-rate.component').then(
+          import('./pages/calculators/single-double-rate/single-double-rate.component').then(
             (m) => m.SingleDoubleRateComponent,
           ),
       },

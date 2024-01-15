@@ -4,4 +4,9 @@ export interface IUser {
   isManager: boolean;
   password: string;
   passwordConfirm?: string;
+  oldPassword?: string;
+  emailVisibility: boolean;
+
+  created: number;
+  updated: number;
 }
