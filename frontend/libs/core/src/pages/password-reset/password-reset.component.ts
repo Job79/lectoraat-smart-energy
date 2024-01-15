@@ -27,14 +27,14 @@ export class PasswordResetComponent implements OnInit {
   }
 
   save() {
-    const user = this.authService.user$.value.data!;
-    user.isActivated = true;
-    console.log(user);
+    this.user.isActivated = true;
 
     this.authService.login(this.user.email, this.user.oldPassword!).then(() => {
+      const user = this.authService.user$.value.data!;
+      this.user.id = user.id;
       this.userService
-        .update(user)
-        .subscribe(() => this.authService.user$.next({ data: user, isLoggedIn: true }));
+        .update(this.user)
+        .subscribe(() => this.authService.user$.next({ data: this.user, isLoggedIn: true }));
 
       this.router.navigate(['/']);
     });
