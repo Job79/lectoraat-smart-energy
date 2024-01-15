@@ -12,6 +12,7 @@ import {
 import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ResetCredentialsModalComponent } from '../../components/reset-credentials-modal/reset-credentials-modal.component';
+import { RandomService } from '../../services/random.service';
 
 @Component({
   selector: 'smart-energy-user-detail',
@@ -27,7 +28,7 @@ import { ResetCredentialsModalComponent } from '../../components/reset-credentia
     ConfirmModalComponent,
     ResetCredentialsModalComponent,
   ],
-  providers: [UserService],
+  providers: [UserService, RandomService],
   templateUrl: './user-detail.component.html',
 })
 export class UserDetailComponent implements OnInit {
@@ -37,6 +38,7 @@ export class UserDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
+    private randomService: RandomService,
   ) {}
 
   ngOnInit() {
@@ -62,17 +64,9 @@ export class UserDetailComponent implements OnInit {
   }
 
   generateResetPasswordUrl() {
-    const length = 32;
-    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    const newPassword = Array.from(crypto.getRandomValues(new Uint32Array(length)))
-      .map((x) => characters[x % characters.length])
-      .join('');
-
-    this.userService.update({
-      ...this.user,
-      password: newPassword,
-      passwordConfirm: newPassword,
-      hasSetupAccount: false,
-    });
+    this.user.password = this.user.passwordConfirm =
+      this.randomService.generateSecureRandomString(32);
+    this.user.hasSetupAccount = false;
+    this.userService.update(this.user);
   }
 }
