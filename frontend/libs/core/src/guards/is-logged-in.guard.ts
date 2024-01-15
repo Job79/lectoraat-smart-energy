@@ -11,10 +11,5 @@ export const IsLoggedIn: CanActivateFn = () => {
     return false;
   }
 
-  if (!authService.user$.value.data?.isActivated) {
-    router.navigate(['/settings/account']);
-    return false;
-  }
-
   return true;
 };
