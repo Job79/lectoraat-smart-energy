@@ -23,10 +23,16 @@ export class LoginComponent {
 
   async login() {
     const ok = await this.authService.login(this.email, this.password);
-    if (ok) {
-      this.location.back();
-    } else {
+    if (!ok) {
       this.errorMessage = 'Login gegevens zijn onjuist';
+      return;
     }
+
+    if (!this.authService.user$.value.data?.hasSetupAccount) {
+      this.errorMessage = 'Account is nog niet ingesteld, neem contact op met de beheerder';
+      return;
+    }
+
+    this.location.back();
   }
 }

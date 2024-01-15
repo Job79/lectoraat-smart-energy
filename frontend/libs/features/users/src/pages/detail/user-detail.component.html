@@ -2,13 +2,11 @@
   <smart-energy-header title="Gebruiker details" description="Pas een bestaande gebruiker aan.">
     <smart-energy-icon-user icon [size]="28" />
     <div buttons class="flex space-x-4">
-      <button
-        *ngIf="user.id"
-        type="button"
-        class="btn btn-secondary"
-        (click)="deleteModal.openModal()"
-      >
+      <button type="button" class="btn btn-secondary" (click)="deleteModal.openModal()">
         Verwijderen
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="resetModal.openModal()">
+        Reset login
       </button>
       <button type="submit" class="btn btn-secondary">Opslaan</button>
     </div>
@@ -33,24 +31,6 @@
       />
     </label>
 
-    <!-- Password -->
-    <label class="form-control">
-      <div class="label">
-        <span class="label-text">Wachtwoord</span>
-      </div>
-      <input
-        type="password"
-        name="password"
-        [(ngModel)]="user.password"
-        #password="ngModel"
-        [class]="{ 'border-red-500': password.touched && password.invalid }"
-        placeholder="Password"
-        class="input input-bordered w-full"
-        [required]="!user.id"
-        minlength="8"
-      />
-    </label>
-
     <!-- IsManager -->
     <div class="form-control max-w-max my-2">
       <label class="cursor-pointer label">
@@ -71,4 +51,17 @@
   title="Gebruiker verwijderen"
   description="Weet je zeker dat je deze gebruiker wilt verwijderen? De data van deze gebruiker zal verloren gaan."
   (confirmClicked)="delete()"
+/>
+
+<smart-energy-confirm-modal
+  #resetModal
+  title="Login gegevens resetten"
+  description="Weet je zeker dat je de login gegevens wilt resetten?"
+  (confirmClicked)="generateResetPasswordUrl(); credentialsModal.openModal()"
+/>
+
+<smart-energy-reset-credentials-modal
+  #credentialsModal
+  [email]="user.email"
+  [token]="user.password"
 />

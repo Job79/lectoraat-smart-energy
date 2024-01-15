@@ -28,7 +28,7 @@ export class AccountComponent {
   }
 
   save() {
-    this.userService.update(this.user)
+    this.userService.update(this.user);
   }
 
   async logout() {

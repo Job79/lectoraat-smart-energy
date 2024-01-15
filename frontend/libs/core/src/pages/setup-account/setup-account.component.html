@@ -1,0 +1,70 @@
+<div class="flex items-center justify-center h-full">
+  <div class="bg-base-100 rounded-2xl shadow w-full max-w-[30rem] lg:max-w-full">
+    <div class="flex">
+      <!-- Input form -->
+      <div class="w-full lg:w-7/12">
+        <div class="px-8 py-12 md:px-12 md:py-16">
+          <h4 class="mb-6 text-4xl font-semibold">Account instellen</h4>
+
+          <form (ngSubmit)="save()">
+            <label class="form-control">
+              <div class="label">
+                <span class="font-bold">Wachtwoord</span>
+              </div>
+              <input
+                type="password"
+                name="password"
+                [(ngModel)]="credentials.password"
+                #password="ngModel"
+                [class]="{ 'border-red-500': password.touched && password.invalid }"
+                placeholder="Wachtwoord"
+                class="input input-bordered w-full"
+                required
+                minlength="8"
+              />
+            </label>
+
+            <label class="form-control">
+              <div class="label">
+                <span class="font-bold">Herhaal wachtwoord</span>
+              </div>
+              <input
+                type="password"
+                name="confirmation-password"
+                [(ngModel)]="credentials.passwordConfirm"
+                #passwordConfirm="ngModel"
+                [class]="{
+                  'border-red-500':
+                    passwordConfirm.touched &&
+                    (passwordConfirm.invalid ||
+                      credentials.password !== credentials.passwordConfirm)
+                }"
+                placeholder="Herhaal wachtwoord"
+                class="input input-bordered w-full"
+                required
+                minlength="8"
+              />
+            </label>
+            <div *ngIf="errorMessage" class="text-red-500 mt-1">
+              {{ errorMessage }}
+            </div>
+
+            <button type="submit" class="btn btn-secondary w-full text-white mt-6">
+              Activeer account
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right side picture -->
+      <div
+        class="hidden lg:block lg:w-7/12 lg:rounded-r-lg relative bg-cover"
+        style="background-image: url(/assets/banner.webp)"
+      >
+        <smart-energy-icon-logo
+          class="absolute right-0 bottom-0 bg-base-100 rounded-tl-lg opacity-80"
+        />
+      </div>
+    </div>
+  </div>
+</div>
