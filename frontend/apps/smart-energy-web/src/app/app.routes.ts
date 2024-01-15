@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { IsLoggedIn, IsManager, LoginComponent } from '@smart-energy/core';
+import { IsLoggedIn, IsManager, LoginComponent, PasswordResetComponent } from '@smart-energy/core';
 
 export const appRoutes: Route[] = [
   {
@@ -11,6 +11,10 @@ export const appRoutes: Route[] = [
     path: 'login',
     pathMatch: 'full',
     component: LoginComponent,
+  },
+  {
+    path: 'passwordreset',
+    component: PasswordResetComponent,
   },
   {
     path: 'calculators',
