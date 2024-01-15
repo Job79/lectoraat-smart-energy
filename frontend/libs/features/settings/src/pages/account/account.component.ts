@@ -28,10 +28,7 @@ export class AccountComponent {
   }
 
   save() {
-    this.user.isActivated = true;
-    this.userService
-      .update(this.user)
-      .subscribe(() => this.authService.user$.next({ data: this.user, isLoggedIn: true }));
+    this.userService.update(this.user)
   }
 
   async logout() {

@@ -24,16 +24,6 @@ export class UserEditComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (!id) {
-      const generatePassword = (
-        length = 20,
-        characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz~!@-#$',
-      ) =>
-        Array.from(crypto.getRandomValues(new Uint32Array(length)))
-          .map((x) => characters[x % characters.length])
-          .join('');
-
-      this.user.password = generatePassword();
-      this.user.passwordConfirm = this.user.password;
       return;
     }
 
@@ -46,15 +36,9 @@ export class UserEditComponent implements OnInit {
     if (this.user.id) {
       this.userService.update(this.user);
     } else {
-      const subject = encodeURIComponent('Smart Energy - Account gegevens');
-      const body = encodeURIComponent(
-        `Email: ${this.user.email}\n Token: ${this.user.password}\n https://energiecoach1.sendlab.nl/passwordreset?email=${this.user.email}`,
-      );
-
-      this.userService.create(this.user).subscribe(() => {
-        this.router.navigate(['/users']);
-        window.location.href = `mailto:${this.user.email}?subject=${subject}&body=${body}`;
-      });
+      this.userService
+        .create(this.user)
+        .subscribe((user) => this.router.navigate(['/users', user.id]));
     }
   }
 

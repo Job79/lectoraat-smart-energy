@@ -13,7 +13,7 @@ export const appRoutes: Route[] = [
     component: LoginComponent,
   },
   {
-    path: 'passwordreset',
+    path: 'account-setup',
     component: PasswordResetComponent,
   },
   {
@@ -21,8 +21,8 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@smart-energy/calculators').then((m) => m.calculatorRoutes),
   },
   {
-    canActivate: [IsLoggedIn],
     path: 'locations',
+    canActivate: [IsLoggedIn],
     loadChildren: () => import('@smart-energy/locations').then((m) => m.locationRoutes),
   },
   {
@@ -30,8 +30,8 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@smart-energy/settings').then((m) => m.settingRoutes),
   },
   {
-    canActivate: [IsLoggedIn, IsManager],
     path: 'users',
+    canActivate: [IsLoggedIn, IsManager],
     loadChildren: () => import('@smart-energy/users').then((m) => m.userRoutes),
   },
 ];

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { UserService, IUser, AuthService } from '@smart-energy/core';
+import { UserService } from '../../services/user.service';
+import { IUser } from '../../models/user.interface';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'smart-energy-account',
@@ -23,18 +25,23 @@ export class PasswordResetComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.user.email = this.route.snapshot.queryParamMap.get('email') || '';
+    this.email = this.route.snapshot.queryParamMap.get('email') || '';
   }
 
   save() {
-    this.user.isActivated = true;
+    this.authService.login(this.email, this.user.oldPassword!).then(() => {
+      const user = {
+        id: this.user.id,
+        password: this.user.password,
+        passwordConfirm: this.user.passwordConfirm,
+      } as IUser;
 
-    this.authService.login(this.user.email, this.user.oldPassword!).then(() => {
-      const user = this.authService.user$.value.data!;
-      this.user.id = user.id;
       this.userService
-        .update(this.user)
-        .subscribe(() => this.authService.user$.next({ data: this.user, isLoggedIn: true }));
+        .update(user)
+        .subscribe(() => this.authService.user$.next({
+          data: this.user,
+          isLoggedIn: true
+        }));
 
       this.router.navigate(['/']);
     });
