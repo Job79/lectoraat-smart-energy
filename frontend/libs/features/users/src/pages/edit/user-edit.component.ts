@@ -48,7 +48,7 @@ export class UserEditComponent implements OnInit {
     } else {
       const subject = encodeURIComponent('Smart Energy - Account gegevens');
       const body = encodeURIComponent(
-        `Email: ${this.user.email}\nPassword: ${this.user.password}\n https://energiecoach1.sendlab.nl/passwordreset?email=${this.user.email}`,
+        `Email: ${this.user.email}\n Token: ${this.user.password}\n https://energiecoach1.sendlab.nl/passwordreset?email=${this.user.email}`,
       );
 
       this.userService.create(this.user).subscribe(() => {
