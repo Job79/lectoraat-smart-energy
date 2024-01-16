@@ -1,6 +1,7 @@
 // Components
 export * from './components/navbar/navbar.component';
 export * from './components/navbar-mobile/navbar-mobile.component';
+export * from './components/toast/toast.component';
 export * from './components/create-location-modal/create-location-modal.component';
 
 export * from './components/utilities/search/search.component';
@@ -16,9 +17,6 @@ export * from './components/icons/icon-location/icon-location.component';
 export * from './components/icons/icon-calculators/icon-calculators.component';
 export * from './components/icons/icon-url/icon-url.component';
 export * from './components/icons/icon-reload/icon-reload.component';
-
-// Toast msg
-export * from './components/toast/toast.component';
 
 // Environment
 export * from './env/environment';

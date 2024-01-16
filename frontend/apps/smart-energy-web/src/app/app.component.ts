@@ -3,7 +3,6 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NavbarComponent, NavbarMobileComponent } from '@smart-energy/core';
 import { NgIf } from '@angular/common';
 import { themeChange } from 'theme-change';
-import { ToastService } from '@smart-energy/core'; // Import the ToastService
 import { ToastComponent } from '@smart-energy/core';
 themeChange();
 
@@ -22,7 +21,7 @@ themeChange();
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  constructor(private router: Router, private toastService: ToastService) {} // Inject the ToastService
+  constructor(private router: Router) {}
 
   get isAuthPage() {
     return this.router.url === '/login' || this.router.url.startsWith('/setup-account');

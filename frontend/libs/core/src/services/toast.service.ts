@@ -1,12 +1,12 @@
 import { EventEmitter, Injectable } from '@angular/core';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class ToastService {
-    toastEvent: EventEmitter<{message: string, type: 'info' | 'warning' | 'error'}> = new EventEmitter();
+export type ToastType = 'info' | 'success' | 'warning' | 'error';
 
-    showToast(message: string, type: 'info' | 'warning' | 'error' = 'info') {
-        this.toastEvent.emit({message, type});
-    }
+@Injectable({ providedIn: 'root' })
+export class ToastService {
+  toastEvent: EventEmitter<{ message: string; type: ToastType }> = new EventEmitter();
+
+  show(message: string, type: ToastType) {
+    this.toastEvent.emit({ message, type });
+  }
 }
