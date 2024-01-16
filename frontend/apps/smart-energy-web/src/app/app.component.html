@@ -1,19 +1,19 @@
-<smart-energy-navbar *ngIf="!isAuthPage" class="hidden md:block print:!hidden" />
-<smart-energy-navbar-mobile *ngIf="!isAuthPage" class="block md:hidden print:!hidden" />
-<smart-energy-toast></smart-energy-toast>
+<smart-energy-navbar *ngIf="!showNavigation" class="hidden md:block print:!hidden" />
+<smart-energy-navbar-mobile *ngIf="!showNavigation" class="block md:hidden print:!hidden" />
+<smart-energy-toast />
 
 <div
-  class="app-component bg-base-200 h-screen overflow-y-auto px-2"
-  [class]="isAuthPage ? '' : 'pb-[5rem] pt-[6rem] md:pb-0 print:!p-0'"
+  class="app-component bg-base-200 h-[100dvh] overflow-y-auto px-2"
+  [class]="showNavigation ? '' : 'pb-[5rem] pt-[6rem] md:pb-0 print:!p-0'"
 >
   <div
     class="flex justify-center"
-    [class]="isAuthPage ? 'min-h-full' : 'min-h-full md:min-h-[calc(100vh-6rem)]'"
+    [class]="showNavigation ? 'min-h-full' : 'min-h-full md:min-h-[calc(100dvh-6rem)]'"
   >
     <div class="w-full max-w-[65rem]">
       <router-outlet />
     </div>
   </div>
 
-  <smart-energy-footer *ngIf="!isAuthPage" class="hidden md:block -mx-2 print:!hidden" />
+  <smart-energy-footer *ngIf="!showNavigation" class="hidden md:block -mx-2 print:!hidden" />
 </div>

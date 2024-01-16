@@ -13,17 +13,16 @@ import { IUser, UserService } from '@smart-energy/core';
 export class ResetCredentialsModalComponent implements OnChanges {
   @Input() email = '';
   @Input() token = '';
-  @Output() userCreated = new EventEmitter<IUser>();
-  isModalOpen = false;
+  @Output() closeModal = new EventEmitter<IUser>();
 
+  isModalOpen = false;
   url = '';
 
   ngOnChanges() {
-    this.url =
-      window.location.host +
-      `/setup-account?email=${encodeURIComponent(this.email)}&token=${encodeURIComponent(
-        this.token,
-      )}`;
+    const params = new URLSearchParams();
+    params.append('email', this.email);
+    params.append('token', this.token);
+    this.url = window.location.host + '/setup-account?' + params.toString();
   }
 
   openModal() {
@@ -31,18 +30,23 @@ export class ResetCredentialsModalComponent implements OnChanges {
   }
 
   openEmail() {
-    const title = 'Smart Energy Rekentool Account';
-    const body =
+    const params = new URLSearchParams();
+    params.append('subject', 'Smart Energy Rekentool Account');
+    params.append(
+      'body',
       'Er is een account voor u aangemaakt in ons systeem. Klik op de onderstaande link om uw account te activeren. \n\n' +
-      this.url;
-    window.open(
-      `mailto:${this.email}?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`,
+        this.url,
     );
+    window.open(`mailto:${this.email}?${params.toString()}`);
+
+    this.closeModal.emit();
     this.isModalOpen = false;
   }
 
   async copy() {
     await navigator.clipboard.writeText(this.url);
+
+    this.closeModal.emit();
     this.isModalOpen = false;
   }
 }

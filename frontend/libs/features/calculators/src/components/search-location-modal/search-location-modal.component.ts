@@ -5,6 +5,7 @@ import {
   ILocation,
   LocationService,
   SearchComponent,
+  ToastService,
 } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -23,7 +24,10 @@ export class SearchLocationModalComponent {
   searchQuery = '';
   page = 1;
 
-  constructor(private locationService: LocationService) {}
+  constructor(
+    private locationService: LocationService,
+    private toastService: ToastService,
+  ) {}
 
   openModal() {
     this.loadLocations(true);
@@ -40,6 +44,7 @@ export class SearchLocationModalComponent {
         query: this.searchQuery,
         page: this.page++,
       })
+      .pipe(this.toastService.errorHandler('Locaties kunnen niet worden geladen'))
       .subscribe(
         (locations) => (this.locations = reset ? locations : [...this.locations, ...locations]),
       );
