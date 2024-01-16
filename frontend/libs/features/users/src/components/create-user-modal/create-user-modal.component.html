@@ -29,24 +29,6 @@
         />
       </label>
 
-      <!-- Password -->
-      <label class="form-control">
-        <div class="label">
-          <span class="label-text">Wachtwoord</span>
-        </div>
-        <input
-          type="password"
-          name="password"
-          [(ngModel)]="user.password"
-          #password="ngModel"
-          [class]="{ 'border-red-500': password.touched && password.invalid }"
-          placeholder="Password"
-          class="input input-bordered w-full"
-          [required]="!user.id"
-          minlength="8"
-        />
-      </label>
-
       <!-- IsManager -->
       <div class="form-control max-w-max my-2">
         <label class="cursor-pointer label">
@@ -64,3 +46,9 @@
     </form>
   </div>
 </dialog>
+
+<smart-energy-reset-credentials-modal
+  #credentialsModal
+  [email]="user.email"
+  [token]="user.password"
+/>

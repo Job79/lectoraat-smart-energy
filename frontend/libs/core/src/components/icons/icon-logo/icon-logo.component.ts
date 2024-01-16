@@ -9,5 +9,5 @@ import { CommonModule } from '@angular/common';
 })
 export class IconLogoComponent {
   @Input() color1 = 'fill-primary';
-  @Input() color2 = 'fill-secondary';
+  @Input() color2 = 'fill-icon';
 }

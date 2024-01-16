@@ -25,6 +25,6 @@ export class AppComponent {
   constructor(private router: Router, private toastService: ToastService) {} // Inject the ToastService
 
   get isAuthPage() {
-    return this.router.url === '/login';
+    return this.router.url === '/login' || this.router.url.startsWith('/setup-account');
   }
 }
