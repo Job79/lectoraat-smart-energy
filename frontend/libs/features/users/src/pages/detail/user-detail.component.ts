@@ -57,7 +57,7 @@ export class UserDetailComponent implements OnInit {
   save() {
     this.user.passwordConfirm = this.user.password;
     this.userService.update(this.user);
-    this.toastService.show('Gebruiker opgeslagen', 'info');
+    this.toastService.show('Gebruiker opgeslagen', 'success');
   }
 
   delete() {

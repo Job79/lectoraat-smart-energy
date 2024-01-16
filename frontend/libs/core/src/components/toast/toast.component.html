@@ -1,5 +1,9 @@
-<div *ngIf="message" class="fixed inset-x-4 top-4 flex justify-center z-[101]">
-  <div role="alert" class="alert w-full max-w-[50rem] flex justify-start" [class]="'alert-' + type">
+<div *ngIf="message" class="fixed inset-x-4 top-4 flex justify-center z-[101] pointer-events-none">
+  <div
+    role="alert"
+    class="alert w-full max-w-[50rem] flex justify-start pointer-events-auto"
+    [class]="'alert-' + type"
+  >
     <ng-container [ngSwitch]="type">
       <svg
         *ngSwitchCase="'info'"
