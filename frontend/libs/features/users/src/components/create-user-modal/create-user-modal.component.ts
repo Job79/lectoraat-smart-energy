@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { IUser, UserService } from '@smart-energy/core';
 import { ResetCredentialsModalComponent } from '../reset-credentials-modal/reset-credentials-modal.component';
 import { RandomService } from '../../services/random.service';
@@ -18,6 +18,7 @@ export class CreateUserModalComponent {
   user = {} as IUser;
 
   @ViewChild('credentialsModal') credentialsModal!: ResetCredentialsModalComponent;
+  @ViewChild('form') form!: NgForm;
 
   constructor(
     private userService: UserService,
@@ -26,10 +27,16 @@ export class CreateUserModalComponent {
 
   openModal() {
     this.isModalOpen = true;
+    this.form.resetForm();
     this.user = {} as IUser;
   }
 
   create() {
+    this.form.form.markAllAsTouched();
+    if (!this.form.form.valid) {
+      return;
+    }
+
     this.user.password = this.user.passwordConfirm =
       this.randomService.generateSecureRandomString(32);
     this.userService.create(this.user).subscribe((user) => {
