@@ -30,6 +30,7 @@ export class LoginComponent {
 
     if (!this.authService.user$.value.data?.hasSetupAccount) {
       this.errorMessage = 'Account is nog niet ingesteld, neem contact op met de beheerder';
+      await this.authService.logout();
       return;
     }
 
