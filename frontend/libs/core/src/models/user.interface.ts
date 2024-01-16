@@ -2,6 +2,7 @@ export interface IUser {
   id?: string;
   email: string;
   isManager: boolean;
+  hasSetupAccount: boolean;
   password: string;
   passwordConfirm?: string;
   oldPassword?: string;

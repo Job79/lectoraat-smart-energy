@@ -7,7 +7,7 @@ import { IPocketBase } from '../models/pocketbase.interface';
 export class AuthService {
   user$ = new BehaviorSubject({
     data: this.pb.authStore.model as IUser,
-    isLoggedIn: this.pb.authStore.isValid,
+    isLoggedIn: this.pb.authStore.isValid && (this.pb.authStore.model as IUser).hasSetupAccount,
   });
 
   constructor(@Inject('pocketbase') private pb: IPocketBase) {}
@@ -18,7 +18,7 @@ export class AuthService {
 
       this.user$.next({
         data: response.record,
-        isLoggedIn: true,
+        isLoggedIn: response.record.hasSetupAccount,
       });
       return true;
     } catch (error) {

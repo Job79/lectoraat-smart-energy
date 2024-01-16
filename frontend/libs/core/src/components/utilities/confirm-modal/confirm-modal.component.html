@@ -19,7 +19,9 @@
         Annuleren
       </button>
 
-      <button (click)="confirmClicked.emit()" class="btn btn-secondary">Bevestigen</button>
+      <button (click)="isModalOpen = false; confirmClicked.emit()" class="btn btn-secondary">
+        Bevestigen
+      </button>
     </div>
   </div>
 </dialog>

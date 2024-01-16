@@ -1,13 +1,15 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IUser, UserService } from '@smart-energy/core';
+import { ResetCredentialsModalComponent } from '../reset-credentials-modal/reset-credentials-modal.component';
+import { RandomService } from '../../services/random.service';
 
 @Component({
   selector: 'smart-energy-create-user-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  providers: [UserService],
+  imports: [CommonModule, FormsModule, ResetCredentialsModalComponent],
+  providers: [UserService, RandomService],
   templateUrl: './create-user-modal.component.html',
 })
 export class CreateUserModalComponent {
@@ -15,7 +17,12 @@ export class CreateUserModalComponent {
   isModalOpen = false;
   user = {} as IUser;
 
-  constructor(private userService: UserService) {}
+  @ViewChild('credentialsModal') credentialsModal!: ResetCredentialsModalComponent;
+
+  constructor(
+    private userService: UserService,
+    private randomService: RandomService,
+  ) {}
 
   openModal() {
     this.isModalOpen = true;
@@ -23,10 +30,12 @@ export class CreateUserModalComponent {
   }
 
   create() {
-    this.user.passwordConfirm = this.user.password;
+    this.user.password = this.user.passwordConfirm =
+      this.randomService.generateSecureRandomString(32);
     this.userService.create(this.user).subscribe((user) => {
       this.userCreated.emit(user);
       this.isModalOpen = false;
+      this.credentialsModal.openModal();
     });
   }
 }

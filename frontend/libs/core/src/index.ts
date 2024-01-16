@@ -32,6 +32,7 @@ export * from './models/calculation.interface';
 
 // Pages
 export * from './pages/login/login.component';
+export * from './pages/setup-account/setup-account.component';
 
 // Services
 export * from './services/auth.service';
