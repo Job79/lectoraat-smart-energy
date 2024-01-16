@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CalculatorComponent } from '../../../components/calculator/calculator.component';
 import { BoilerFormula, EnergyLabels, IBoilerParameters } from './boiler.formula';
 import { FormsModule } from '@angular/forms';
-import { CalculationService, ICalculation } from '@smart-energy/core';
+import { CalculationService, ICalculation, ToastService } from '@smart-energy/core';
 
 @Component({
   selector: 'smart-energy-calculator-boiler',
@@ -24,6 +24,7 @@ export class BoilerComponent implements OnInit {
   constructor(
     private calculationService: CalculationService<IBoilerParameters>,
     private route: ActivatedRoute,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -32,11 +33,14 @@ export class BoilerComponent implements OnInit {
       return;
     }
 
-    this.calculationService.get(id).subscribe((calculation) => {
-      if (calculation.type === 'boiler') {
-        this.calculation = calculation;
-      }
-    });
+    this.calculationService
+      .get(id)
+      .pipe(this.toastService.errorHandler('Berekening kan niet worden geladen'))
+      .subscribe((calculation) => {
+        if (calculation.type === 'boiler') {
+          this.calculation = calculation;
+        }
+      });
   }
 
   get formula() {

@@ -11,6 +11,7 @@ import {
   LocationService,
   HeaderComponent,
   SearchComponent,
+  ToastService,
 } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
@@ -38,7 +39,10 @@ export class LocationListComponent implements OnInit {
   searchQuery = '';
   page = 1;
 
-  constructor(private locationService: LocationService) {}
+  constructor(
+    private locationService: LocationService,
+    private toastService: ToastService,
+  ) {}
 
   ngOnInit() {
     this.loadLocations();
@@ -54,6 +58,7 @@ export class LocationListComponent implements OnInit {
         query: this.searchQuery,
         page: this.page++,
       })
+      .pipe(this.toastService.errorHandler('Locaties kunnen niet worden geladen'))
       .subscribe(
         (locations) => (this.locations = reset ? locations : [...this.locations, ...locations]),
       );

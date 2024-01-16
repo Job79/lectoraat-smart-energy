@@ -1,8 +1,9 @@
-<div *ngIf="message" class="fixed inset-x-4 top-4 flex justify-center z-[101] pointer-events-none">
+<div *ngIf="message" class="fixed inset-x-4 top-4 flex justify-center z-[1000] pointer-events-none">
   <div
     role="alert"
-    class="alert w-full max-w-[50rem] flex justify-start pointer-events-auto"
+    class="alert w-full max-w-[50rem] flex justify-start pointer-events-auto cursor-pointer"
     [class]="'alert-' + type"
+    (click)="closeToast()"
   >
     <ng-container [ngSwitch]="type">
       <svg
@@ -68,7 +69,7 @@
 
     <span>{{ message }}</span>
 
-    <button (click)="closeToast()" class="ml-auto">
+    <div class="ml-auto">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -83,7 +84,7 @@
           d="M6 18L18 6M6 6l12 12"
         />
       </svg>
-    </button>
+    </div>
   </div>
 </div>
 

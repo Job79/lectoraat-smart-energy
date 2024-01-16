@@ -3,7 +3,7 @@ export * from './components/navbar/navbar.component';
 export * from './components/navbar-mobile/navbar-mobile.component';
 export * from './components/toast/toast.component';
 export * from './components/footer/footer.component';
-export * from './components/create-location-modal/create-location-modal.component';
+export * from './components/utilities/create-location-modal/create-location-modal.component';
 
 export * from './components/utilities/search/search.component';
 export * from './components/utilities/tooltip/tooltip.component';

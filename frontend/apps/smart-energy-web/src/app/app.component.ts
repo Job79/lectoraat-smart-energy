@@ -23,7 +23,7 @@ themeChange();
 export class AppComponent {
   constructor(private router: Router) {}
 
-  get isAuthPage() {
+  get showNavigation() {
     return this.router.url === '/login' || this.router.url.startsWith('/setup-account');
   }
 }

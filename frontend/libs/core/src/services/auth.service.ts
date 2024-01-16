@@ -5,7 +5,7 @@ import { IPocketBase } from '../models/pocketbase.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user$ = new BehaviorSubject({
+  public user$ = new BehaviorSubject({
     data: this.pb.authStore.model as IUser,
     isLoggedIn: this.pb.authStore.isValid && (this.pb.authStore.model as IUser).hasSetupAccount,
   });

@@ -9,6 +9,7 @@ import {
   IUser,
   HeaderComponent,
   SearchComponent,
+  ToastService,
 } from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
@@ -38,7 +39,10 @@ export class UserListComponent implements OnInit {
   searchQuery = '';
   page = 1;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private toastService: ToastService,
+  ) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -54,6 +58,7 @@ export class UserListComponent implements OnInit {
         query: this.searchQuery,
         page: this.page++,
       })
+      .pipe(this.toastService.errorHandler('Gebruikers kunnen niet worden geladen'))
       .subscribe((users) => (this.users = reset ? users : [...this.users, ...users]));
   }
 }

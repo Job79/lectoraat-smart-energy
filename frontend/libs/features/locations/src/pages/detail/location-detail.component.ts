@@ -14,6 +14,7 @@ import {
   SearchComponent,
   IconUrlComponent,
   ConfirmModalComponent,
+  ToastService,
 } from '@smart-energy/core';
 import { FormsModule } from '@angular/forms';
 
@@ -48,14 +49,19 @@ export class LocationDetailComponent implements OnInit {
     private router: Router,
     private locationService: LocationService,
     private calculationService: CalculationService<unknown>,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
     const locationId = this.route.snapshot.paramMap.get('id') ?? '';
-    this.locationService.get(locationId).subscribe((location) => (this.location = location));
+    this.locationService
+      .get(locationId)
+      .pipe(this.toastService.errorHandler('Locatie kan niet worden geladen'))
+      .subscribe((location) => (this.location = location));
 
     this.calculationService
       .list(locationId)
+      .pipe(this.toastService.errorHandler('Berekeningen kunnen niet worden geladen'))
       .subscribe((calculations) => (this.calculations = this.filteredCalculations = calculations));
   }
 
@@ -66,12 +72,19 @@ export class LocationDetailComponent implements OnInit {
   }
 
   save() {
-    this.locationService.update(this.location);
+    this.locationService
+      .update(this.location)
+      .pipe(this.toastService.errorHandler('Locatie opslaan mislukt'))
+      .subscribe(() => this.toastService.show('Locatie is opgeslagen', 'success'));
   }
 
   delete() {
     this.locationService
       .delete(this.location)
-      .subscribe(() => this.router.navigate(['/locations']));
+      .pipe(this.toastService.errorHandler('Locatie verwijderen mislukt'))
+      .subscribe(() => {
+        this.toastService.show('Locatie is verwijderd', 'success');
+        this.router.navigate(['/locations']);
+      });
   }
 }

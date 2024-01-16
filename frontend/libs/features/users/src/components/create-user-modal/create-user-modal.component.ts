@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { IUser, UserService } from '@smart-energy/core';
+import { IUser, ToastService, UserService } from '@smart-energy/core';
 import { ResetCredentialsModalComponent } from '../reset-credentials-modal/reset-credentials-modal.component';
 import { RandomService } from '../../services/random.service';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'smart-energy-create-user-modal',
@@ -23,6 +24,7 @@ export class CreateUserModalComponent {
   constructor(
     private userService: UserService,
     private randomService: RandomService,
+    private toastService: ToastService,
   ) {}
 
   openModal() {
@@ -39,10 +41,31 @@ export class CreateUserModalComponent {
 
     this.user.password = this.user.passwordConfirm =
       this.randomService.generateSecureRandomString(32);
-    this.userService.create(this.user).subscribe((user) => {
-      this.userCreated.emit(user);
-      this.isModalOpen = false;
-      this.credentialsModal.openModal();
-    });
+
+    this.userService
+      .create(this.user)
+      .pipe(
+        catchError((error) => {
+          if ('email' in error.data.data) {
+            this.toastService.show(
+              'Gebruiker aanmaken mislukt: email ongeldig of al in gebruik',
+              'error',
+            );
+          } else {
+            this.toastService.show('Gebruiker aanmaken mislukt', 'error');
+          }
+
+          throw error;
+        }),
+      )
+      .subscribe((user) => {
+        this.userCreated.emit(user);
+        this.isModalOpen = false;
+        this.credentialsModal.openModal();
+      });
+  }
+
+  createFinished() {
+    this.toastService.show('Gebruiker aangemaakt', 'success');
   }
 }
