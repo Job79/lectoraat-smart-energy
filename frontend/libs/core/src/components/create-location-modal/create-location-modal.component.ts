@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { LocationService } from '../../services/location.service';
 import { ILocation } from '../../models/location.interface';
 import { AuthService } from '../../services/auth.service';
@@ -17,6 +17,8 @@ export class CreateLocationModalComponent {
   isModalOpen = false;
   location = {} as ILocation;
 
+  @ViewChild('form') form!: NgForm;
+
   constructor(
     private locationService: LocationService,
     private authService: AuthService,
@@ -24,10 +26,16 @@ export class CreateLocationModalComponent {
 
   openModal() {
     this.isModalOpen = true;
+    this.form.resetForm();
     this.location = { owner: this.authService.user$.value.data.id } as ILocation;
   }
 
   create() {
+    this.form.form.markAllAsTouched();
+    if (!this.form.form.valid) {
+      return;
+    }
+
     this.locationService.create(this.location).subscribe((location) => {
       this.locationCreated.emit(location);
       this.isModalOpen = false;
