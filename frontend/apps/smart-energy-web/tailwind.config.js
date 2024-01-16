@@ -18,10 +18,19 @@ module.exports = {
           neutral: '#293d66',
           'base-100': '#ffffff',
           'base-200': '#f5f8fa',
+          '.fill-icon': {
+            fill: '#293d66',
+          },
         },
       },
-      'dim',
-      'cyberpunk',
+      {
+        dim: {
+          ...require('daisyui/src/theming/themes')['dim'],
+          '.fill-icon': {
+            fill: '#ffffff',
+          },
+        },
+      },
     ],
     darkTheme: 'light',
     base: true,
