@@ -2,6 +2,7 @@
 export * from './components/navbar/navbar.component';
 export * from './components/navbar-mobile/navbar-mobile.component';
 export * from './components/toast/toast.component';
+export * from './components/footer/footer.component';
 export * from './components/create-location-modal/create-location-modal.component';
 
 export * from './components/utilities/search/search.component';
@@ -17,6 +18,11 @@ export * from './components/icons/icon-location/icon-location.component';
 export * from './components/icons/icon-calculators/icon-calculators.component';
 export * from './components/icons/icon-url/icon-url.component';
 export * from './components/icons/icon-reload/icon-reload.component';
+
+export * from './components/icons/icon-linkedin/icon-linkedin.component';
+export * from './components/icons/icon-twitter/icon-twitter.component';
+export * from './components/icons/icon-instagram/icon-instagram.component';
+export * from './components/icons/icon-youtube/icon-youtube.component';
 
 // Environment
 export * from './env/environment';

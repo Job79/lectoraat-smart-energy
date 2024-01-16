@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
-import { NavbarComponent, NavbarMobileComponent } from '@smart-energy/core';
+import { NavbarComponent, NavbarMobileComponent, FooterComponent } from '@smart-energy/core';
 import { NgIf } from '@angular/common';
 import { themeChange } from 'theme-change';
 import { ToastComponent } from '@smart-energy/core';
@@ -12,7 +12,7 @@ themeChange();
     RouterModule,
     NavbarComponent,
     NavbarMobileComponent,
-    NavbarComponent,
+    FooterComponent,
     NgIf,
     RouterOutlet,
     ToastComponent,
