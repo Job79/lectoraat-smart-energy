@@ -8,6 +8,7 @@ import {
   HeaderComponent,
   SearchComponent,
   ConfirmModalComponent,
+  ToastService,
 } from '@smart-energy/core';
 import { UserService } from '@smart-energy/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -39,6 +40,7 @@ export class UserDetailComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private randomService: RandomService,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -55,11 +57,13 @@ export class UserDetailComponent implements OnInit {
   save() {
     this.user.passwordConfirm = this.user.password;
     this.userService.update(this.user);
+    this.toastService.show('Gebruiker opgeslagen', 'success');
   }
 
   delete() {
     if (this.user.id) {
       this.userService.delete(this.user).subscribe(() => this.router.navigate(['/users']));
+      this.toastService.show('Gebruiker verwijderd', 'success');
     }
   }
 

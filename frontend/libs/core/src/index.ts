@@ -1,6 +1,7 @@
 // Components
 export * from './components/navbar/navbar.component';
 export * from './components/navbar-mobile/navbar-mobile.component';
+export * from './components/toast/toast.component';
 export * from './components/footer/footer.component';
 export * from './components/create-location-modal/create-location-modal.component';
 
@@ -45,3 +46,4 @@ export * from './services/auth.service';
 export * from './services/location.service';
 export * from './services/calculation.service';
 export * from './services/user.service';
+export * from './services/toast.service';
