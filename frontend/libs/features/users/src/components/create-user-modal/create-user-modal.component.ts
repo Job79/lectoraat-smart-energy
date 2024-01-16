@@ -46,7 +46,7 @@ export class CreateUserModalComponent {
       .create(this.user)
       .pipe(
         catchError((error) => {
-          if ('email' in error.data.data) {
+          if (error.data?.data?.email) {
             this.toastService.show(
               'Gebruiker aanmaken mislukt: email ongeldig of al in gebruik',
               'error',
