@@ -18,6 +18,10 @@ export * from './components/icons/icon-location/icon-location.component';
 export * from './components/icons/icon-calculators/icon-calculators.component';
 export * from './components/icons/icon-url/icon-url.component';
 export * from './components/icons/icon-reload/icon-reload.component';
+export * from './components/icons/icon-info/icon-info.component';
+export * from './components/icons/icon-brush/icon-brush.component';
+export * from './components/icons/icon-shield/icon-shield.component';
+export * from './components/icons/icon-arrow/icon-arrow.component';
 
 export * from './components/icons/icon-linkedin/icon-linkedin.component';
 export * from './components/icons/icon-twitter/icon-twitter.component';
