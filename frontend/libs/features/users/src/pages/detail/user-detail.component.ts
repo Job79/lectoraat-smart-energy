@@ -66,7 +66,7 @@ export class UserDetailComponent implements OnInit {
       .update(this.user)
       .pipe(
         catchError((error) => {
-          if ('email' in error.data.data) {
+          if (error.data?.data?.email) {
             this.toastService.show(
               'Gebruiker opslaan mislukt: email ongeldig of al in gebruik',
               'error',
