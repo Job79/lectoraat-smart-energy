@@ -34,13 +34,4 @@ export class AuthService {
       isLoggedIn: false,
     });
   }
-
-  public async delete() {
-    try {
-      await this.pb.collection('users').delete(this.user$.value.data!.id!);
-      await this.logout();
-    } catch (error) {
-      console.error(error);
-    }
-  }
 }

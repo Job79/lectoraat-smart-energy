@@ -1,16 +1,18 @@
 import { Route } from '@angular/router';
-import { SettingsNavbarMobileComponent } from './components/settings-navbar-mobile/settings-navbar-mobile.component';
+import { SettingsNavbarComponent } from './pages/settings-navbar/settings-navbar.component';
 
 export const settingRoutes: Route[] = [
   {
     path: '',
     pathMatch: 'full',
-    component: SettingsNavbarMobileComponent,
+    component: SettingsNavbarComponent,
   },
   {
     path: '',
     loadComponent: () =>
-      import('./pages/settings/settings.component').then((m) => m.SettingsComponent),
+      import('./pages/settings-outlet/settings-outlet.component').then(
+        (m) => m.SettingsOutletComponent,
+      ),
     children: [
       {
         path: 'account',
@@ -19,10 +21,9 @@ export const settingRoutes: Route[] = [
           import('./pages/account/account.component').then((m) => m.AccountComponent),
       },
       {
-        path: 'preferences',
+        path: 'theme',
         pathMatch: 'full',
-        loadComponent: () =>
-          import('./pages/preferences/preferences.component').then((m) => m.PreferencesComponent),
+        loadComponent: () => import('./pages/theme/theme.component').then((m) => m.ThemeComponent),
       },
       {
         path: 'security',
@@ -31,10 +32,9 @@ export const settingRoutes: Route[] = [
           import('./pages/security/security.component').then((m) => m.SecurityComponent),
       },
       {
-        path: 'advanced',
+        path: 'info',
         pathMatch: 'full',
-        loadComponent: () =>
-          import('./pages/advanced/advanced.component').then((m) => m.AdvancedComponent),
+        loadComponent: () => import('./pages/info/info.component').then((m) => m.InfoComponent),
       },
     ],
   },

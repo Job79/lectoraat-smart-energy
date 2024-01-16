@@ -1,14 +1,14 @@
 import { Component, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { HeaderComponent, IconBrushComponent } from '@smart-energy/core';
 
 @Component({
-  selector: 'smart-energy-preferences',
+  selector: 'smart-energy-theme',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './preferences.component.html',
+  imports: [CommonModule, HeaderComponent, IconBrushComponent],
+  templateUrl: './theme.component.html',
 })
-export class PreferencesComponent {
+export class ThemeComponent {
   constructor(private renderer: Renderer2) {}
 
   handleThemeChange(theme: string) {

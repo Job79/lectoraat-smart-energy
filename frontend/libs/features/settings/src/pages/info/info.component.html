@@ -1,0 +1,43 @@
+<smart-energy-header title="Informatie" description="Informatie over de applicatie.">
+  <smart-energy-icon-info icon [size]="28" />
+  <div buttons>
+    <button (click)="deleteModal.openModal()" class="btn btn-active">Verwijder account</button>
+  </div>
+</smart-energy-header>
+
+<div class="bg-base-100 rounded-2xl shadow flex flex-col">
+  <div class="flex justify-between w-full px-5 py-4">
+    <div>Applicatie versie</div>
+    <div>{{ version }}</div>
+  </div>
+</div>
+
+<div class="bg-base-100 rounded-2xl shadow flex flex-col mt-4">
+  <a
+    href="https://github.com/Job79/lectoraat-smart-energy"
+    class="flex justify-between items-center w-full border-b border-base-200 px-5 py-4"
+  >
+    <div>Applicatie code</div>
+    <smart-energy-icon-url />
+  </a>
+
+  <a
+    href="https://github.com/Job79/lectoraat-smart-energy/issues"
+    class="flex justify-between items-center w-full border-b border-base-200 px-5 py-4"
+  >
+    <div>Een probleem melden</div>
+    <smart-energy-icon-url />
+  </a>
+
+  <a href="mailto:l.weeda@avans.nl" class="flex justify-between items-center w-full px-5 py-4">
+    <div>Neem contact op met de administrator</div>
+    <smart-energy-icon-url />
+  </a>
+</div>
+
+<smart-energy-confirm-modal
+  #deleteModal
+  title="Gebruiker verwijderen"
+  description="Weet je zeker dat je dit account wilt verwijderen? Deze actie kan niet ongedaan gemaakt worden."
+  (confirmClicked)="delete()"
+/>
