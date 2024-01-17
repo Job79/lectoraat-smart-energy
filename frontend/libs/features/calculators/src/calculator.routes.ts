@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 
+const appName = 'Rekentool | ';
 export const calculatorRoutes: Route[] = [
   {
     path: '',
@@ -24,6 +25,7 @@ export const calculatorRoutes: Route[] = [
           import('./pages/calculators/boiler/boiler.component').then((m) => m.BoilerComponent),
       },
     ],
+    title: `${appName}Boiler`,
   },
   {
     path: 'single-double-rate',
@@ -44,5 +46,6 @@ export const calculatorRoutes: Route[] = [
           ),
       },
     ],
+    title: `${appName}Enkel - of dubbeltarief`,
   },
 ];
