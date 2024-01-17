@@ -15,12 +15,12 @@
       <input type="text" [value]="user.email" class="input input-bordered w-full" disabled />
     </label>
 
-    <label class="form-control">
+    <label class="form-control relative">
       <div class="label">
         <span class="label-text">Huidig wacthwoord</span>
       </div>
       <input
-        type="password"
+        [type]="isPasswordOldVisible ? 'text' : 'password'"
         name="old-password"
         [(ngModel)]="user.oldPassword"
         #oldPassword="ngModel"
@@ -29,14 +29,18 @@
         class="input input-bordered w-full"
         required
       />
+      <smart-energy-password-toggle
+        [(isPasswordVisible)]="isPasswordOldVisible"
+        class="absolute right-4 bottom-2.5"
+      ></smart-energy-password-toggle>
     </label>
 
-    <label class="form-control">
+    <label class="form-control relative">
       <div class="label">
         <span class="label-text">Wachtwoord</span>
       </div>
       <input
-        type="password"
+        [type]="isPasswordVisible ? 'text' : 'password'"
         name="password"
         [(ngModel)]="user.password"
         #password="ngModel"
@@ -46,14 +50,18 @@
         required
         minlength="8"
       />
+      <smart-energy-password-toggle
+        [(isPasswordVisible)]="isPasswordVisible"
+        class="absolute right-4 bottom-2.5"
+      ></smart-energy-password-toggle>
     </label>
 
-    <label class="form-control">
+    <label class="form-control relative">
       <div class="label">
         <span class="label-text">Herhaal wachtwoord</span>
       </div>
       <input
-        type="password"
+        [type]="isPasswordConfirmVisible ? 'text' : 'password'"
         name="confirmation-password"
         [(ngModel)]="user.passwordConfirm"
         #passwordConfirm="ngModel"
@@ -67,6 +75,10 @@
         required
         minlength="8"
       />
+      <smart-energy-password-toggle
+        [(isPasswordVisible)]="isPasswordConfirmVisible"
+        class="absolute right-4 bottom-2.5"
+      ></smart-energy-password-toggle>
     </label>
   </div>
 </form>
