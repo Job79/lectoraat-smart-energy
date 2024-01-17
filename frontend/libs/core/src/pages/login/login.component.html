@@ -27,13 +27,21 @@
                 <span class="font-bold">Wachtwoord</span>
               </div>
               <input
-                type="password"
+                [type]="isPasswordVisible ? 'password' : 'text'"
                 name="password"
                 [(ngModel)]="password"
                 placeholder="Voer uw wachtwoord in"
                 class="input input-bordered"
               />
             </label>
+
+            <smart-energy-password-toggle
+              [(isPasswordVisible)]="isPasswordVisible"
+            ></smart-energy-password-toggle>
+
+            <!-- Your other HTML content -->
+            <p>Password visibility status: {{ isPasswordVisible ? 'true' : 'false' }}</p>
+
             <div *ngIf="!showResetPassword">
               Nog geen account?
               <a class="link" href="mailto:l.weeda@avans.nl?Subject=Rekentool - account aanvraag">
