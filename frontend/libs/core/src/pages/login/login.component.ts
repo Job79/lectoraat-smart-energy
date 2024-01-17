@@ -32,7 +32,10 @@ export class LoginComponent {
     }
 
     if (!this.authService.user$.value.data?.hasSetupAccount) {
-      this.toastService.show('Account is nog niet ingesteld, neem contact op met de beheerder', 'error');
+      this.toastService.show(
+        'Account is nog niet ingesteld, neem contact op met de beheerder',
+        'error',
+      );
       await this.authService.logout();
       return;
     }
