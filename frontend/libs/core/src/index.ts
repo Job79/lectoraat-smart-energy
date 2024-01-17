@@ -9,6 +9,7 @@ export * from './components/utilities/search/search.component';
 export * from './components/utilities/tooltip/tooltip.component';
 export * from './components/utilities/header/header.component';
 export * from './components/utilities/confirm-modal/confirm-modal.component';
+export * from './components/utilities/password-toggle/password-toggle.component';
 
 export * from './components/icons/icon-logo/icon-logo.component';
 export * from './components/icons/icon-users/icon-users.component';

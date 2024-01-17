@@ -5,17 +5,19 @@ import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
 import { IconLogoComponent } from '../../components/icons/icon-logo/icon-logo.component';
 import { ToastService } from '../../services/toast.service';
+import { PasswordToggleComponent } from '../../components/utilities/password-toggle/password-toggle.component';
 
 @Component({
   selector: 'smart-energy-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, IconLogoComponent],
+  imports: [CommonModule, FormsModule, IconLogoComponent, PasswordToggleComponent],
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
   email = '';
   password = '';
   showResetPassword = false;
+  isPasswordVisible = false;
 
   constructor(
     private authService: AuthService,
