@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && create()">
+    <form #form="ngForm" (ngSubmit)="create()">
       <!-- Email -->
       <label class="form-control">
         <div class="label">
@@ -38,7 +38,7 @@
             [(ngModel)]="user.isManager"
             class="checkbox checkbox-secondary"
           />
-          <span class="ml-2 label-text">Is Manager?</span>
+          <span class="ml-2 label-text">Is Manager</span>
         </label>
       </div>
 
@@ -51,4 +51,5 @@
   #credentialsModal
   [email]="user.email"
   [token]="user.password"
+  (closeModal)="createFinished()"
 />

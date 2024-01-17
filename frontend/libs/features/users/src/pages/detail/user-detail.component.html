@@ -40,7 +40,7 @@
           [(ngModel)]="user.isManager"
           class="checkbox checkbox-secondary"
         />
-        <span class="ml-2 label-text">Is Manager?</span>
+        <span class="ml-2 label-text">Is Manager</span>
       </label>
     </div>
   </div>
@@ -57,11 +57,12 @@
   #resetModal
   title="Login gegevens resetten"
   description="Weet je zeker dat je de login gegevens wilt resetten?"
-  (confirmClicked)="generateResetPasswordUrl(); credentialsModal.openModal()"
+  (confirmClicked)="resetPassword()"
 />
 
 <smart-energy-reset-credentials-modal
   #credentialsModal
   [email]="user.email"
   [token]="user.password"
+  (closeModal)="resetPasswordFinished()"
 />

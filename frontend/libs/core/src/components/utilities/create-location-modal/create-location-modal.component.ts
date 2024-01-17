@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { LocationService } from '../../services/location.service';
-import { ILocation } from '../../models/location.interface';
-import { AuthService } from '../../services/auth.service';
+import { FormsModule, NgForm } from '@angular/forms';
+import { LocationService } from '../../../services/location.service';
+import { ILocation } from '../../../models/location.interface';
+import { AuthService } from '../../../services/auth.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'smart-energy-create-location-modal',
@@ -17,18 +18,28 @@ export class CreateLocationModalComponent {
   isModalOpen = false;
   location = {} as ILocation;
 
+  @ViewChild('form') form!: NgForm;
+
   constructor(
     private locationService: LocationService,
     private authService: AuthService,
+    private toastService: ToastService,
   ) {}
 
   openModal() {
     this.isModalOpen = true;
+    this.form.resetForm();
     this.location = { owner: this.authService.user$.value.data.id } as ILocation;
   }
 
   create() {
+    this.form.form.markAllAsTouched();
+    if (!this.form.form.valid) {
+      return;
+    }
+
     this.locationService.create(this.location).subscribe((location) => {
+      this.toastService.show('Nieuwe locatie aangemaakt', 'success');
       this.locationCreated.emit(location);
       this.isModalOpen = false;
     });

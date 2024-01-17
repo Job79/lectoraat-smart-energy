@@ -23,6 +23,7 @@ import {
   HeaderComponent,
   IconReloadComponent,
   ConfirmModalComponent,
+  ToastService,
 } from '@smart-energy/core';
 import { CalculationHistoryService } from '../../services/calculation-history.service';
 import { SearchLocationModalComponent } from '../search-location-modal/search-location-modal.component';
@@ -60,6 +61,7 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
     private calculationHistory: CalculationHistoryService,
     private calculationService: CalculationService<unknown>,
     private authService: AuthService,
+    private toastService: ToastService,
   ) {}
 
   ngOnInit() {
@@ -73,9 +75,12 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnChanges() {
     if (this.isAuthenticated && this.calculation.location) {
-      this.locationService.get(this.calculation.location).subscribe((location) => {
-        this.selectedLocationName = location.name;
-      });
+      this.locationService
+        .get(this.calculation.location)
+        .pipe(this.toastService.errorHandler('Locatie kan niet worden geladen'))
+        .subscribe((location) => {
+          this.selectedLocationName = location.name;
+        });
     }
   }
 
@@ -97,13 +102,17 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
       return;
     }
 
-    this.calculationService.save(this.calculation).subscribe((calculation) => {
-      this.calculation = calculation; // prevent ngOnDestroy from saving to history
-      this.calculationHistory.clear(calculation.type);
-      this.router.navigate(['/calculators', calculation.type, calculation.id], {
-        replaceUrl: true,
+    this.calculationService
+      .save(this.calculation)
+      .pipe(this.toastService.errorHandler('Berekening opslaan mislukt'))
+      .subscribe((calculation) => {
+        this.toastService.show('Berekening is opgeslagen', 'success');
+        this.calculation = calculation; // prevent ngOnDestroy from saving to history
+        this.calculationHistory.clear(calculation.type);
+        this.router.navigate(['/calculators', calculation.type, calculation.id], {
+          replaceUrl: true,
+        });
       });
-    });
   }
 
   clear() {
@@ -116,9 +125,13 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   delete() {
-    this.calculationService.delete(this.calculation.id!).subscribe(() => {
-      this.router.navigate(['/calculators', this.calculation.type], { replaceUrl: true });
-    });
+    this.calculationService
+      .delete(this.calculation.id!)
+      .pipe(this.toastService.errorHandler('Berekening verwijderen mislukt'))
+      .subscribe(() => {
+        this.toastService.show('Berekening is verwijderd', 'success');
+        this.router.navigate(['/calculators', this.calculation.type], { replaceUrl: true });
+      });
   }
 
   pdf(hidePdfComment: boolean) {

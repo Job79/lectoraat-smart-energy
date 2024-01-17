@@ -10,7 +10,7 @@
       </button>
     </div>
 
-    <form #form="ngForm" (ngSubmit)="form.form.markAllAsTouched(); form.form.valid && create()">
+    <form #form="ngForm" (ngSubmit)="create()">
       <!-- Name -->
       <label class="form-control">
         <div class="label">

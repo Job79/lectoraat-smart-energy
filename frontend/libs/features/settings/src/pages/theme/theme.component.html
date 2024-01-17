@@ -1,0 +1,28 @@
+<smart-energy-header title="Thema" description="Pas het thema van de applicatie aan.">
+  <smart-energy-icon-brush icon [size]="28" />
+</smart-energy-header>
+
+<div class="bg-base-100 rounded-2xl shadow px-5 py-4">
+  <p class="font-bold mb-4">Thema's</p>
+  <div class="flex gap-4">
+    <button
+      (click)="handleThemeChange('smart-energy')"
+      data-theme="smart-energy"
+      class="btn bg-base-200 border-2 hover:bg-base-200"
+    >
+      <span>licht</span>
+      <span class="bg-secondary rounded-badge w-2 h-6"></span>
+      <span class="bg-base-100 rounded-badge w-2 h-6"></span>
+    </button>
+
+    <button
+      (click)="handleThemeChange('dim')"
+      data-theme="dim"
+      class="btn bg-base-200 hover:bg-base-200"
+    >
+      <span>donker</span>
+      <span class="bg-secondary rounded-badge w-2 h-6"></span>
+      <span class="bg-base-100 rounded-badge w-2 h-6"></span>
+    </button>
+  </div>
+</div>

@@ -1,13 +1,15 @@
 <div class="flex items-center justify-center h-full">
   <div class="bg-base-100 rounded-2xl shadow w-full max-w-[30rem] lg:max-w-full">
     <div class="flex">
-      <!-- Input form -->
+      <!-- input form -->
       <div class="w-full lg:w-7/12">
         <div class="px-8 py-12 md:px-12 md:py-16">
-          <h4 class="mb-6 text-4xl font-semibold">Welkom terug</h4>
+          <div class="mb-6">
+            <h4 class="mb-2 text-4xl font-semibold">Welkom terug</h4>
+          </div>
 
           <form (ngSubmit)="login()">
-            <label class="form-control">
+            <label class="form-control mb-2">
               <div class="label">
                 <span class="font-bold">Email</span>
               </div>
@@ -20,7 +22,7 @@
               />
             </label>
 
-            <label class="form-control">
+            <label class="form-control mb-2">
               <div class="label">
                 <span class="font-bold">Wachtwoord</span>
               </div>
@@ -32,17 +34,28 @@
                 class="input input-bordered"
               />
             </label>
-
-            <div *ngIf="errorMessage" class="text-red-500 mt-1">
-              {{ errorMessage }}
+            <div *ngIf="!showResetPassword">
+              Nog geen account?
+              <a class="link" href="mailto:l.weeda@avans.nl?Subject=Rekentool - account aanvraag">
+                Vraag aan
+              </a>
             </div>
 
-            <button type="submit" class="btn btn-secondary w-full text-white mt-6">Log in</button>
+            <div *ngIf="showResetPassword">
+              <a
+                class="link block mb-2"
+                href="mailto:l.weeda@avans.nl?Subject=Rekentool - wachtwoord vergeten"
+              >
+                Wachtwoord vergeten?
+              </a>
+            </div>
+
+            <button type="submit" class="btn btn-secondary w-full text-white mt-8">Log in</button>
           </form>
         </div>
       </div>
 
-      <!-- Right side picture -->
+      <!-- right side picture -->
       <div
         class="hidden lg:block lg:w-7/12 lg:rounded-r-lg relative bg-cover"
         style="background-image: url(/assets/banner.webp)"

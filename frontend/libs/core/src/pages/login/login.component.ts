@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Location } from '@angular/common';
 import { IconLogoComponent } from '../../components/icons/icon-logo/icon-logo.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'smart-energy-login',
@@ -14,22 +15,27 @@ import { IconLogoComponent } from '../../components/icons/icon-logo/icon-logo.co
 export class LoginComponent {
   email = '';
   password = '';
-  errorMessage = '';
+  showResetPassword = false;
 
   constructor(
     private authService: AuthService,
     private location: Location,
+    private toastService: ToastService,
   ) {}
 
   async login() {
     const ok = await this.authService.login(this.email, this.password);
     if (!ok) {
-      this.errorMessage = 'Login gegevens zijn onjuist';
+      this.showResetPassword = true;
+      this.toastService.show('Login gegevens zijn onjuist', 'error');
       return;
     }
 
     if (!this.authService.user$.value.data?.hasSetupAccount) {
-      this.errorMessage = 'Account is nog niet ingesteld, neem contact op met de beheerder';
+      this.toastService.show(
+        'Account is nog niet ingesteld, neem contact op met de beheerder',
+        'error',
+      );
       await this.authService.logout();
       return;
     }
