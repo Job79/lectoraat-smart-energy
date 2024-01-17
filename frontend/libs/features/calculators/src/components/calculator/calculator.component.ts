@@ -136,7 +136,16 @@ export class CalculatorComponent implements OnInit, OnChanges, OnDestroy {
 
   pdf(hidePdfComment: boolean) {
     this.hidePdfComment = hidePdfComment;
-    setTimeout(() => window.print(), 50);
+
+    //use outdated execCommand because of bug in safari
+    //more info https://stackoverflow.com/questions/31171099/window-print-does-not-work-in-safari
+    setTimeout(() => {
+      try {
+        document.execCommand('print', false, null!);
+      } catch (e) {
+        window.print();
+      }
+    }, 50);
   }
 
   get isAuthenticated() {
