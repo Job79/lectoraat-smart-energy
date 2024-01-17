@@ -6,6 +6,7 @@ import { UserService } from '../../services/user.service';
 import { IUser } from '../../models/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { IconLogoComponent } from '../../components/icons/icon-logo/icon-logo.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'smart-energy-setup-account',
@@ -15,7 +16,6 @@ import { IconLogoComponent } from '../../components/icons/icon-logo/icon-logo.co
   templateUrl: './setup-account.component.html',
 })
 export class SetupAccountComponent {
-  errorMessage = '';
   credentials = {
     password: '',
     passwordConfirm: '',
@@ -26,14 +26,15 @@ export class SetupAccountComponent {
     private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
+    private toastService: ToastService,
   ) {}
 
   async save() {
     if (this.credentials.password !== this.credentials.passwordConfirm) {
-      this.errorMessage = 'Wachtwoorden komen niet overeen';
+      this.toastService.show('Wachtwoorden komen niet overeen', 'error');
       return;
     } else if (this.credentials.password.length < 8) {
-      this.errorMessage = 'Wachtwoord moet minimaal 8 tekens lang zijn';
+      this.toastService.show('Wachtwoord moet minimaal 8 tekens lang zijn', 'error');
       return;
     }
 
@@ -43,7 +44,7 @@ export class SetupAccountComponent {
     // Login is required, otherwise the user does not have access to update their password.
     const ok = await this.authService.login(email, token);
     if (!ok) {
-      this.errorMessage = 'Reset token is ongeldig, neem contact op met de beheerder';
+      this.toastService.show('Reset token is ongeldig, neem contact op met de beheerder', 'error');
       return;
     }
 
@@ -58,7 +59,7 @@ export class SetupAccountComponent {
     this.userService.update(user).subscribe(async () => {
       // Relogin to reload hasSetupAccount.
       if (!(await this.authService.login(email, this.credentials.password))) {
-        this.errorMessage = 'Er is iets misgegaan, neem contact op met de beheerder';
+        this.toastService.show('Er is iets misgegaan, neem contact op met de beheerder', 'error');
         return;
       }
 
