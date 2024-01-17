@@ -22,25 +22,22 @@
               />
             </label>
 
-            <label class="form-control mb-2">
+            <label class="form-control mb-2 relative">
               <div class="label">
                 <span class="font-bold">Wachtwoord</span>
               </div>
               <input
-                [type]="isPasswordVisible ? 'password' : 'text'"
+                [type]="isPasswordVisible ? 'text' : 'password'"
                 name="password"
                 [(ngModel)]="password"
                 placeholder="Voer uw wachtwoord in"
                 class="input input-bordered"
               />
+              <smart-energy-password-toggle
+                [(isPasswordVisible)]="isPasswordVisible"
+                class="absolute right-4 bottom-2.5"
+              ></smart-energy-password-toggle>
             </label>
-
-            <smart-energy-password-toggle
-              [(isPasswordVisible)]="isPasswordVisible"
-            ></smart-energy-password-toggle>
-
-            <!-- Your other HTML content -->
-            <p>Password visibility status: {{ isPasswordVisible ? 'true' : 'false' }}</p>
 
             <div *ngIf="!showResetPassword">
               Nog geen account?

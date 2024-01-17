@@ -9,6 +9,7 @@ import {
   HeaderComponent,
   IconUserComponent,
   ToastService,
+  PasswordToggleComponent,
 } from '@smart-energy/core';
 
 @Component({
@@ -21,12 +22,16 @@ import {
     FormsModule,
     HeaderComponent,
     IconUserComponent,
+    PasswordToggleComponent,
   ],
   providers: [UserService],
   templateUrl: './account.component.html',
 })
 export class AccountComponent {
   user = {} as IUser;
+  isPasswordOldVisible = false;
+  isPasswordVisible = false;
+  isPasswordConfirmVisible = false;
 
   constructor(
     private userService: UserService,
