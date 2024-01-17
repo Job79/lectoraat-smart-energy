@@ -16,15 +16,16 @@
           <smart-energy-icon-reload />
         </button>
         <div class="dropdown dropdown-bottom dropdown-start">
-          <button type="button" class="btn btn-secondary">Download Pdf</button>
+          <div role="button" tabindex="0" class="btn btn-secondary">Download Pdf</div>
           <ul
+            tabindex="0"
             class="dropdown-content z-[1] menu my-2 p-2 shadow bg-base-100 rounded-box w-52 print:hidden"
           >
             <li>
-              <button type="button" (click)="pdf(true)">Standaard</button>
+              <a type="button" (click)="pdf(true)">Standaard</a>
             </li>
             <li>
-              <button type="button" (click)="pdf(false)">Inclusief opmerkingen</button>
+              <a type="button" (click)="pdf(false)">Inclusief opmerkingen</a>
             </li>
           </ul>
         </div>
