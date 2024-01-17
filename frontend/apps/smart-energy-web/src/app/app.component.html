@@ -8,12 +8,15 @@
 >
   <div
     class="flex justify-center"
-    [class]="showNavigation ? 'min-h-full' : 'min-h-full md:min-h-[calc(100dvh-6rem)]'"
+    [class]="showNavigation ? 'min-h-full' : 'min-h-full md:min-h-[calc(100dvh-8rem)]'"
   >
     <div class="w-full max-w-[65rem]">
       <router-outlet />
     </div>
   </div>
 
-  <smart-energy-footer *ngIf="!showNavigation" class="hidden md:block -mx-2 print:!hidden" />
+  <smart-energy-footer
+    *ngIf="!showNavigation"
+    class="hidden md:block pt-[2rem] -mx-2 print:!hidden"
+  />
 </div>
