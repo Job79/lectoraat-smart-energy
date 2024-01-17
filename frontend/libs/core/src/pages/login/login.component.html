@@ -6,10 +6,7 @@
         <div class="px-8 py-12 md:px-12 md:py-16">
           <div class="mb-6">
             <h4 class="mb-2 text-4xl font-semibold">Welkom terug</h4>
-            <p>
-              Heb je nog geen account?
-              <a class="link" href="mailto:l.weeda@avans.nl?Subject=Account aanvraag">Vraag aan</a>
-            </p>
+
           </div>
 
           <form (ngSubmit)="login()">
@@ -38,12 +35,17 @@
                 class="input input-bordered"
               />
             </label>
-            <a class="link" href="mailto:l.weeda@avans.nl?Subject=Wachtwoord vergeten"
-              >Wachtwoord vergeten?</a
-            >
+            <div *ngIf="!showResetPassword">
+              Nog geen account?
+              <a class="link" href="mailto:l.weeda@avans.nl?Subject=Rekentool - account aanvraag">
+                Vraag aan
+              </a>
+            </div>
 
-            <div *ngIf="errorMessage" class="text-red-500 mt-1">
-              {{ errorMessage }}
+            <div *ngIf="showResetPassword">
+              <a class="link block mb-2" href="mailto:l.weeda@avans.nl?Subject=Rekentool - wachtwoord vergeten">
+                Wachtwoord vergeten?
+              </a>
             </div>
 
             <button type="submit" class="btn btn-secondary w-full text-white mt-8">Log in</button>
