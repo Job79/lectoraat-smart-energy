@@ -12,7 +12,13 @@
 
     <div buttons>
       <div class="flex justify-end space-x-4 print:hidden">
-        <button *ngIf="!calculation.id" type="button" class="btn btn-secondary" (click)="clear()">
+        <button
+          *ngIf="!calculation.id"
+          type="button"
+          id="clear"
+          class="btn btn-secondary"
+          (click)="clear()"
+        >
           <smart-energy-icon-reload />
         </button>
         <div class="dropdown dropdown-bottom dropdown-start">
