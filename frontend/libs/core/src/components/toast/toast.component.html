@@ -2,7 +2,7 @@
   <div
     role="alert"
     class="alert w-full max-w-[50rem] flex justify-start pointer-events-auto cursor-pointer"
-    [class]="'alert-' + type"
+    [class]="'print:hidden alert-' + type"
     (click)="closeToast()"
   >
     <ng-container [ngSwitch]="type">
