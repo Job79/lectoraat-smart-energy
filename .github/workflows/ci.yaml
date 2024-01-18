@@ -22,9 +22,9 @@ jobs:
           npm ci
           npm run ci
 
-      - name: Cypress run
+      - name: cypress run
         working-directory: ./frontend
-        run: npm run test
+        run: npm run test:e2e
 
       - name: build artifact
         run: mv frontend/dist/apps/smart-energy-web/browser pocketbase/pb_public
